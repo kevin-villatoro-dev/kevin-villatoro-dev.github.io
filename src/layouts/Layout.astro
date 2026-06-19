@@ -27,8 +27,41 @@ const { title, description = "Portafolio | Kevin Villatoro" } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <div class="shapes" id="shapes"></div>
     <slot />
   </body>
+
+  <script is:inline>
+    const container = document.getElementById('shapes');
+    const colors = ['#00d4ff', '#ff00aa'];
+    const shapes = ['circle', 'square', 'triangle', 'hexagon'];
+    
+    for (let i = 0; i < 15; i++) {
+      const shape = shapes[Math.floor(Math.random() * shapes.length)];
+      const el = document.createElement('div');
+      el.className = `shape shape--${shape}`;
+      
+      const size = Math.random() * 25 + 12;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      
+      if (shape === 'circle' || shape === 'square') {
+        el.style.width = size + 'px';
+        el.style.height = size + 'px';
+        el.style.borderColor = color;
+      } else if (shape === 'triangle') {
+        el.style.borderBottomColor = color;
+      } else {
+        el.style.width = size + 'px';
+        el.style.height = size + 'px';
+        el.style.background = color;
+      }
+      
+      el.style.left = Math.random() * 100 + '%';
+      el.style.animationDuration = (Math.random() * 25 + 20) + 's';
+      el.style.animationDelay = (Math.random() * 15) + 's';
+      container.appendChild(el);
+    }
+  </script>
 </html>
 
 <style is:global>
