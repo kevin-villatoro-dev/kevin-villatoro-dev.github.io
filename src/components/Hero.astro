@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="hero-visual">
-      <div class="code-block glass-card animate-float">
+      <div class="code-block glass-card anim-float-shimmer">
         <div class="code-header">
           <span class="dot red"></span>
           <span class="dot yellow"></span>
@@ -102,6 +102,40 @@
   .variable { color: var(--accent-cyan); }
   .property { color: #a78bfa; }
   .string { color: #34d399; }
+
+  /* Combined Animation: Float + Shimmer */
+  .anim-float-shimmer {
+    position: relative;
+    overflow: hidden;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .anim-float-shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.15),
+      transparent
+    );
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
   @media (max-width: 968px) {
     .hero .container { grid-template-columns: 1fr; text-align: center; }
     .hero-description { margin-left: auto; margin-right: auto; }

@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="sidebarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a365d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f2440;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00b4a0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00d4c4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Browser Chrome -->
+  <rect width="800" height="500" rx="8" fill="#f5f5f5"/>
+  <rect width="800" height="40" rx="8" fill="#e8e8e8"/>
+  <rect x="0" y="30" width="800" height="10" fill="#e8e8e8"/>
+  <circle cx="20" cy="20" r="6" fill="#ff5f57"/>
+  <circle cx="40" cy="20" r="6" fill="#ffbd2e"/>
+  <circle cx="60" cy="20" r="6" fill="#28c840"/>
+  <rect x="100" y="12" width="500" height="16" rx="8" fill="#fff"/>
+  <text x="350" y="23" font-family="Inter, sans-serif" font-size="9" fill="#666" text-anchor="middle">https://adm.██████████</text>
+  
+  <!-- Sidebar -->
+  <rect x="0" y="40" width="140" height="460" fill="url(#sidebarGrad)"/>
+  
+  <!-- Logo placeholder -->
+  <rect x="20" y="60" width="100" height="20" rx="4" fill="rgba(255,255,255,0.1)"/>
+  
+  <!-- Nav Items as colored stripes -->
+  <rect x="15" y="100" width="110" height="30" rx="6" fill="#00b4a0"/>
+  
+  <rect x="15" y="145" width="110" height="8" rx="2" fill="rgba(255,255,255,0.2)"/>
+  <rect x="15" y="165" width="90" height="8" rx="2" fill="rgba(255,255,255,0.15)"/>
+  <rect x="15" y="185" width="100" height="8" rx="2" fill="rgba(255,255,255,0.15)"/>
+  <rect x="15" y="205" width="80" height="8" rx="2" fill="rgba(255,255,255,0.15)"/>
+  <rect x="15" y="225" width="95" height="8" rx="2" fill="rgba(255,255,255,0.15)"/>
+  
+  <!-- Main Content -->
+  <rect x="140" y="40" width="660" height="460" fill="#fff"/>
+  
+  <!-- Header Bar -->
+  <rect x="140" y="40" width="660" height="50" fill="#fff"/>
+  <text x="700" y="70" font-family="Inter, sans-serif" font-size="11" fill="#666">Hola, Demo</text>
+  <circle cx="745" cy="65" r="15" fill="#1a365d"/>
+  <text x="745" y="70" font-family="Inter, sans-serif" font-size="12" fill="#fff" text-anchor="middle" font-weight="600">D</text>
+  
+  <!-- Progress Bar -->
+  <rect x="160" y="100" width="620" height="8" rx="4" fill="#e0e0e0"/>
+  <rect x="160" y="100" width="310" height="8" rx="4" fill="url(#tealGrad)"/>
+  
+  <!-- Step Header -->
+  <rect x="160" y="120" width="620" height="70" rx="8" fill="#1a365d"/>
+  <text x="180" y="150" font-family="Inter, sans-serif" font-size="16" fill="#fff" font-weight="700">Paso 3</text>
+  <text x="180" y="172" font-family="Inter, sans-serif" font-size="12" fill="#aaa">Parámetros de pago</text>
+  
+  <!-- Form Section -->
+  <rect x="160" y="200" width="620" height="290" rx="8" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <!-- Monto Field -->
+  <text x="185" y="235" font-family="Inter, sans-serif" font-size="11" fill="#666">Monto (GTQ)</text>
+  <rect x="185" y="245" width="150" height="35" rx="6" fill="#f0f0f0" stroke="#ddd" stroke-width="1"/>
+  
+  <!-- Checkbox -->
+  <rect x="185" y="295" width="14" height="14" rx="3" fill="#fff" stroke="#ccc" stroke-width="1"/>
+  <text x="210" y="307" font-family="Inter, sans-serif" font-size="11" fill="#666">Link abierto</text>
+  
+  <!-- Tipo de pago -->
+  <text x="370" y="235" font-family="Inter, sans-serif" font-size="11" fill="#666">Tipo de pago</text>
+  
+  <!-- Checkboxes for payment types -->
+  <rect x="370" y="250" width="12" height="12" rx="2" fill="#00b4a0"/>
+  <text x="390" y="261" font-family="Inter, sans-serif" font-size="10" fill="#333">Contado</text>
+  
+  <rect x="370" y="272" width="12" height="12" rx="2" fill="#00b4a0"/>
+  <text x="390" y="283" font-family="Inter, sans-serif" font-size="10" fill="#333">2 Cuotas</text>
+  
+  <rect x="370" y="294" width="12" height="12" rx="2" fill="#00b4a0"/>
+  <text x="390" y="305" font-family="Inter, sans-serif" font-size="10" fill="#333">3 Cuotas</text>
+  
+  <rect x="370" y="316" width="12" height="12" rx="2" fill="#00b4a0"/>
+  <text x="390" y="327" font-family="Inter, sans-serif" font-size="10" fill="#333">6 Cuotas</text>
+  
+  <rect x="370" y="338" width="12" height="12" rx="2" fill="#00b4a0"/>
+  <text x="390" y="349" font-family="Inter, sans-serif" font-size="10" fill="#333">10 Cuotas</text>
+  
+  <rect x="370" y="360" width="12" height="12" rx="2" fill="#00b4a0"/>
+  <text x="390" y="371" font-family="Inter, sans-serif" font-size="10" fill="#333">12 Cuotas</text>
+  
+  <rect x="370" y="382" width="12" height="12" rx="2" fill="#fff" stroke="#ccc" stroke-width="1"/>
+  <text x="390" y="393" font-family="Inter, sans-serif" font-size="10" fill="#999">15 Cuotas</text>
+  
+  <rect x="370" y="404" width="12" height="12" rx="2" fill="#fff" stroke="#ccc" stroke-width="1"/>
+  <text x="390" y="415" font-family="Inter, sans-serif" font-size="10" fill="#999">18 Cuotas</text>
+  
+  <rect x="370" y="426" width="12" height="12" rx="2" fill="#fff" stroke="#ccc" stroke-width="1"/>
+  <text x="390" y="437" font-family="Inter, sans-serif" font-size="10" fill="#999">24 Cuotas</text>
+  
+  <rect x="370" y="448" width="12" height="12" rx="2" fill="#fff" stroke="#ccc" stroke-width="1"/>
+  <text x="390" y="459" font-family="Inter, sans-serif" font-size="10" fill="#999">36 Cuotas</text>
+  
+  <!-- Compartir en -->
+  <text x="530" y="235" font-family="Inter, sans-serif" font-size="11" fill="#666">Compartir en</text>
+  
+  <!-- WhatsApp -->
+  <rect x="530" y="250" width="12" height="12" rx="2" fill="#00b4a0"/>
+  <circle cx="555" cy="256" r="12" fill="#25d366"/>
+  <text x="555" y="260" font-family="Inter, sans-serif" font-size="10" fill="#fff" text-anchor="middle">W</text>
+  
+  <!-- Twitter -->
+  <rect x="530" y="280" width="12" height="12" rx="2" fill="#fff" stroke="#ccc" stroke-width="1"/>
+  <circle cx="555" cy="286" r="12" fill="#1da1f2"/>
+  <text x="555" y="290" font-family="Inter, sans-serif" font-size="10" fill="#fff" text-anchor="middle">T</text>
+  
+  <!-- Email -->
+  <rect x="530" y="310" width="12" height="12" rx="2" fill="#fff" stroke="#ccc" stroke-width="1"/>
+  <circle cx="555" cy="316" r="12" fill="#00b4a0"/>
+  <text x="555" y="320" font-family="Inter, sans-serif" font-size="10" fill="#fff" text-anchor="middle">@</text>
+  
+  <!-- Facebook -->
+  <rect x="530" y="340" width="12" height="12" rx="2" fill="#fff" stroke="#ccc" stroke-width="1"/>
+  <circle cx="555" cy="346" r="12" fill="#1877f2"/>
+  <text x="555" y="350" font-family="Inter, sans-serif" font-size="10" fill="#fff" text-anchor="middle">f</text>
+  
+  <!-- Instagram -->
+  <rect x="530" y="370" width="12" height="12" rx="2" fill="#fff" stroke="#ccc" stroke-width="1"/>
+  <circle cx="555" cy="376" r="12" fill="#e4405f"/>
+  <text x="555" y="380" font-family="Inter, sans-serif" font-size="10" fill="#fff" text-anchor="middle">I</text>
+  
+  <!-- Note -->
+  <text x="185" y="475" font-family="Inter, sans-serif" font-size="9" fill="#999" font-style="italic">"Recuerda que si seleccionas botón de pago y otra red social, el link se ocultara pasado el tiempo estimado."</text>
+  
+  <!-- Bottom Fields -->
+  <rect x="185" y="490" width="200" height="25" rx="4" fill="#f0f0f0"/>
+  <rect x="405" y="490" width="200" height="25" rx="4" fill="#f0f0f0"/>
+  <text x="185" y="488" font-family="Inter, sans-serif" font-size="9" fill="#666">Código interno</text>
+  <text x="405" y="488" font-family="Inter, sans-serif" font-size="9" fill="#666">Nombre interno</text>
+</svg>

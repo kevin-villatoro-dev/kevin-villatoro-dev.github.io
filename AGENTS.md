@@ -40,5 +40,5 @@ All content is hardcoded in component files. No CMS, no markdown, no dynamic dat
 
 - `public/kevin_villatoro_cv.pdf` - CV file
 - `public/recomendaciones.pdf` - Recommendations file
-- `src/pages/cv.astro` - CV viewer page (embeds PDF in iframe)
-- `src/pages/recomendaciones.astro` - Recommendations viewer page (embeds PDF in iframe)
+- `src/pages/cv.astro` - CV viewer page (renders PDF via PDF.js)
+- `src/pages/recomendaciones.astro` - Recommendations viewer page (carousel with PDF.js)

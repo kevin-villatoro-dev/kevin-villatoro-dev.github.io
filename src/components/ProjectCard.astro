@@ -4,18 +4,32 @@ interface Props {
   description: string;
   tags: string[];
   image?: string;
+  images?: string[];
   confidential?: boolean;
   github?: string;
   demo?: string;
   featured?: boolean;
 }
 
-const { title, description, tags, image, confidential = false, github, demo, featured = false } = Astro.props;
+const { title, description, tags, image, images, confidential = false, github, demo, featured = false } = Astro.props;
+const hasSlideshow = images && images.length > 1;
 ---
 
 <article class:list={["project-card glass-card", { featured }]}>
   <div class="card-image">
-    {image ? (
+    {hasSlideshow ? (
+      <div class="slideshow">
+        {images.map((img, i) => (
+          <img 
+            src={img} 
+            alt={`${title} - Imagen ${i + 1}`} 
+            class="slide"
+            style={`animation-delay: ${i * 3}s;`}
+            loading="lazy" 
+          />
+        ))}
+      </div>
+    ) : image ? (
       <img src={image} alt={title} loading="lazy" />
     ) : (
       <div class="image-placeholder">
@@ -64,6 +78,31 @@ const { title, description, tags, image, confidential = false, github, demo, fea
     background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(0,212,255,0.05) 100%);
     color: var(--text-muted);
   }
+
+  /* Slideshow Styles */
+  .slideshow {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .slideshow .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: fadeSlide 12s infinite;
+  }
+
+  @keyframes fadeSlide {
+    0%, 100% { opacity: 0; }
+    20%, 30% { opacity: 1; }
+    33%, 100% { opacity: 0; }
+  }
+
   .confidential-overlay {
     position: absolute;
     inset: 0;
@@ -72,23 +111,42 @@ const { title, description, tags, image, confidential = false, github, demo, fea
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
     color: #ff6b6b;
     font-size: 0.85rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    opacity: 0;
-    transition: opacity var(--transition-normal);
-  }
-  .project-card:hover .confidential-overlay {
     opacity: 1;
+    transition: all var(--transition-normal);
+    z-index: 5;
+  }
+
+  .project-card:hover .confidential-overlay {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
+  }
+
+  .confidential-overlay svg {
+    animation: lockPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes lockPulse {
+    0%, 100% { 
+      transform: scale(1);
+      filter: drop-shadow(0 0 5px rgba(255, 107, 107, 0.5));
+    }
+    50% { 
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.8));
+    }
   }
   .featured-badge {
     position: absolute; top: 1rem; right: 1rem; padding: 0.35rem 0.75rem;
     font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
     background: var(--accent-gradient); color: var(--bg-primary); border-radius: var(--radius-full);
+    z-index: 5;
   }
   .card-content { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
   .card-title { font-size: 1.25rem; margin-bottom: 0.5rem; }
