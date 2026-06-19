@@ -34,4 +34,11 @@ All content is hardcoded in component files. No CMS, no markdown, no dynamic dat
 - Glassmorphism card style via `.glass-card` class
 - Google Fonts: Space Grotesk (headings) + Inter (body)
 - Components use `<style>` blocks with scoped CSS (Astro default)
-- No client-side JS. All interactivity is CSS-only (hover effects, animations)
+- No client-side JS except PDF viewer pages (cv, recomendaciones) which use PDF.js
+
+## PDF Files
+
+- `public/kevin_villatoro_cv.pdf` - CV file
+- `public/recomendaciones.pdf` - Recommendations file
+- `src/pages/cv.astro` - CV viewer page (embeds PDF in iframe)
+- `src/pages/recomendaciones.astro` - Recommendations viewer page (embeds PDF in iframe)

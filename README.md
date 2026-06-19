@@ -36,21 +36,25 @@ El servidor se iniciará en `http://localhost:4321`
 ```
 portfolio/
 ├── public/
-│   └── favicon.svg              # Favicon personalizado
+│   ├── kevin_villatoro_cv.pdf     # Archivo CV
+│   ├── recomendaciones.pdf        # Cartas de recomendación
+│   └── images/projects/           # Imágenes de proyectos
 ├── src/
 │   ├── components/
-│   │   ├── Header.astro         # Navegación con logo
-│   │   ├── Hero.astro           # Sección principal
-│   │   ├── Projects.astro       # Grid de proyectos
-│   │   ├── ProjectCard.astro    # Tarjeta de proyecto
-│   │   ├── Contact.astro        # Formulario + info contacto
-│   │   └── Footer.astro         # Footer con redes sociales
+│   │   ├── Header.astro           # Navegación con logo
+│   │   ├── Hero.astro             # Sección principal
+│   │   ├── Projects.astro         # Grid de proyectos
+│   │   ├── ProjectCard.astro      # Tarjeta de proyecto
+│   │   ├── Contact.astro          # Formulario + info contacto
+│   │   └── Footer.astro           # Footer
 │   ├── layouts/
-│   │   └── Layout.astro         # Layout base (meta tags, fonts)
+│   │   └── Layout.astro           # Layout base (meta tags, fonts)
 │   ├── pages/
-│   │   └── index.astro          # Página principal
+│   │   ├── index.astro            # Página principal
+│   │   ├── cv.astro               # Visor de CV
+│   │   └── recomendaciones.astro  # Visor de recomendaciones
 │   └── styles/
-│       └── global.css           # Estilos globales y variables CSS
+│       └── global.css             # Estilos globales y variables CSS
 ├── astro.config.mjs
 ├── package.json
 └── tsconfig.json
@@ -59,26 +63,23 @@ portfolio/
 ## Secciones del portafolio
 
 ### Hero
-- Nombre completo: Alejandro Martínez
-- Título: Software Engineer
+- Nombre completo
+- Título profesional
 - Resumen profesional
-- Estadísticas: años de experiencia, proyectos, clientes
+- Roles preferidos
 - Bloque de código decorativo
 
 ### Proyectos Destacados
-6 proyectos de ejemplo:
-- **TaskFlow** - Gestión de proyectos (React, Node.js, PostgreSQL)
-- **CryptoTracker** - Dashboard criptomonedas (Next.js, TypeScript)
-- **DevBlog** - Blog tecnología (Astro, MDX)
-- **WeatherApp** - App del clima (Vue.js, PWA)
-- **API Gateway** - Microservicios (Go, Redis, K8s)
-- **Design System** - Sistema de diseño (React, Storybook)
+6 proyectos:
+- 4 proyectos demo con imágenes
+- 2 proyectos confidenciales con overlay de candado
 
 ### Contacto
 - Formulario de contacto
-- Email: alejandro@example.com
-- LinkedIn: /in/alejandrom
-- GitHub: @alejandrom
+- Email
+- LinkedIn
+- GitHub
+- WhatsApp
 
 ## Personalización
 
@@ -86,10 +87,11 @@ portfolio/
 
 Edita los siguientes archivos:
 
-1. **Nombre y resumen**: `src/components/Hero.astro`
+1. **Nombre y roles**: `src/components/Hero.astro`
 2. **Proyectos**: `src/components/Projects.astro`
 3. **Contacto**: `src/components/Contact.astro`
-4. **Redes sociales**: `src/components/Footer.astro`
+4. **CV**: Coloca tu CV en `public/kevin_villatoro_cv.pdf`
+5. **Recomendaciones**: Coloca tus cartas en `public/recomendaciones.pdf`
 
 ### Cambiar colores
 
