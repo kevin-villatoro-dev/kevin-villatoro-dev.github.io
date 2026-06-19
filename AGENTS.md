@@ -22,7 +22,7 @@ No lint, typecheck, or test scripts are configured. `npm run build` is the only 
 src/
 ├── components/   # Astro components (Header, Hero, Projects, ProjectCard, Contact, Footer)
 ├── layouts/      # Layout.astro (base HTML, Google Fonts, meta tags)
-├── pages/        # index.astro (only page)
+├── pages/        # index.astro, cv.astro, recomendaciones.astro
 └── styles/       # global.css (CSS variables, theme, animations)
 ```
 
