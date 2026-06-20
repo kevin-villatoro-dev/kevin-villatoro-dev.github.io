@@ -1,105 +1,160 @@
 ---
+
 ---
 
 <header class="header">
-  <nav class="nav container">
-    <a href="/" class="logo">
-      <span class="logo-bracket">&lt;</span>
-      <span class="logo-text">KV</span>
-      <span class="logo-bracket">/&gt;</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#proyectos">Proyectos</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-    <div class="nav-actions">
-      <a href="/recomendaciones" class="btn btn-heart nav-cta">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        Recomendaciones
-      </a>
-      <a href="/cv" class="btn btn-primary nav-cta">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        Ver CV
-      </a>
-    </div>
-  </nav>
+	<nav class="nav container">
+		<a href="/" class="logo">
+			<span class="logo-bracket">&lt;</span>
+			<span class="logo-text">KV</span>
+			<span class="logo-bracket">/&gt;</span>
+		</a>
+		<ul class="nav-links">
+			<li><a href="#proyectos">Proyectos</a></li>
+			<li><a href="#contacto">Contacto</a></li>
+		</ul>
+		<div class="nav-actions">
+			<a href="/recomendaciones" class="btn btn-heart nav-cta">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="16"
+					height="16"
+					viewBox="0 0 24 24"
+					fill="currentColor"
+					stroke="none"
+					><path
+						d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+					></path></svg
+				>
+				Recomendaciones
+			</a>
+			<a href="/cv" class="btn btn-primary nav-cta">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="16"
+					height="16"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+					></path><circle cx="12" cy="7" r="4"></circle></svg
+				>
+				Ver CV
+			</a>
+		</div>
+	</nav>
 </header>
 
 <style>
-  .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    padding: 1rem 0;
-    background: rgba(10, 10, 15, 0.8);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--glass-border);
-  }
-  .nav { display: flex; align-items: center; justify-content: space-between; }
-  .logo {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    transition: transform var(--transition-fast);
-  }
-  .logo:hover { transform: scale(1.05); color: var(--text-primary); }
-  .logo-bracket { color: var(--accent-cyan); font-weight: 500; }
-  .logo-text {
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    color: var(--text-secondary);
-    font-weight: 500;
-    position: relative;
-    padding: 0.25rem 0;
-  }
-  .nav-links a::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--accent-gradient);
-    transition: width var(--transition-normal);
-  }
-  .nav-links a:hover { color: var(--text-primary); }
-  .nav-links a:hover::after { width: 100%; }
-  .nav-actions { display: flex; gap: 0.75rem; align-items: center; }
-  .nav-cta { padding: 0.5rem 1.25rem; font-size: 0.9rem; }
-  .btn-heart {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1.25rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    border: none;
-    border-radius: var(--radius-full);
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    text-decoration: none;
-    background: var(--accent-magenta);
-    color: var(--bg-primary);
-  }
-  .btn-heart:hover {
-    box-shadow: 0 8px 24px rgba(255, 0, 170, 0.3);
-    transform: translateY(-2px);
-    color: var(--bg-primary);
-  }
-  @media (max-width: 640px) {
-    .nav-links { display: none; }
-    .nav-actions { gap: 0.5rem; }
-    .nav-cta { font-size: 0.8rem; padding: 0.5rem 0.875rem; }
-  }
+	.header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
+		padding: 1rem 0;
+		background: rgba(10, 10, 15, 0.8);
+		backdrop-filter: blur(20px);
+		border-bottom: 1px solid var(--glass-border);
+	}
+	.nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.logo {
+		font-family: var(--font-heading);
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: var(--text-primary);
+		display: flex;
+		align-items: center;
+		gap: 2px;
+		transition: transform var(--transition-fast);
+	}
+	.logo:hover {
+		transform: scale(1.05);
+		color: var(--text-primary);
+	}
+	.logo-bracket {
+		color: var(--accent-cyan);
+		font-weight: 500;
+	}
+	.logo-text {
+		background: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+	.nav-links {
+		display: flex;
+		gap: 2rem;
+		list-style: none;
+	}
+	.nav-links a {
+		color: var(--text-secondary);
+		font-weight: 500;
+		position: relative;
+		padding: 0.25rem 0;
+	}
+	.nav-links a::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 0;
+		height: 2px;
+		background: var(--accent-gradient);
+		transition: width var(--transition-normal);
+	}
+	.nav-links a:hover {
+		color: var(--text-primary);
+	}
+	.nav-links a:hover::after {
+		width: 100%;
+	}
+	.nav-actions {
+		display: flex;
+		gap: 0.75rem;
+		align-items: center;
+	}
+	.nav-cta {
+		padding: 0.5rem 1.25rem;
+		font-size: 0.9rem;
+	}
+	.btn-heart {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.5rem 1.25rem;
+		font-size: 0.9rem;
+		font-weight: 500;
+		border: none;
+		border-radius: var(--radius-full);
+		cursor: pointer;
+		transition: all var(--transition-normal);
+		text-decoration: none;
+		background: var(--accent-magenta);
+		color: var(--bg-primary);
+	}
+	.btn-heart:hover {
+		box-shadow: 0 8px 24px rgba(255, 0, 170, 0.3);
+		transform: translateY(-2px);
+		color: var(--bg-primary);
+	}
+	@media (max-width: 640px) {
+		.nav-links {
+			display: none;
+		}
+		.nav-actions {
+			gap: 0.5rem;
+		}
+		.nav-cta {
+			font-size: 0.8rem;
+			padding: 0.5rem 0.875rem;
+		}
+	}
 </style>

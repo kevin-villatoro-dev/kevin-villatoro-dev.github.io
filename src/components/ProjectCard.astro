@@ -1,168 +1,355 @@
 ---
 interface Props {
-  title: string;
-  description: string;
-  tags: string[];
-  image?: string;
-  images?: string[];
-  confidential?: boolean;
-  github?: string;
-  demo?: string;
-  featured?: boolean;
+	title: string;
+	description: string;
+	tags: string[];
+	image?: string;
+	images?: string[];
+	confidential?: boolean;
+	github?: string;
+	demo?: string;
+	featured?: boolean;
 }
 
-const { title, description, tags, image, images, confidential = false, github, demo, featured = false } = Astro.props;
+const {
+	title,
+	description,
+	tags,
+	image,
+	images,
+	confidential = false,
+	github,
+	demo,
+	featured = false,
+} = Astro.props;
 const hasSlideshow = images && images.length > 1;
 ---
 
 <article class:list={["project-card glass-card", { featured }]}>
-  <div class="card-image">
-    {hasSlideshow ? (
-      <div class="slideshow">
-        {images.map((img, i) => (
-          <img 
-            src={img} 
-            alt={`${title} - Imagen ${i + 1}`} 
-            class="slide"
-            style={`animation-delay: ${i * 3}s;`}
-            loading="lazy" 
-          />
-        ))}
-      </div>
-    ) : image ? (
-      <img src={image} alt={title} loading="lazy" />
-    ) : (
-      <div class="image-placeholder">
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      </div>
-    )}
-    {confidential && (
-      <div class="confidential-overlay">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        <span>Confidencial</span>
-      </div>
-    )}
-    {featured && <span class="featured-badge">Destacado</span>}
-  </div>
-  <div class="card-content">
-    <h3 class="card-title">{title}</h3>
-    <p class="card-description">{description}</p>
-    <div class="card-tags">
-      {tags.map((tag) => <span class="tag">{tag}</span>)}
-    </div>
-    <div class="card-links">
-      {github && !confidential && (
-        <a href={github} target="_blank" rel="noopener noreferrer" class="card-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          <span>Código</span>
-        </a>
-      )}
-      {demo && (
-        <a href={demo} target="_blank" rel="noopener noreferrer" class="card-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          <span>Demo</span>
-        </a>
-      )}
-    </div>
-  </div>
+	<div class="card-image">
+		{
+			hasSlideshow ? (
+				<div class="slideshow">
+					{images.map((img, i) => (
+						<img
+							src={img}
+							alt={`${title} - Imagen ${i + 1}`}
+							class="slide"
+							style={`animation-delay: ${i * 3}s;`}
+							loading="lazy"
+						/>
+					))}
+				</div>
+			) : image ? (
+				<img src={image} alt={title} loading="lazy" />
+			) : (
+				<div class="image-placeholder">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="48"
+						height="48"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.5"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<>
+							<rect
+								x="3"
+								y="3"
+								width="18"
+								height="18"
+								rx="2"
+								ry="2"
+							/>
+							<circle cx="8.5" cy="8.5" r="1.5" />
+							<polyline points="21 15 16 10 5 21" />
+						</>
+					</svg>
+				</div>
+			)
+		}
+		{
+			confidential && (
+				<div class="confidential-overlay">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="32"
+						height="32"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<>
+							<rect
+								x="3"
+								y="11"
+								width="18"
+								height="11"
+								rx="2"
+								ry="2"
+							/>
+							<path d="M7 11V7a5 5 0 0 1 10 0v4" />
+						</>
+					</svg>
+					<span>Confidencial</span>
+				</div>
+			)
+		}
+		{featured && <span class="featured-badge">Destacado</span>}
+	</div>
+	<div class="card-content">
+		<h3 class="card-title">{title}</h3>
+		<p class="card-description">{description}</p>
+		<div class="card-tags">
+			{tags.map((tag) => <span class="tag">{tag}</span>)}
+		</div>
+		<div class="card-links">
+			{
+				github && !confidential && (
+					<a
+						href={github}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="card-link"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+						</svg>
+						<span>Código</span>
+					</a>
+				)
+			}
+			{
+				demo && (
+					<a
+						href={demo}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="card-link"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<>
+								<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+								<polyline points="15 3 21 3 21 9" />
+								<line x1="10" y1="14" x2="21" y2="3" />
+							</>
+						</svg>
+						<span>Demo</span>
+					</a>
+				)
+			}
+		</div>
+	</div>
 </article>
 
 <style>
-  .project-card { display: flex; flex-direction: column; overflow: hidden; }
-  .project-card.featured { grid-column: span 2; }
-  .card-image { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--bg-secondary); }
-  .card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition-slow); }
-  .project-card:hover .card-image img { transform: scale(1.05); }
-  .image-placeholder {
-    width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(0,212,255,0.05) 100%);
-    color: var(--text-muted);
-  }
+	.project-card {
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+	}
+	.project-card.featured {
+		grid-column: span 2;
+	}
+	.card-image {
+		position: relative;
+		aspect-ratio: 16 / 10;
+		overflow: hidden;
+		background: var(--bg-secondary);
+	}
+	.card-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform var(--transition-slow);
+	}
+	.project-card:hover .card-image img {
+		transform: scale(1.05);
+	}
+	.image-placeholder {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: linear-gradient(
+			135deg,
+			var(--bg-secondary) 0%,
+			rgba(0, 212, 255, 0.05) 100%
+		);
+		color: var(--text-muted);
+	}
 
-  /* Slideshow Styles */
-  .slideshow {
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
+	/* Slideshow Styles */
+	.slideshow {
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
 
-  .slideshow .slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    animation: fadeSlide 12s infinite;
-  }
+	.slideshow .slide {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		opacity: 0;
+		animation: fadeSlide 12s infinite;
+	}
 
-  @keyframes fadeSlide {
-    0%, 100% { opacity: 0; }
-    20%, 30% { opacity: 1; }
-    33%, 100% { opacity: 0; }
-  }
+	@keyframes fadeSlide {
+		0%,
+		100% {
+			opacity: 0;
+		}
+		20%,
+		30% {
+			opacity: 1;
+		}
+		33%,
+		100% {
+			opacity: 0;
+		}
+	}
 
-  .confidential-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(3px);
-    color: #ff6b6b;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 1;
-    transition: all var(--transition-normal);
-    z-index: 5;
-  }
+	.confidential-overlay {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		background: rgba(0, 0, 0, 0.5);
+		backdrop-filter: blur(3px);
+		color: #ff6b6b;
+		font-size: 0.85rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		opacity: 1;
+		transition: all var(--transition-normal);
+		z-index: 5;
+	}
 
-  .project-card:hover .confidential-overlay {
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(6px);
-  }
+	.project-card:hover .confidential-overlay {
+		background: rgba(0, 0, 0, 0.7);
+		backdrop-filter: blur(6px);
+	}
 
-  .confidential-overlay svg {
-    animation: lockPulse 2s ease-in-out infinite;
-  }
+	.confidential-overlay svg {
+		animation: lockPulse 2s ease-in-out infinite;
+	}
 
-  @keyframes lockPulse {
-    0%, 100% { 
-      transform: scale(1);
-      filter: drop-shadow(0 0 5px rgba(255, 107, 107, 0.5));
-    }
-    50% { 
-      transform: scale(1.1);
-      filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.8));
-    }
-  }
-  .featured-badge {
-    position: absolute; top: 1rem; right: 1rem; padding: 0.35rem 0.75rem;
-    font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
-    background: var(--accent-gradient); color: var(--bg-primary); border-radius: var(--radius-full);
-    z-index: 5;
-  }
-  .card-content { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
-  .card-title { font-size: 1.25rem; margin-bottom: 0.5rem; }
-  .card-description { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1rem; flex: 1; line-height: 1.6; }
-  .card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
-  .tag {
-    padding: 0.25rem 0.75rem; font-size: 0.75rem; font-weight: 500;
-    color: var(--accent-cyan); background: rgba(0,212,255,0.1);
-    border: 1px solid rgba(0,212,255,0.2); border-radius: var(--radius-full);
-    transition: all var(--transition-fast);
-  }
-  .tag:hover { background: rgba(0,212,255,0.15); border-color: rgba(0,212,255,0.3); }
-  .card-links { display: flex; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--glass-border); }
-  .card-link { display: flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; color: var(--text-secondary); transition: color var(--transition-fast); }
-  .card-link:hover { color: var(--accent-cyan); }
-  @media (max-width: 768px) {
-    .project-card.featured { grid-column: span 1; }
-  }
+	@keyframes lockPulse {
+		0%,
+		100% {
+			transform: scale(1);
+			filter: drop-shadow(0 0 5px rgba(255, 107, 107, 0.5));
+		}
+		50% {
+			transform: scale(1.1);
+			filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.8));
+		}
+	}
+	.featured-badge {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		padding: 0.35rem 0.75rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		background: var(--accent-gradient);
+		color: var(--bg-primary);
+		border-radius: var(--radius-full);
+		z-index: 5;
+	}
+	.card-content {
+		padding: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+	}
+	.card-title {
+		font-size: 1.25rem;
+		margin-bottom: 0.5rem;
+	}
+	.card-description {
+		font-size: 0.95rem;
+		color: var(--text-secondary);
+		margin-bottom: 1rem;
+		flex: 1;
+		line-height: 1.6;
+	}
+	.card-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-bottom: 1.25rem;
+	}
+	.tag {
+		padding: 0.25rem 0.75rem;
+		font-size: 0.75rem;
+		font-weight: 500;
+		color: var(--accent-cyan);
+		background: rgba(0, 212, 255, 0.1);
+		border: 1px solid rgba(0, 212, 255, 0.2);
+		border-radius: var(--radius-full);
+		transition: all var(--transition-fast);
+	}
+	.tag:hover {
+		background: rgba(0, 212, 255, 0.15);
+		border-color: rgba(0, 212, 255, 0.3);
+	}
+	.card-links {
+		display: flex;
+		gap: 1rem;
+		padding-top: 1rem;
+		border-top: 1px solid var(--glass-border);
+	}
+	.card-link {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 0.9rem;
+		color: var(--text-secondary);
+		transition: color var(--transition-fast);
+	}
+	.card-link:hover {
+		color: var(--accent-cyan);
+	}
+	@media (max-width: 768px) {
+		.project-card.featured {
+			grid-column: span 1;
+		}
+	}
 </style>

@@ -3,87 +3,103 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="footer">
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-brand">
-        <a href="/" class="logo">
-          <span class="logo-bracket">&lt;</span>
-          <span class="logo-text">KV</span>
-          <span class="logo-bracket">/&gt;</span>
-        </a>
-        <p class="footer-tagline">Un buen desarrollador es aquel que encuentra soluciones a los problemas antes de que surjan.</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; {currentYear} Kevin Villatoro. Todos los derechos reservados.</p>
-      <p class="footer-built">Construido con <span class="gradient-text">Astro</span> & <span class="gradient-text">Coffee</span></p>
-    </div>
-  </div>
+	<div class="container">
+		<div class="footer-content">
+			<div class="footer-brand">
+				<a href="/" class="logo">
+					<span class="logo-bracket">&lt;</span>
+					<span class="logo-text">KV</span>
+					<span class="logo-bracket">/&gt;</span>
+				</a>
+				<p class="footer-tagline">
+					Un buen desarrollador es aquel que encuentra soluciones a
+					los problemas antes de que surjan.
+				</p>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<p>
+				&copy; {currentYear} Kevin Villatoro. Todos los derechos reservados.
+			</p>
+			<p class="footer-built">
+				Construido con <span class="gradient-text">Astro</span> & <span
+					class="gradient-text">Coffee</span>
+			</p>
+		</div>
+	</div>
 </footer>
 
 <style>
-  .footer {
-    padding: 3rem 0 1.5rem;
-    background: var(--bg-secondary);
-    border-top: 1px solid var(--glass-border);
-  }
+	.footer {
+		padding: 3rem 0 1.5rem;
+		background: var(--bg-secondary);
+		border-top: 1px solid var(--glass-border);
+	}
 
-  .footer-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--glass-border);
-    margin-bottom: 1.5rem;
-  }
+	.footer-content {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid var(--glass-border);
+		margin-bottom: 1.5rem;
+	}
 
-  .footer-brand {
-    text-align: center;
-  }
+	.footer-brand {
+		text-align: center;
+	}
 
-  .logo {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    display: inline-flex;
-    align-items: center;
-    gap: 2px;
-    margin-bottom: 0.5rem;
-  }
+	.logo {
+		font-family: var(--font-heading);
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: var(--text-primary);
+		display: inline-flex;
+		align-items: center;
+		gap: 2px;
+		margin-bottom: 0.5rem;
+	}
 
-  .logo:hover { color: var(--text-primary); }
+	.logo:hover {
+		color: var(--text-primary);
+	}
 
-  .logo-bracket { color: var(--accent-cyan); font-weight: 500; }
+	.logo-bracket {
+		color: var(--accent-cyan);
+		font-weight: 500;
+	}
 
-  .logo-text {
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+	.logo-text {
+		background: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
 
-  .footer-tagline { font-size: 0.9rem; color: var(--text-muted); }
+	.footer-tagline {
+		font-size: 0.9rem;
+		color: var(--text-muted);
+	}
 
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-  }
+	.footer-bottom {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 0.85rem;
+		color: var(--text-muted);
+	}
 
-  .footer-built {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-  }
+	.footer-built {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+	}
 
-  @media (max-width: 640px) {
-    .footer-bottom {
-      flex-direction: column;
-      gap: 0.5rem;
-      text-align: center;
-    }
-  }
+	@media (max-width: 640px) {
+		.footer-bottom {
+			flex-direction: column;
+			gap: 0.5rem;
+			text-align: center;
+		}
+	}
 </style>
