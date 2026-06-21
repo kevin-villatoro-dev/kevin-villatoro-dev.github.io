@@ -3,23 +3,19 @@ import ProjectCard from "./ProjectCard.astro";
 
 const projects = [
 	{
-		title: "Hosted Checkout",
+		title: "Proyecto: Cripton",
 		description:
 			"Facilita la venta en línea sin necesidad de contar con un sitio web. Ofrece a tus clientes la comodidad de pagar a distancia o a través de tus redes sociales con sus tarjetas Visa, Mastercard o utilizando sus billeteras digitales, generando un link de pago personalizado. Crea, comparte y recibe tus pagos.",
 		tags: [
 			"Php",
 			"Javascript",
-			"ePay",
-			"Cybersource",
-			"3DS",
+			"Pasarelas de pago",
 			"Wallets",
 			"Click To Pay",
 			"Check In",
 			"Recargo",
 			"Check Out",
 			"Facturacion electronica",
-			"Ainnova",
-			"Infile",
 			"SMS",
 			"Dashboards",
 			"API Gateway",
@@ -34,28 +30,43 @@ const projects = [
 		confidential: true,
 	},
 	{
-		title: "Sistema de Finanzas",
-		description: "...",
-		tags: ["Php", "Javascript", "jQuery", "Ajax", "Composer"],
-		image: "/images/projects/cryptotracker-demo.svg",
-		confidential: true,
+		title: "Blog",
+		description:
+			"Aplicación web progresiva con pronóstico del tiempo, gráficas interactivas y modo offline.",
+		tags: ["Vue.js", "OpenWeather API", "PWA", "Chart.js"],
+		image: "/images/projects/weatherapp-demo.svg",
+		github: "https://github.com/kevin-villatoro-dev/blog",
 	},
 	{
 		title: "Blog",
-		description: "...",
+		description:
+			"Aplicación web progresiva con pronóstico del tiempo, gráficas interactivas y modo offline.",
 		tags: ["Vue.js", "OpenWeather API", "PWA", "Chart.js"],
 		image: "/images/projects/weatherapp-demo.svg",
-		// github: "https://github.com/kevin-villatoro-gt/",
+		github: "https://github.com/kevin-villatoro-dev/blog",
 	},
 	{
 		title: "Carro de compras",
-		description: "...",
+		description:
+			"E-commerce con carrito de compras, pasarela de pagos y gestión de inventario.",
 		tags: ["Vue.js", "OpenWeather API", "PWA", "Chart.js"],
 		image: "/images/projects/weatherapp-demo.svg",
-		// github: "https://github.com/kevin-villatoro-gt/",
+		github: "https://github.com/kevin-villatoro-dev/carro-de-compras",
 		featured: true,
 	},
+	{
+		title: "Sistema de Finanzas",
+		description:
+			"Sistema de gestión financiera para el control de ingresos, egresos y reportes en tiempo real.",
+		tags: ["Php", "Javascript", "jQuery", "Ajax", "Composer"],
+		image: "/images/projects/cryptotracker-demo.svg",
+		github: "https://github.com/kevin-villatoro-dev/carro-de-compras",
+		confidential: true,
+	},
 ];
+
+const featuredProjects = projects.filter((p) => p.featured);
+const otherProjects = projects.filter((p) => !p.featured);
 ---
 
 <section id="proyectos" class="projects section">
@@ -66,9 +77,24 @@ const projects = [
 				Una selección de trabajos que reflejan mi experiencia y pasión
 			</p>
 		</div>
-		<div class="projects-grid">
-			{projects.map((project) => <ProjectCard {...project} />)}
+
+		<div class="projects-hero-grid">
+			{
+				featuredProjects.map((project) => (
+					<ProjectCard {...project} layout="hero" />
+				))
+			}
 		</div>
+
+		{
+			otherProjects.length > 0 && (
+				<div class="projects-compact-grid">
+					{otherProjects.map((project) => (
+						<ProjectCard {...project} layout="compact" />
+					))}
+				</div>
+			)
+		}
 	</div>
 </section>
 
@@ -76,13 +102,30 @@ const projects = [
 	.projects {
 		background: var(--bg-secondary);
 	}
-	.projects-grid {
+
+	/* ── Hero grid: full-width horizontal cards ── */
+	.projects-hero-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		margin-bottom: 2rem;
+	}
+
+	/* ── Compact grid: smaller cards below ── */
+	.projects-compact-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+		grid-template-columns: repeat(3, 1fr);
 		gap: 1.5rem;
 	}
+
+	@media (max-width: 1024px) {
+		.projects-compact-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
 	@media (max-width: 768px) {
-		.projects-grid {
+		.projects-compact-grid {
 			grid-template-columns: 1fr;
 		}
 	}

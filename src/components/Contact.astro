@@ -20,23 +20,18 @@
 					class="contact-method glass-card"
 					data-copy="kevin.villatoro.dev@gmail.com"
 				>
-					<div class="method-icon">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="28"
-							height="28"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							><path
-								d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-							></path><polyline points="22,6 12,13 2,6"
-							></polyline></svg
-						>
-					</div>
+				<div class="method-icon">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="28"
+						height="28"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						><path
+							d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"
+						></path></svg
+					>
+				</div>
 					<div class="method-content">
 						<span class="method-label">Email</span>
 						<span class="method-value"
@@ -342,16 +337,10 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: rgba(0, 212, 255, 0.1);
+		background: rgba(234, 67, 53, 0.1);
 		border-radius: var(--radius-md);
-		color: var(--accent-cyan);
+		color: #EA4335;
 		flex-shrink: 0;
-		transition: all var(--transition-normal);
-	}
-
-	.contact-method:hover .method-icon {
-		background: rgba(0, 212, 255, 0.15);
-		transform: scale(1.05);
 	}
 
 	.method-icon-linkedin {
@@ -359,26 +348,14 @@
 		color: #0a66c2;
 	}
 
-	.method-icon-linkedin:hover {
-		background: rgba(10, 102, 194, 0.15);
-	}
-
 	.method-icon-github {
 		background: rgba(240, 240, 240, 0.1);
 		color: #f0f0f0;
 	}
 
-	.method-icon-github:hover {
-		background: rgba(240, 240, 240, 0.15);
-	}
-
 	.method-icon-whatsapp {
 		background: rgba(37, 211, 102, 0.1);
 		color: #25d366;
-	}
-
-	.method-icon-whatsapp:hover {
-		background: rgba(37, 211, 102, 0.15);
 	}
 
 	.method-content {

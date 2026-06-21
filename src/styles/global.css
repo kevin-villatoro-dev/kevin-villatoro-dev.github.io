@@ -160,7 +160,7 @@ a:hover { color: var(--accent-magenta); }
   background: var(--bg-card-hover);
   border-color: rgba(255, 255, 255, 0.12);
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 212, 255, 0.1);
+  box-shadow: var(--glass-shadow);
   backdrop-filter: blur(12px);
 }
 
