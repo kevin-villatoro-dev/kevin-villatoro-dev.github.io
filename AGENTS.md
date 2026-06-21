@@ -32,9 +32,10 @@ All content is hardcoded in component files. No CMS, no markdown, no dynamic dat
 
 - Dark theme with CSS custom properties (`--accent-cyan`, `--accent-magenta`, etc.)
 - Glassmorphism card style via `.glass-card` class
-- Google Fonts: Space Grotesk (headings) + Inter (body)
+- Google Fonts: Space Grotesk (headings) + system-ui (body)
 - Components use `<style>` blocks with scoped CSS (Astro default)
-- No client-side JS except PDF viewer pages (cv, recomendaciones) which use PDF.js
+- Client-side JS: Header hamburger menu (mobile), PDF viewer pages (cv, recomendaciones) via PDF.js
+- `prefers-reduced-motion` respected globally
 
 ## PDF Files
 

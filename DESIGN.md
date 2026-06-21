@@ -236,7 +236,8 @@ Each section follows:
 - **Cursor:** `not-allowed` on entire card
 
 ### Contact Security
-- Data visible by default (no masking)
-- Copy button appears on hover
-- Success feedback with green checkmark
+- No sensitive data visible in UI (email, phone hidden)
+- Cards show only brand icon + label
+- Direct actions: mailto, LinkedIn redirect, GitHub redirect, WhatsApp API
+- No copy buttons, no clipboard exposure
 - Brand-colored icon containers (Gmail red, LinkedIn blue, GitHub white, WhatsApp green)
