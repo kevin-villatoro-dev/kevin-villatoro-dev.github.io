@@ -1,5 +1,5 @@
 ---
-import ProjectCard from "./ProjectCard.astro";
+import ProjectCard from "./ProjectCard.astro"
 
 const projects = [
 	{
@@ -31,8 +31,7 @@ const projects = [
 	},
 	{
 		title: "Ecommerce",
-		description:
-			"E-commerce con carrito de compras, pasarela de pagos y gestión de inventario.",
+		description: "E-commerce con carrito de compras, pasarela de pagos y gestión de inventario.",
 		tags: ["Php", "Laravel", "React.js", "Vite.js"],
 		image: "/images/projects/weatherapp-demo.svg",
 		github: "https://github.com/kevin-villatoro-dev/carro-de-compras",
@@ -40,8 +39,7 @@ const projects = [
 	},
 	{
 		title: "Sistema de Finanzas",
-		description:
-			"Sistema de gestión financiera para el control de ingresos, egresos y reportes en tiempo real.",
+		description: "Sistema de gestión financiera para el control de ingresos, egresos y reportes en tiempo real.",
 		tags: ["Php", "Javascript", "jQuery", "Ajax", "Composer"],
 		image: "/images/projects/cryptotracker-demo.svg",
 		github: "https://github.com/kevin-villatoro-dev/carro-de-compras",
@@ -49,33 +47,26 @@ const projects = [
 	},
 	{
 		title: "Blog",
-		description:
-			"Aplicación web progresiva con pronóstico del tiempo, gráficas interactivas y modo offline.",
+		description: "Aplicación web progresiva con pronóstico del tiempo, gráficas interactivas y modo offline.",
 		tags: ["Vue.js", "OpenWeather API", "PWA", "Chart.js"],
 		image: "/images/projects/weatherapp-demo.svg",
 		github: "https://github.com/kevin-villatoro-dev/blog",
 	},
-];
+]
 
-const featuredProjects = projects.filter((p) => p.featured);
-const otherProjects = projects.filter((p) => !p.featured);
+const featuredProjects = projects.filter((p) => p.featured)
+const otherProjects = projects.filter((p) => !p.featured)
 ---
 
 <section id="proyectos" class="projects section">
 	<div class="container">
 		<div class="section-title">
 			<h2>Proyectos <span class="gradient-text">Destacados</span></h2>
-			<p>
-				Una selección de trabajos que reflejan mi experiencia y pasión
-			</p>
+			<p>Una selección de trabajos que reflejan mi experiencia y pasión</p>
 		</div>
 
 		<div class="projects-hero-grid">
-			{
-				featuredProjects.map((project) => (
-					<ProjectCard {...project} layout="hero" />
-				))
-			}
+			{featuredProjects.map((project) => <ProjectCard {...project} layout="hero" />)}
 		</div>
 
 		{
