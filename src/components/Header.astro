@@ -10,11 +10,12 @@
 			<span class="logo-bracket">/&gt;</span>
 		</a>
 		<ul class="nav-links">
+			<li><a href="#hero">Perfil</a></li>
 			<li><a href="#proyectos">Proyectos</a></li>
-			<li><a href="#contacto">Contacto</a></li>
+			<li><a href="#contacto">Contáctame</a></li>
 		</ul>
 		<div class="nav-actions">
-			<a href="/recomendaciones" class="btn btn-heart nav-cta">
+			<a href="/recomendaciones" class="btn btn-heart nav-cta btn-bounce">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="16"
@@ -39,10 +40,9 @@
 					stroke-width="2"
 					stroke-linecap="round"
 					stroke-linejoin="round"
-					><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
-					></path><circle cx="12" cy="7" r="4"></circle></svg
+					><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg
 				>
-				Ver CV
+				Curriculum
 			</a>
 		</div>
 	</nav>
@@ -57,8 +57,13 @@
 		z-index: 100;
 		padding: 1rem 0;
 		background: rgba(10, 10, 15, 0.8);
-		backdrop-filter: blur(20px);
+		backdrop-filter: blur(12px);
 		border-bottom: 1px solid var(--glass-border);
+	}
+	@supports not (backdrop-filter: blur(1px)) {
+		.header {
+			background: rgba(10, 10, 15, 0.98);
+		}
 	}
 	.nav {
 		display: flex;
@@ -108,7 +113,7 @@
 		width: 0;
 		height: 2px;
 		background: var(--accent-gradient);
-		transition: width var(--transition-normal);
+		transition: width 0.3s ease;
 	}
 	.nav-links a:hover {
 		color: var(--text-primary);
@@ -144,6 +149,18 @@
 		box-shadow: 0 8px 24px rgba(255, 0, 170, 0.3);
 		transform: translateY(-2px);
 		color: var(--bg-primary);
+	}
+	.btn-bounce {
+		animation: bounceBtn 2s ease-in-out infinite;
+	}
+	@keyframes bounceBtn {
+		0%, 100% { transform: scale(1); }
+		50% { transform: scale(1.05); }
+	}
+	.btn-bounce:hover {
+		animation: none;
+		transform: scale(1.08);
+		box-shadow: 0 8px 24px rgba(255, 0, 170, 0.3);
 	}
 	@media (max-width: 640px) {
 		.nav-links {
