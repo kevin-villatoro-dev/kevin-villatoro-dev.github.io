@@ -40,8 +40,9 @@
 			</div>
 		</div>
 
-		<div class="glitch-container">
-			<p class="glitch-sub" data-text="Cargando Portafolio...">Cargando Portafolio...</p>
+		<div class="name-container">
+			<h1 class="glitch-name" data-text="KEVIN">KEVIN</h1>
+			<h1 class="glitch-last" data-text="VILLATORO">VILLATORO</h1>
 		</div>
 
 		<div class="binary-scroll" aria-hidden="true">
@@ -228,24 +229,30 @@
 		50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.4), 0 0 60px rgba(255, 0, 170, 0.2); }
 	}
 
-	/* ── Glitch Text ── */
-	.glitch-container {
+	/* ── Glitch Name ── */
+	.name-container {
 		text-align: center;
+		line-height: 1;
 	}
 
-	.glitch-sub {
+	.glitch-name,
+	.glitch-last {
 		font-family: var(--font-heading);
-		font-size: clamp(1.5rem, 4vw, 2rem);
-		font-weight: 600;
-		color: var(--text-primary);
+		font-size: clamp(2.5rem, 8vw, 4rem);
+		font-weight: 700;
 		letter-spacing: 0.15em;
-		text-transform: uppercase;
 		position: relative;
-		animation: glitchSub 4s infinite;
+		margin: 0;
 	}
 
-	.glitch-sub::before,
-	.glitch-sub::after {
+	/* KEVIN - Cyan */
+	.glitch-name {
+		color: var(--text-primary);
+		animation: glitchNameCyan 4s infinite;
+	}
+
+	.glitch-name::before,
+	.glitch-name::after {
 		content: attr(data-text);
 		position: absolute;
 		top: 0;
@@ -254,40 +261,76 @@
 		height: 100%;
 	}
 
-	.glitch-sub::before {
+	.glitch-name::before {
 		color: var(--accent-cyan);
-		animation: glitchBefore 4s infinite;
-		clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+		animation: glitchShiftCyan 4s infinite;
+		clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
 	}
 
-	.glitch-sub::after {
+	.glitch-name::after {
 		color: var(--accent-magenta);
-		animation: glitchAfter 4s infinite;
-		clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+		animation: glitchShiftMagenta 4s infinite;
+		clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
 	}
 
-	@keyframes glitchSub {
-		0%, 88%, 100% { transform: none; }
-		90% { transform: skewX(-2deg); }
-		92% { transform: skewX(2deg); }
-		94% { transform: skewX(-1deg); }
-		96% { transform: skewX(1deg); }
+	/* VILLATORO - Magenta */
+	.glitch-last {
+		color: var(--text-primary);
+		animation: glitchLastMagenta 4s infinite;
 	}
 
-	@keyframes glitchBefore {
-		0%, 88%, 100% { transform: translate(0); }
-		90% { transform: translate(-3px, 1px); }
-		92% { transform: translate(3px, -1px); }
+	.glitch-last::before,
+	.glitch-last::after {
+		content: attr(data-text);
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.glitch-last::before {
+		color: var(--accent-magenta);
+		animation: glitchShiftMagenta 4s infinite 0.1s;
+		clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+	}
+
+	.glitch-last::after {
+		color: var(--accent-cyan);
+		animation: glitchShiftCyan 4s infinite 0.1s;
+		clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+	}
+
+	@keyframes glitchNameCyan {
+		0%, 87%, 100% { transform: none; text-shadow: none; }
+		88% { transform: skewX(-2deg); text-shadow: -3px 0 var(--accent-cyan); }
+		90% { transform: skewX(3deg); text-shadow: 3px 0 var(--accent-magenta); }
+		92% { transform: skewX(-1deg); text-shadow: -2px 0 var(--accent-cyan); }
+		94% { transform: none; text-shadow: none; }
+	}
+
+	@keyframes glitchLastMagenta {
+		0%, 85%, 100% { transform: none; text-shadow: none; }
+		86% { transform: skewX(2deg); text-shadow: 3px 0 var(--accent-magenta); }
+		88% { transform: skewX(-3deg); text-shadow: -3px 0 var(--accent-cyan); }
+		90% { transform: skewX(1deg); text-shadow: 2px 0 var(--accent-magenta); }
+		92% { transform: none; text-shadow: none; }
+	}
+
+	@keyframes glitchShiftCyan {
+		0%, 87%, 100% { transform: translate(0); }
+		88% { transform: translate(-4px, 1px); }
+		90% { transform: translate(4px, -1px); }
+		92% { transform: translate(-2px, 2px); }
+		94% { transform: translate(2px, -2px); }
+	}
+
+	@keyframes glitchShiftMagenta {
+		0%, 87%, 100% { transform: translate(0); }
+		88% { transform: translate(4px, -1px); }
+		90% { transform: translate(-4px, 1px); }
+		92% { transform: translate(2px, -2px); }
 		94% { transform: translate(-2px, 2px); }
-		96% { transform: translate(2px, -2px); }
-	}
-
-	@keyframes glitchAfter {
-		0%, 88%, 100% { transform: translate(0); }
-		89% { transform: translate(3px, -1px); }
-		91% { transform: translate(-3px, 1px); }
-		93% { transform: translate(2px, -2px); }
-		95% { transform: translate(-2px, 2px); }
 	}
 
 	/* ── Binary Scroll ── */
