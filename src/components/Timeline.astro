@@ -3,30 +3,45 @@ const timeline = [
 	{
 		date: "Noviembre 2025 - Actualidad",
 		title: "Líder de proyectos de ingeniería & Arquitectura de software",
-		subtitle: "Consultoría tecnológica independiente, Guatemala",
-		description:
-			"Implementación de metodologías de desarrollo basadas en LLMs en sinergia con Spec-Driven Development para garantizar código robusto, escalable y documentado desde el diseño, asegurando su portabilidad y despliegue mediante  Docker.",
+		subtitle: "Consultoría Tecnológica Independiente",
+		highlights: [
+			"Metodologías de desarrollo basadas en LLMs en sinergia con Spec-Driven Development",
+			"Código robusto, escalable y documentado desde el diseño",
+			"Portabilidad y despliegue mediante Docker",
+		],
 	},
 	{
 		date: "Diciembre 2019 - Octubre 2025",
 		title: "Tech Lead | Desarrollador Full Stack",
-		subtitle: "ShopShop, Guatemala",
-		description:
-			"Desarrollo de aplicaciones web escalables con React, Node.js y Python. Implementación de arquitecturas microservicios.",
+		subtitle: "ShopShop - Software Fintech multiempresa",
+		highlights: [
+			"Lideré el ecosistema Fintech multiempresa de alto volumen",
+			"Pasarelas de pagos (Hosted Checkout), motores de carrito y plataformas contables",
+			"Ciclos completos de pago: autorización, captura, anulación, reversa, reembolso",
+			"Integraciones: Unified Checkout, Click to Pay, Apple Pay, Google Pay",
+			"Automatización del 90% de operaciones fallidas en DTE/FEL",
+			"Aceleración del ciclo de venta en un 30%",
+		],
 	},
 	{
 		date: "Enero 2019 - Noviembre 2019",
-		title: "Desarrollo de soluciones autónomas",
-		subtitle: "Consultoría técnica, Guatemala",
-		description:
-			"Construcción de APIs RESTful, integración de bases de datos y optimización de procesos operativos.",
+		title: "Desarrollo de soluciones digitales autónomas",
+		subtitle: "Consultoría Técnica Independiente",
+		highlights: [
+			"Sitios web tipo blog con enfoque en rendimiento",
+			"Sistema interno de control y flujo de inventario de vehículos",
+			"APIs RESTful e integración de bases de datos",
+		],
 	},
 	{
 		date: "Enero 2016 - Diciembre 2018",
-		title: "Desarrollador web | Diseñador gráfico",
-		subtitle: "El camino web, Guatemala",
-		description:
-			"Desarrollo de sitios web tipo blog y sistema interno para el control y flujo de inventario de vehículos.",
+		title: "Desarrollador Web | Diseñador Gráfico",
+		subtitle: "El Camino Web - Soluciones digitales a medida",
+		highlights: [
+			"Optimización de rendimiento y escalabilidad en múltiples proyectos",
+			"Diseño, desarrollo y mantenimiento de sitios estáticos y dinámicos",
+			"Enfoque en robustez, mantenibilidad y estabilidad",
+		],
 	},
 ]
 ---
@@ -48,7 +63,11 @@ const timeline = [
 							<span class="timeline-date">{item.date}</span>
 							<h3 class="timeline-title">{item.title}</h3>
 							<span class="timeline-subtitle">{item.subtitle}</span>
-							<p class="timeline-description">{item.description}</p>
+							<ul class="timeline-highlights">
+								{item.highlights.map((h) => (
+									<li>{h}</li>
+								))}
+							</ul>
 						</div>
 					</div>
 				))
@@ -150,10 +169,28 @@ const timeline = [
 		margin-bottom: 0.75rem;
 	}
 
-	.timeline-description {
-		font-size: 0.9rem;
+	.timeline-highlights {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1rem;
+		text-align: left;
+	}
+
+	.timeline-highlights li {
+		position: relative;
+		padding-left: 1rem;
+		margin-bottom: 0.4rem;
+		font-size: 0.85rem;
 		color: var(--text-secondary);
-		line-height: 1.6;
+		line-height: 1.5;
+	}
+
+	.timeline-highlights li::before {
+		content: "▸";
+		position: absolute;
+		left: 0;
+		color: var(--accent-cyan);
+		font-weight: bold;
 	}
 
 	@media (max-width: 768px) {
