@@ -1,4 +1,5 @@
 ---
+import Preloader from '../components/Preloader.astro';
 import ScrollButton from '../components/ScrollButton.astro';
 
 interface Props {
@@ -37,6 +38,7 @@ const { title, description = "Portafolio | Kevin Villatoro" } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <Preloader />
     <div class="shapes" id="shapes"></div>
     <slot />
     <ScrollButton />

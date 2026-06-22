@@ -20,7 +20,7 @@ No lint, typecheck, or test scripts are configured. `npm run build` is the only 
 
 ```
 src/
-├── components/   # Header, Hero, Timeline, Projects, ProjectCard, About, Formacion, Contact, Footer, ScrollButton
+├── components/   # Header, Hero, Timeline, Projects, ProjectCard, About, Formacion, Contact, Footer, ScrollButton, Preloader
 ├── layouts/      # Layout.astro (base HTML, Google Fonts, meta tags, ScrollButton)
 ├── pages/        # index.astro, cv.astro, recomendaciones.astro
 └── styles/       # global.css (CSS variables, theme, animations)
