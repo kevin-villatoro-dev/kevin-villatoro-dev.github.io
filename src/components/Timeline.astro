@@ -1,35 +1,34 @@
 ---
-
 const timeline = [
 	{
 		date: "Noviembre 2025 - Actualidad",
-		title: "Tech Lead & Project Manager",
-		subtitle: "Empresa Tech Corp",
+		title: "Líder de proyectos de ingeniería & Arquitectura de software",
+		subtitle: "Consultoría tecnológica independiente, Guatemala",
 		description:
-			"Liderazgo técnico de equipos de desarrollo, gestión de portafolios tecnológicos y arquitectura de soluciones cloud.",
+			"Implementación de metodologías de desarrollo basadas en LLMs en sinergia con Spec-Driven Development para garantizar código robusto, escalable y documentado desde el diseño, asegurando su portabilidad y despliegue mediante  Docker.",
 	},
 	{
 		date: "Diciembre 2019 - Octubre 2025",
-		title: "Senior Full-Stack Developer",
-		subtitle: "Startup Innovación Digital",
+		title: "Tech Lead | Desarrollador Full Stack",
+		subtitle: "ShopShop, Guatemala",
 		description:
 			"Desarrollo de aplicaciones web escalables con React, Node.js y Python. Implementación de arquitecturas microservicios.",
 	},
 	{
 		date: "Enero 2019 - Noviembre 2019",
-		title: "Backend Developer",
-		subtitle: "Agencia Digital Solutions",
+		title: "Desarrollo de soluciones autónomas",
+		subtitle: "Consultoría técnica, Guatemala",
 		description:
 			"Construcción de APIs RESTful, integración de bases de datos y optimización de procesos operativos.",
 	},
 	{
 		date: "Enero 2016 - Diciembre 2018",
-		title: "Junior Developer",
-		subtitle: "Empresa de Desarrollo Web",
+		title: "Desarrollador web | Diseñador gráfico",
+		subtitle: "El camino web, Guatemala",
 		description:
-			"Desarrollo de sitios web y aplicaciones internas. Aprendizaje de tecnologías modernas y metodologías ágiles.",
+			"Desarrollo de sitios web tipo blog y sistema interno para el control y flujo de inventario de vehículos.",
 	},
-];
+]
 ---
 
 <section id="trayectoria" class="timeline-section section">
@@ -41,17 +40,19 @@ const timeline = [
 
 		<div class="timeline">
 			<div class="timeline-line"></div>
-			{timeline.map((item, index) => (
-				<div class={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}>
-					<div class="timeline-dot"></div>
-					<div class="timeline-card glass-card">
-						<span class="timeline-date">{item.date}</span>
-						<h3 class="timeline-title">{item.title}</h3>
-						<span class="timeline-subtitle">{item.subtitle}</span>
-						<p class="timeline-description">{item.description}</p>
+			{
+				timeline.map((item, index) => (
+					<div class={`timeline-item ${index % 2 === 0 ? "left" : "right"}`}>
+						<div class="timeline-dot" />
+						<div class="timeline-card glass-card">
+							<span class="timeline-date">{item.date}</span>
+							<h3 class="timeline-title">{item.title}</h3>
+							<span class="timeline-subtitle">{item.subtitle}</span>
+							<p class="timeline-description">{item.description}</p>
+						</div>
 					</div>
-				</div>
-			))}
+				))
+			}
 		</div>
 	</div>
 </section>
@@ -74,13 +75,7 @@ const timeline = [
 		top: 0;
 		bottom: 0;
 		width: 2px;
-		background: linear-gradient(
-			180deg,
-			transparent,
-			var(--accent-cyan),
-			var(--accent-magenta),
-			transparent
-		);
+		background: linear-gradient(180deg, transparent, var(--accent-cyan), var(--accent-magenta), transparent);
 		transform: translateX(-50%);
 	}
 
