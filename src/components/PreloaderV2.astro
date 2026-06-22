@@ -492,7 +492,7 @@
 		"Desplegando portafolio..."
 	];
 
-	const totalDuration = 3000;
+	const totalDuration = 1500;
 	const stepTime = totalDuration / segments.length;
 
 	segments.forEach((seg, i) => {
@@ -509,6 +509,7 @@
 	setTimeout(() => {
 		preloader.classList.add("hidden");
 		document.body.style.overflow = "";
+		window.dispatchEvent(new Event("preloader:done"));
 	}, totalDuration + 400);
 
 	document.body.style.overflow = "hidden";
