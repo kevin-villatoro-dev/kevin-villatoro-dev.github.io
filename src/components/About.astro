@@ -58,18 +58,6 @@
 						<p class="skill-desc">Comunicación efectiva con stakeholders técnicos y no técnicos</p>
 					</div>
 				</div>
-
-				<div class="about-actions">
-					<a href="/recomendaciones" class="btn btn-heart">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-						Recomendaciones
-					</a>
-					<a href="/cv" class="btn btn-cyan">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-						Currículum
-					</a>
-				</div>
-			</div>
 		</div>
 	</div>
 </section>
@@ -230,57 +218,6 @@
 		line-height: 1.5;
 	}
 
-	/* ── Actions ── */
-	.about-actions {
-		display: flex;
-		gap: 1rem;
-		margin-top: 0.5rem;
-	}
-
-	.about-actions .btn {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		padding: 0.75rem 1.5rem;
-		font-size: 0.95rem;
-		font-weight: 500;
-		border: none;
-		border-radius: var(--radius-full);
-		cursor: pointer;
-		text-decoration: none;
-		touch-action: manipulation;
-		transition: transform 0.3s ease, box-shadow 0.3s ease;
-	}
-
-	.about-actions .btn:hover {
-		transform: translateY(-2px);
-	}
-
-	.about-actions .btn:focus-visible {
-		outline: 2px solid var(--accent-cyan);
-		outline-offset: 2px;
-	}
-
-	.about-actions .btn-heart {
-		background: var(--accent-magenta);
-		color: var(--bg-primary);
-	}
-
-	.about-actions .btn-heart:hover {
-		box-shadow: 0 8px 24px rgba(255, 0, 170, 0.3);
-		color: var(--bg-primary);
-	}
-
-	.about-actions .btn-cyan {
-		background: var(--accent-cyan);
-		color: var(--bg-primary);
-	}
-
-	.about-actions .btn-cyan:hover {
-		box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
-		color: var(--bg-primary);
-	}
-
 	/* ── Responsive ── */
 	@media (max-width: 968px) {
 		.about-grid {
@@ -302,20 +239,11 @@
 		.soft-skills {
 			grid-template-columns: repeat(3, 1fr);
 		}
-
-		.about-actions {
-			justify-content: center;
-		}
 	}
 
 	@media (max-width: 640px) {
 		.soft-skills {
 			grid-template-columns: 1fr;
-		}
-
-		.about-actions {
-			flex-direction: column;
-			align-items: center;
 		}
 
 		.photo-frame {

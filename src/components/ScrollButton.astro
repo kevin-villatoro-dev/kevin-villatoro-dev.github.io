@@ -1,0 +1,124 @@
+---
+
+---
+
+<button class="scroll-btn" id="scroll-btn" aria-label="Navegar" title="Navegar">
+  <svg class="scroll-icon scroll-icon-down" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 5v14"/>
+    <path d="m19 12-7 7-7-7"/>
+  </svg>
+  <svg class="scroll-icon scroll-icon-up" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 19V5"/>
+    <path d="m5 12 7-7 7 7"/>
+  </svg>
+</button>
+
+<style>
+  .scroll-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    color: var(--text-primary);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .scroll-btn.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .scroll-btn:hover {
+    background: rgba(0, 212, 255, 0.15);
+    border-color: var(--accent-cyan);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+  }
+
+  .scroll-btn:active {
+    transform: translateY(0) scale(0.95);
+  }
+
+  .scroll-btn:focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 2px;
+  }
+
+  .scroll-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .scroll-icon-up {
+    display: none;
+  }
+
+  .scroll-btn.at-bottom .scroll-icon-down {
+    display: none;
+  }
+
+  .scroll-btn.at-bottom .scroll-icon-up {
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    .scroll-btn {
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 44px;
+      height: 44px;
+    }
+  }
+</style>
+
+<script is:inline>
+  const scrollBtn = document.getElementById("scroll-btn");
+
+  function updateScrollBtn() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight;
+    const winHeight = window.innerHeight;
+    const atBottom = scrollTop + winHeight >= docHeight - 100;
+
+    if (scrollTop > 200) {
+      scrollBtn.classList.add("visible");
+    } else {
+      scrollBtn.classList.remove("visible");
+    }
+
+    if (atBottom) {
+      scrollBtn.classList.add("at-bottom");
+      scrollBtn.setAttribute("aria-label", "Ir arriba");
+      scrollBtn.setAttribute("title", "Ir arriba");
+    } else {
+      scrollBtn.classList.remove("at-bottom");
+      scrollBtn.setAttribute("aria-label", "Ir abajo");
+      scrollBtn.setAttribute("title", "Ir abajo");
+    }
+  }
+
+  scrollBtn.addEventListener("click", () => {
+    const atBottom = scrollBtn.classList.contains("at-bottom");
+    if (atBottom) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" });
+    }
+  });
+
+  window.addEventListener("scroll", updateScrollBtn, { passive: true });
+  window.addEventListener("resize", updateScrollBtn, { passive: true });
+  updateScrollBtn();
+</script>

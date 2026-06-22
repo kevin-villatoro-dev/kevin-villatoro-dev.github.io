@@ -20,13 +20,21 @@ No lint, typecheck, or test scripts are configured. `npm run build` is the only 
 
 ```
 src/
-├── components/   # Header, Hero, Timeline, Projects, ProjectCard, Contact, Footer
-├── layouts/      # Layout.astro (base HTML, Google Fonts, meta tags)
+├── components/   # Header, Hero, Timeline, Projects, ProjectCard, About, Formacion, Contact, Footer, ScrollButton
+├── layouts/      # Layout.astro (base HTML, Google Fonts, meta tags, ScrollButton)
 ├── pages/        # index.astro, cv.astro, recomendaciones.astro
 └── styles/       # global.css (CSS variables, theme, animations)
 ```
 
 All content is hardcoded in component files. No CMS, no markdown, no dynamic data.
+
+## Index Section Order
+
+```
+Hero → Timeline → Projects → About → Formacion → Contact
+```
+
+Order optimized for recruiter flow: experience first, then proof of work, soft skills, education, contact.
 
 ## Conventions
 
@@ -34,7 +42,7 @@ All content is hardcoded in component files. No CMS, no markdown, no dynamic dat
 - Glassmorphism card style via `.glass-card` class
 - Google Fonts: Space Grotesk (headings) + system-ui (body)
 - Components use `<style>` blocks with scoped CSS (Astro default)
-- Client-side JS: Header hamburger menu (mobile), PDF viewer pages (cv, recomendaciones) via PDF.js
+- Client-side JS: Header hamburger menu (mobile), ScrollButton (scroll to top/bottom), PDF viewer pages (cv, recomendaciones) via PDF.js
 - `prefers-reduced-motion` respected globally
 
 ## PDF Files
