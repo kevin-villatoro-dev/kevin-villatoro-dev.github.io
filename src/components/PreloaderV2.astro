@@ -1,0 +1,472 @@
+---
+
+---
+
+<div class="preloader-v2" id="preloader">
+	<div class="hex-grid" aria-hidden="true">
+		<div class="hex-row">
+			<div class="hex"></div><div class="hex"></div><div class="hex"></div>
+			<div class="hex"></div><div class="hex"></div><div class="hex"></div>
+			<div class="hex"></div><div class="hex"></div><div class="hex"></div>
+		</div>
+		<div class="hex-row offset">
+			<div class="hex"></div><div class="hex"></div><div class="hex"></div>
+			<div class="hex"></div><div class="hex"></div><div class="hex"></div>
+			<div class="hex"></div><div class="hex"></div><div class="hex"></div>
+		</div>
+		<div class="hex-row">
+			<div class="hex"></div><div class="hex"></div><div class="hex"></div>
+			<div class="hex"></div><div class="hex"></div><div class="hex"></div>
+			<div class="hex"></div><div class="hex"></div><div class="hex"></div>
+		</div>
+	</div>
+
+	<div class="preloader-center">
+		<div class="orbit-system">
+			<div class="orbit orbit-1">
+				<div class="orbit-dot"></div>
+			</div>
+			<div class="orbit orbit-2">
+				<div class="orbit-dot"></div>
+			</div>
+			<div class="orbit orbit-3">
+				<div class="orbit-dot"></div>
+			</div>
+			<div class="core">
+				<svg class="core-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+					<polyline points="16 18 22 12 16 6"/>
+					<polyline points="8 6 2 12 8 18"/>
+				</svg>
+			</div>
+		</div>
+
+		<div class="glitch-container">
+			<p class="glitch-sub" data-text="Cargando Portafolio...">Cargando Portafolio...</p>
+		</div>
+
+		<div class="binary-scroll" aria-hidden="true">
+			<span class="binary-line">01001011 01000101 01010110 01001001 01001110</span>
+			<span class="binary-line">01010100 01001001 01001110 01010000 01010101</span>
+			<span class="binary-line">01010100 01000101 01000011 01001000</span>
+		</div>
+
+		<div class="loading-bar-v2">
+			<div class="bar-segments">
+				<div class="segment"></div>
+				<div class="segment"></div>
+				<div class="segment"></div>
+				<div class="segment"></div>
+				<div class="segment"></div>
+				<div class="segment"></div>
+				<div class="segment"></div>
+				<div class="segment"></div>
+				<div class="segment"></div>
+				<div class="segment"></div>
+				<div class="segment"></div>
+				<div class="segment"></div>
+			</div>
+			<div class="bar-glow"></div>
+		</div>
+
+		<div class="status-text">
+			<span class="status-icon">⚡</span>
+			<span id="status-msg">Initializing systems...</span>
+		</div>
+	</div>
+
+	<div class="scan-line" aria-hidden="true"></div>
+	<div class="vignette" aria-hidden="true"></div>
+</div>
+
+<style>
+	.preloader-v2 {
+		position: fixed;
+		inset: 0;
+		z-index: 9999;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: #050508;
+		overflow: hidden;
+		transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
+	}
+
+	.preloader-v2.hidden {
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+	}
+
+	/* ── Hex Grid Background ── */
+	.hex-grid {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 4px;
+		opacity: 0.15;
+	}
+
+	.hex-row {
+		display: flex;
+		gap: 6px;
+	}
+
+	.hex-row.offset {
+		margin-left: 28px;
+	}
+
+	.hex {
+		width: 50px;
+		height: 28px;
+		background: transparent;
+		border: 1px solid var(--accent-cyan);
+		clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+		animation: hexPulse 3s ease-in-out infinite;
+	}
+
+	.hex:nth-child(odd) {
+		animation-delay: 0.5s;
+		border-color: var(--accent-magenta);
+	}
+
+	.hex:nth-child(3n) {
+		animation-delay: 1s;
+	}
+
+	@keyframes hexPulse {
+		0%, 100% { opacity: 0.3; transform: scale(1); }
+		50% { opacity: 1; transform: scale(1.05); }
+	}
+
+	/* ── Center Content ── */
+	.preloader-center {
+		position: relative;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2.5rem;
+	}
+
+	/* ── Orbit System ── */
+	.orbit-system {
+		position: relative;
+		width: 200px;
+		height: 200px;
+	}
+
+	.orbit {
+		position: absolute;
+		inset: 0;
+		border: 1px solid rgba(0, 212, 255, 0.2);
+		border-radius: 50%;
+		animation: orbitSpin linear infinite;
+	}
+
+	.orbit-1 {
+		animation-duration: 2s;
+	}
+	.orbit-2 {
+		inset: 20px;
+		border-color: rgba(255, 0, 170, 0.2);
+		animation-duration: 3s;
+		animation-direction: reverse;
+	}
+	.orbit-3 {
+		inset: 40px;
+		animation-duration: 1.5s;
+	}
+
+	.orbit-dot {
+		position: absolute;
+		top: -4px;
+		left: 50%;
+		width: 8px;
+		height: 8px;
+		margin-left: -4px;
+		background: var(--accent-cyan);
+		border-radius: 50%;
+		box-shadow: 0 0 12px var(--accent-cyan), 0 0 24px var(--accent-cyan);
+	}
+
+	.orbit-2 .orbit-dot {
+		background: var(--accent-magenta);
+		box-shadow: 0 0 12px var(--accent-magenta), 0 0 24px var(--accent-magenta);
+	}
+
+	.orbit-3 .orbit-dot {
+		background: #34d399;
+		box-shadow: 0 0 12px #34d399, 0 0 24px #34d399;
+	}
+
+	@keyframes orbitSpin {
+		to { transform: rotate(360deg); }
+	}
+
+	.core {
+		position: absolute;
+		inset: 60px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0, 212, 255, 0.1);
+		border: 1px solid rgba(0, 212, 255, 0.3);
+		border-radius: 50%;
+		animation: corePulse 2s ease-in-out infinite;
+	}
+
+	.core-icon {
+		color: var(--accent-cyan);
+		filter: drop-shadow(0 0 8px var(--accent-cyan));
+	}
+
+	@keyframes corePulse {
+		0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.2); }
+		50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.4), 0 0 60px rgba(255, 0, 170, 0.2); }
+	}
+
+	/* ── Glitch Text ── */
+	.glitch-container {
+		text-align: center;
+	}
+
+	.glitch-sub {
+		font-family: var(--font-heading);
+		font-size: clamp(1.5rem, 4vw, 2rem);
+		font-weight: 600;
+		color: var(--text-primary);
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		position: relative;
+		animation: glitchSub 4s infinite;
+	}
+
+	.glitch-sub::before,
+	.glitch-sub::after {
+		content: attr(data-text);
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.glitch-sub::before {
+		color: var(--accent-cyan);
+		animation: glitchBefore 4s infinite;
+		clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+	}
+
+	.glitch-sub::after {
+		color: var(--accent-magenta);
+		animation: glitchAfter 4s infinite;
+		clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+	}
+
+	@keyframes glitchSub {
+		0%, 88%, 100% { transform: none; }
+		90% { transform: skewX(-2deg); }
+		92% { transform: skewX(2deg); }
+		94% { transform: skewX(-1deg); }
+		96% { transform: skewX(1deg); }
+	}
+
+	@keyframes glitchBefore {
+		0%, 88%, 100% { transform: translate(0); }
+		90% { transform: translate(-3px, 1px); }
+		92% { transform: translate(3px, -1px); }
+		94% { transform: translate(-2px, 2px); }
+		96% { transform: translate(2px, -2px); }
+	}
+
+	@keyframes glitchAfter {
+		0%, 88%, 100% { transform: translate(0); }
+		89% { transform: translate(3px, -1px); }
+		91% { transform: translate(-3px, 1px); }
+		93% { transform: translate(2px, -2px); }
+		95% { transform: translate(-2px, 2px); }
+	}
+
+	/* ── Binary Scroll ── */
+	.binary-scroll {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.25rem;
+		font-family: "SF Mono", "Fira Code", monospace;
+		font-size: 0.6rem;
+		color: rgba(0, 212, 255, 0.3);
+		letter-spacing: 0.2em;
+		overflow: hidden;
+		max-height: 60px;
+	}
+
+	.binary-line {
+		animation: binaryFade 2s ease-in-out infinite;
+		white-space: nowrap;
+	}
+
+	.binary-line:nth-child(2) { animation-delay: 0.3s; }
+	.binary-line:nth-child(3) { animation-delay: 0.6s; }
+
+	@keyframes binaryFade {
+		0%, 100% { opacity: 0.3; transform: translateY(0); }
+		50% { opacity: 0.8; transform: translateY(-2px); }
+	}
+
+	/* ── Loading Bar ── */
+	.loading-bar-v2 {
+		position: relative;
+		width: 280px;
+	}
+
+	.bar-segments {
+		display: flex;
+		gap: 3px;
+	}
+
+	.segment {
+		flex: 1;
+		height: 6px;
+		background: rgba(255, 255, 255, 0.06);
+		border-radius: 2px;
+		transition: background 0.3s, box-shadow 0.3s;
+	}
+
+	.segment.active {
+		background: var(--accent-gradient);
+		box-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+	}
+
+	.bar-glow {
+		position: absolute;
+		top: -4px;
+		left: 0;
+		width: 0%;
+		height: 14px;
+		background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+		border-radius: 7px;
+		filter: blur(4px);
+		transition: width 0.3s;
+	}
+
+	/* ── Status ── */
+	.status-text {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-family: "SF Mono", "Fira Code", monospace;
+		font-size: 0.75rem;
+		color: var(--text-muted);
+	}
+
+	.status-icon {
+		animation: statusBlink 1s infinite;
+	}
+
+	@keyframes statusBlink {
+		0%, 100% { opacity: 1; }
+		50% { opacity: 0.3; }
+	}
+
+	/* ── Scan Line ── */
+	.scan-line {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 2px;
+		background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-magenta), transparent);
+		animation: scanDown 2.5s linear infinite;
+		z-index: 3;
+		opacity: 0.6;
+	}
+
+	@keyframes scanDown {
+		0% { top: 0; }
+		100% { top: 100%; }
+	}
+
+	/* ── Vignette ── */
+	.vignette {
+		position: absolute;
+		inset: 0;
+		background: radial-gradient(ellipse at center, transparent 40%, #050508 100%);
+		z-index: 1;
+		pointer-events: none;
+	}
+
+	/* ── Responsive ── */
+	@media (max-width: 480px) {
+		.orbit-system {
+			width: 150px;
+			height: 150px;
+		}
+		.orbit-2 {
+			inset: 15px;
+		}
+		.orbit-3 {
+			inset: 30px;
+		}
+		.core {
+			inset: 45px;
+		}
+		.core-icon {
+			width: 36px;
+			height: 36px;
+		}
+		.loading-bar-v2 {
+			width: 220px;
+		}
+		.binary-scroll {
+			font-size: 0.5rem;
+		}
+		.hex {
+			width: 30px;
+			height: 17px;
+		}
+		.hex-row.offset {
+			margin-left: 17px;
+		}
+	}
+</style>
+
+<script is:inline>
+	const preloader = document.getElementById("preloader");
+	const segments = document.querySelectorAll(".segment");
+	const glow = document.querySelector(".bar-glow");
+	const statusMsg = document.getElementById("status-msg");
+
+	const messages = [
+		"Compilando módulos...",
+		"Cargando datos de experiencia...",
+		"Renderizando proyectos...",
+		"Construyendo componentes...",
+		"Optimizando recursos...",
+		"Desplegando portafolio..."
+	];
+
+	const totalDuration = 3000;
+	const stepTime = totalDuration / segments.length;
+
+	segments.forEach((seg, i) => {
+		setTimeout(() => {
+			seg.classList.add("active");
+			const pct = ((i + 1) / segments.length) * 100;
+			glow.style.width = pct + "%";
+			if (messages[i]) {
+				statusMsg.textContent = messages[i];
+			}
+		}, stepTime * (i + 1));
+	});
+
+	setTimeout(() => {
+		preloader.classList.add("hidden");
+		document.body.style.overflow = "";
+	}, totalDuration + 400);
+
+	document.body.style.overflow = "hidden";
+</script>
