@@ -2,6 +2,41 @@
 
 ---
 
+<script is:inline>
+	document.addEventListener("DOMContentLoaded", () => {
+		const photoFrame = document.querySelector(".photo-frame");
+		const easterEgg = document.getElementById("easter-egg");
+		const text = "Un buen desarrollador es aquel que encuentra soluciones a los problemas antes de que surjan.";
+		let typing = false;
+		let timeout = null;
+
+		photoFrame?.addEventListener("mouseenter", () => {
+			if (typing) return;
+			typing = true;
+			easterEgg.innerHTML = '<span class="cursor"></span>';
+			let i = 0;
+
+			function type() {
+				if (i < text.length) {
+					easterEgg.innerHTML = text.substring(0, i + 1) + '<span class="cursor"></span>';
+					i++;
+					timeout = setTimeout(type, 40 + Math.random() * 30);
+				} else {
+					easterEgg.innerHTML = text;
+					typing = false;
+				}
+			}
+			type();
+		});
+
+		photoFrame?.addEventListener("mouseleave", () => {
+			clearTimeout(timeout);
+			typing = false;
+			easterEgg.innerHTML = "";
+		});
+	});
+</script>
+
 <section id="sobre-mi" class="about section">
 	<div class="container">
 		<div class="section-title">
@@ -11,53 +46,79 @@
 
 		<div class="about-grid">
 			<div class="about-photo">
-				<div class="photo-frame glass-card">
-					<img src="/profile.png" alt="Kevin Villatoro" class="photo-img" loading="lazy" />
-					<div class="photo-glow"></div>
+				<div class="photo-wrapper">
+					<div class="photo-frame glass-card">
+						<img src="/profile.png" alt="Kevin Villatoro" class="photo-img" loading="lazy" />
+						<div class="photo-glow"></div>
+						<div class="corner corner-tl"></div>
+						<div class="corner corner-tr"></div>
+						<div class="corner corner-bl"></div>
+						<div class="corner corner-br"></div>
+						<div class="experience-badge">
+							<span class="exp-number">10+</span>
+							<span class="exp-label">años</span>
+						</div>
 				</div>
-				<div class="experience-badge">
-					<span class="exp-number">10+</span>
-					<span class="exp-label">años</span>
+				<div class="easter-egg-container">
+					<p class="easter-egg" id="easter-egg"></p>
 				</div>
 			</div>
+		</div>
 
 			<div class="about-content">
 				<p class="about-bio">
-					Ingeniero de Software con más de 9 años de experiencia liderando el diseño técnico
-					y el ciclo completo de despliegue de aplicaciones. Especializado en transformar
-					la complejidad técnica en sistemas eficientes, escalables y listos para el futuro.
+					Tech Lead con 10+ años construyendo software que genera impacto real. Lideré el
+					ecosistema Fintech de ShopShop durante casi 6 años, gestionando desde la arquitectura
+					hasta el despliegue de soluciones de pago que procesaron más de $2M en transacciones.
 				</p>
 				<p class="about-bio">
-					Combino visión estratégica con ejecución práctica: desde la arquitectura de
-					microservicios hasta la implementación de metodologías de desarrollo basadas
-					en LLMs y Spec-Driven Development.
+					Automatizé el 90% de operaciones fallidas en facturación electrónica y aceleré el ciclo
+					de venta en un 30%. Hoy aplico metodologías basadas en LLMs y Spec-Driven Development
+					para entregar código robusto, escalable y documentado desde el diseño.
 				</p>
 
-				<div class="soft-skills">
+				<div class="skills-grid">
+					<div class="skill-card glass-card">
+						<div class="skill-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+						</div>
+						<h3 class="skill-title">Arquitectura</h3>
+						<p class="skill-desc">APIs escalables, microservicios, integración de pasarelas de pago y facturación electrónica</p>
+					</div>
+
+					<div class="skill-card glass-card">
+						<div class="skill-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+						</div>
+						<h3 class="skill-title">DevOps</h3>
+						<p class="skill-desc">Docker, CI/CD, despliegue portátil, documentación técnica con OpenAPI/Swagger</p>
+					</div>
+
 					<div class="skill-card glass-card">
 						<div class="skill-icon">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
 						</div>
-						<h3 class="skill-title">Leadership</h3>
-						<p class="skill-desc">Liderazgo técnico y gestión de equipos de desarrollo</p>
-					</div>
-
-					<div class="skill-card glass-card">
-						<div class="skill-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-						</div>
-						<h3 class="skill-title">Problem Solving</h3>
-						<p class="skill-desc">Resolución de problemas complejos con enfoque sistemático</p>
-					</div>
-
-					<div class="skill-card glass-card">
-						<div class="skill-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-						</div>
-						<h3 class="skill-title">Communication</h3>
-						<p class="skill-desc">Comunicación efectiva con stakeholders técnicos y no técnicos</p>
+						<h3 class="skill-title">Liderazgo</h3>
+						<p class="skill-desc">Gestión de equipos, Scrum/Kanban, toma de decisiones técnicas, mentoria de desarrollo</p>
 					</div>
 				</div>
+
+				<div class="edu-card glass-card">
+					<div class="edu-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 6 3 12 0v-5"/></svg>
+					</div>
+					<div class="edu-info">
+						<span class="edu-title">Ingeniería en Sistemas de Información y Ciencias de la Computación</span>
+						<span class="edu-place">Universidad Mariano Gálvez de Guatemala</span>
+						<div class="edu-progress">
+							<div class="edu-progress-bar">
+								<div class="edu-progress-fill"></div>
+							</div>
+							<span class="edu-progress-label">5° semestre</span>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
@@ -71,7 +132,7 @@
 		display: grid;
 		grid-template-columns: auto 1fr;
 		gap: 4rem;
-		align-items: start;
+		align-items: center;
 	}
 
 	/* ── Photo ── */
@@ -79,12 +140,114 @@
 		position: relative;
 	}
 
+	.photo-wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
 	.photo-frame {
 		position: relative;
 		padding: 0;
-		overflow: hidden;
+		overflow: visible;
 		width: 280px;
 		height: 280px;
+		transition: transform 0.3s ease;
+	}
+
+	.photo-frame:hover {
+		transform: scale(1.03);
+	}
+
+	.photo-frame::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		height: 2px;
+		z-index: 4;
+		opacity: 0;
+		pointer-events: none;
+		background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-magenta), transparent);
+	}
+
+	.photo-frame:hover::before {
+		animation: scanLine 1.2s ease-in-out infinite;
+	}
+
+	@keyframes scanLine {
+		0% { top: 0; opacity: 0; }
+		10% { opacity: 1; }
+		90% { opacity: 1; }
+		100% { top: 100%; opacity: 0; }
+	}
+
+	.easter-egg-container {
+		height: 6rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding-top: 2rem;
+	}
+
+	.easter-egg {
+		font-size: 0.9rem;
+		font-style: italic;
+		color: var(--text-muted);
+		text-align: center;
+		line-height: 1.5;
+		max-width: 280px;
+	}
+
+	.easter-egg .cursor {
+		display: inline-block;
+		width: 2px;
+		height: 1em;
+		background: var(--accent-cyan);
+		margin-left: 2px;
+		animation: blink 0.7s step-end infinite;
+		vertical-align: text-bottom;
+	}
+
+	@keyframes blink {
+		50% { opacity: 0; }
+	}
+
+	.corner {
+		position: absolute;
+		width: 32px;
+		height: 32px;
+		border-style: solid;
+		z-index: 3;
+		pointer-events: none;
+	}
+
+	.corner-tl {
+		top: -24px;
+		left: -24px;
+		border-width: 3px 0 0 3px;
+		border-color: var(--accent-cyan);
+	}
+
+	.corner-tr {
+		top: -24px;
+		right: -24px;
+		border-width: 3px 3px 0 0;
+		border-color: var(--accent-magenta);
+	}
+
+	.corner-bl {
+		bottom: -24px;
+		left: -24px;
+		border-width: 0 0 3px 3px;
+		border-color: var(--accent-magenta);
+	}
+
+	.corner-br {
+		bottom: -24px;
+		right: -24px;
+		border-width: 0 3px 3px 0;
+		border-color: var(--accent-cyan);
 	}
 
 	.photo-img {
@@ -113,7 +276,6 @@
 		height: 80px;
 		background: var(--accent-gradient);
 		border-radius: 50%;
-		box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
 		z-index: 2;
 	}
 
@@ -151,8 +313,8 @@
 		color: var(--text-primary);
 	}
 
-	/* ── Soft Skills ── */
-	.soft-skills {
+	/* ── Skills ── */
+	.skills-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 1rem;
@@ -218,6 +380,83 @@
 		line-height: 1.5;
 	}
 
+	/* ── Education ── */
+	.edu-card {
+		display: flex;
+		align-items: flex-start;
+		gap: 1rem;
+		padding: 1.25rem 1.5rem;
+		margin-top: 0.5rem;
+	}
+
+	.edu-icon {
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		background: rgba(168, 85, 247, 0.1);
+		border: 1px solid rgba(168, 85, 247, 0.15);
+		border-radius: var(--radius-md);
+		color: #a855f7;
+	}
+
+	.edu-info {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		min-width: 0;
+	}
+
+	.edu-title {
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: var(--text-primary);
+		line-height: 1.3;
+	}
+
+	.edu-place {
+		font-size: 0.8rem;
+		color: var(--accent-magenta);
+	}
+
+	.edu-progress {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-top: 0.5rem;
+	}
+
+	.edu-progress-bar {
+		flex: 1;
+		height: 4px;
+		background: rgba(255, 255, 255, 0.06);
+		border-radius: 2px;
+		overflow: hidden;
+	}
+
+	.edu-progress-fill {
+		width: 42%;
+		height: 100%;
+		background: var(--accent-gradient);
+		border-radius: 2px;
+		animation: progressPulse 3s ease-in-out infinite;
+	}
+
+	@keyframes progressPulse {
+		0%, 100% { opacity: 1; }
+		50% { opacity: 0.7; }
+	}
+
+	.edu-progress-label {
+		font-size: 0.7rem;
+		font-weight: 600;
+		color: var(--text-muted);
+		white-space: nowrap;
+	}
+
 	/* ── Responsive ── */
 	@media (max-width: 968px) {
 		.about-grid {
@@ -236,13 +475,13 @@
 			height: 220px;
 		}
 
-		.soft-skills {
+		.skills-grid {
 			grid-template-columns: repeat(3, 1fr);
 		}
 	}
 
 	@media (max-width: 640px) {
-		.soft-skills {
+		.skills-grid {
 			grid-template-columns: 1fr;
 		}
 
@@ -251,23 +490,19 @@
 			height: 180px;
 		}
 
-		.photo-initials {
-			font-size: 3rem;
-		}
-
 		.experience-badge {
-			width: 64px;
-			height: 64px;
-			bottom: -8px;
-			right: -8px;
+			width: 60px;
+			height: 60px;
+			bottom: -6px;
+			right: -6px;
 		}
 
 		.exp-number {
-			font-size: 1.25rem;
+			font-size: 1.1rem;
 		}
 
 		.exp-label {
-			font-size: 0.6rem;
+			font-size: 0.55rem;
 		}
 	}
 </style>
