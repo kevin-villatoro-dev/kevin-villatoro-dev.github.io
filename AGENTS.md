@@ -21,7 +21,7 @@ No lint, typecheck, or test scripts are configured. `npm run build` is the only 
 ```
 src/
 ├── components/   # Header, Hero, Timeline, Projects, ProjectCard, About, Formacion, Contact, Footer, ScrollButton, PreloaderV2
-├── layouts/      # Layout.astro (base HTML, Google Fonts, meta tags, ScrollButton)
+├── layouts/      # Layout.astro (base HTML, Google Fonts, meta tags, ScrollButton, PreloaderV2)
 ├── pages/        # index.astro, cv.astro, recomendaciones.astro
 └── styles/       # global.css (CSS variables, theme, animations)
 ```
@@ -44,6 +44,13 @@ Order optimized for recruiter flow: experience first, then proof of work, soft s
 - Components use `<style>` blocks with scoped CSS (Astro default)
 - Client-side JS: Header hamburger menu (mobile), ScrollButton (scroll to top/bottom), PDF viewer pages (cv, recomendaciones) via PDF.js
 - `prefers-reduced-motion` respected globally
+
+## Preloader & Animations
+
+- **PreloaderV2**: 1.5s loading screen with orbit system, hex grid, glitch name effect
+- **Glitch effect**: "KEVIN VILLATORO" in preloader, "Kevin Villatoro" in Hero section
+- **Event system**: Preloader dispatches `preloader:done` event, Hero listens to trigger glitch
+- **Hero glitch**: Cascada 150ms entre nombre y apellido, solo se activa post-preloader
 
 ## PDF Files
 
