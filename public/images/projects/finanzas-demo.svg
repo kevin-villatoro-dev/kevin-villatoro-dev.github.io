@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f9fa"/>
+      <stop offset="100%" style="stop-color:#e9ecef"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <!-- Dashboard frame -->
+  <rect x="100" y="50" width="600" height="400" rx="8" fill="#ffffff" stroke="#dee2e6" stroke-width="1"/>
+  <rect x="100" y="50" width="600" height="35" rx="8" fill="#f1f3f5"/>
+  <rect x="100" y="87" width="600" height="8" fill="#f1f3f5"/>
+  <circle cx="125" cy="67" r="5" fill="#ff5f57"/>
+  <circle cx="145" cy="67" r="5" fill="#ffbd2e"/>
+  <circle cx="165" cy="67" r="5" fill="#28c840"/>
+  <!-- Chart bars -->
+  <g transform="translate(150, 280)">
+    <rect x="0" y="0" width="45" height="120" rx="3" fill="#e9ecef"/>
+    <rect x="0" y="50" width="45" height="70" rx="3" fill="#4dabf7"/>
+    <rect x="65" y="0" width="45" height="120" rx="3" fill="#e9ecef"/>
+    <rect x="65" y="25" width="45" height="95" rx="3" fill="#ff6b6b"/>
+    <rect x="130" y="0" width="45" height="120" rx="3" fill="#e9ecef"/>
+    <rect x="130" y="40" width="45" height="80" rx="3" fill="#69db7c"/>
+    <rect x="195" y="0" width="45" height="120" rx="3" fill="#e9ecef"/>
+    <rect x="195" y="15" width="45" height="105" rx="3" fill="#da77f2"/>
+    <rect x="260" y="0" width="45" height="120" rx="3" fill="#e9ecef"/>
+    <rect x="260" y="35" width="45" height="85" rx="3" fill="#4dabf7"/>
+    <rect x="325" y="0" width="45" height="120" rx="3" fill="#e9ecef"/>
+    <rect x="325" y="45" width="45" height="75" rx="3" fill="#ff6b6b"/>
+  </g>
+  <!-- Line chart overlay -->
+  <polyline points="172,255 237,225 302,238 367,195 432,205 497,175 562,185" fill="none" stroke="#495057" stroke-width="2" opacity="0.5"/>
+  <!-- Stats cards -->
+  <rect x="130" y="110" width="150" height="70" rx="6" fill="#ffffff" stroke="#dee2e6"/>
+  <text x="145" y="135" fill="#2b8a3e" font-family="system-ui, sans-serif" font-size="11" opacity="0.8">INGRESOS</text>
+  <text x="145" y="162" fill="#212529" font-family="system-ui, sans-serif" font-size="20" font-weight="bold">$24,500</text>
+  <rect x="310" y="110" width="150" height="70" rx="6" fill="#ffffff" stroke="#dee2e6"/>
+  <text x="325" y="135" fill="#c92a2a" font-family="system-ui, sans-serif" font-size="11" opacity="0.8">EGRESOS</text>
+  <text x="325" y="162" fill="#212529" font-family="system-ui, sans-serif" font-size="20" font-weight="bold">$18,200</text>
+  <rect x="490" y="110" width="150" height="70" rx="6" fill="#ffffff" stroke="#dee2e6"/>
+  <text x="505" y="135" fill="#1971c2" font-family="system-ui, sans-serif" font-size="11" opacity="0.8">BALANCE</text>
+  <text x="505" y="162" fill="#212529" font-family="system-ui, sans-serif" font-size="20" font-weight="bold">$6,300</text>
+</svg>

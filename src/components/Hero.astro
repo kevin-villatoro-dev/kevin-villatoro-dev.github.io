@@ -1,16 +1,12 @@
----
-
----
-
 <script>
 	window.addEventListener("preloader:done", () => {
-		const glitchEls = document.querySelectorAll(".glitch-hero");
+		const glitchEls = document.querySelectorAll(".glitch-hero")
 		glitchEls.forEach((el, i) => {
 			setTimeout(() => {
-				el.classList.add("glitch-active");
-			}, i * 150);
-		});
-	});
+				el.classList.add("glitch-active")
+			}, i * 150)
+		})
+	})
 </script>
 
 <section class="hero section" id="hero">
@@ -18,25 +14,52 @@
 		<div class="hero-content">
 			<p class="hero-greeting">Hola, soy</p>
 			<h1 class="hero-name">
-				<span class="glitch-hero" data-text="Kevin">Kevin</span><br /><span class="glitch-hero glitch-hero-sub" data-text="Villatoro">Villatoro</span>
+				<span class="glitch-hero" data-text="Kevin">Kevin</span><br /><span
+					class="glitch-hero glitch-hero-sub"
+					data-text="Villatoro">Villatoro</span
+				>
 			</h1>
 			<h2 class="hero-title">Tech Lead</h2>
 
 			<div class="hero-actions">
 				<a href="/recomendaciones" class="btn-hero btn-hero-magenta">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						stroke="none"
+						aria-hidden="true"
+						><path
+							d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+						></path></svg
+					>
 					Recomendaciones
 				</a>
 				<a href="/cv" class="btn-hero btn-hero-cyan">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						aria-hidden="true"
+						><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"
+						></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline
+							points="10 9 9 9 8 9"></polyline></svg
+					>
 					Currículum
 				</a>
 			</div>
 
 			<p class="hero-description">
-				Experto en liderar el diseño técnico y el ciclo completo de despliegue de
-				aplicaciones. Transformo la complejidad técnica en sistemas eficientes y
-				listos para el futuro.
+				Experto en liderar el diseño técnico y el ciclo completo de despliegue de aplicaciones. Transformo la complejidad técnica en
+				sistemas eficientes y listos para el futuro.
 			</p>
 		</div>
 
@@ -48,30 +71,46 @@
 					<span class="dot green"></span>
 					<span class="code-filename">engineer.ts</span>
 				</div>
-				<pre class="code-content"><code><span class="keyword">const</span> <span class="variable">engineer</span> = {'{'}
+				<pre
+					class="code-content"><code><span class="keyword">const</span> <span class="variable">engineer</span> = {'{'}
     <span class="property">name</span>: <span class="string">"Kevin Villatoro"</span>,
     <span class="property">role</span>: <span class="string">"Ingeniero de Software"</span>,
     <span class="property">languages</span>: [
         <span class="string">"PHP"</span>, <span class="string">"JavaScript"</span>, <span class="string">"TypeScript"</span>,
         <span class="string">"Python"</span>, <span class="string">"Java"</span>, <span class="string">"C#"</span>
     ],
-    <span class="property">frameworks</span>: [
-        <span class="string">"Laravel"</span>, <span class="string">"Node.js"</span>, <span class="string">"React"</span>,
-        <span class="string">"Next.js"</span>, <span class="string">"Django"</span>, <span class="string">"Flask"</span>
+    <span class="property">backend</span>: [
+        <span class="string">"Laravel"</span>, <span class="string">"Node.js"</span>, <span class="string">"Next.js"</span>,
+        <span class="string">"FastAPI"</span>, <span class="string">"Flask"</span>
     ],
-    <span class="property">tools</span>: [
-        <span class="string">"Docker"</span>, <span class="string">"Git"</span>, <span class="string">"CI/CD"</span>,
-        <span class="string">"MySQL"</span>, <span class="string">"PostgreSQL"</span>
+    <span class="property">frontend</span>: [
+        <span class="string">"Astro"</span>, <span class="string">"React"</span>, <span class="string">"Tailwind CSS"</span>,
+        <span class="string">"jQuery"</span>, <span class="string">"Ajax"</span>, <span class="string">"Axios"</span>
     ],
-    <span class="property">passion</span>: <span class="string">"Building the future"</span>
+    <span class="property">devops</span>: [
+        <span class="string">"Docker"</span>, <span class="string">"CI/CD"</span>,
+        <span class="string">"Git"</span>, <span class="string">"Github"</span>, <span class="string">"Gitlab"</span>
+    ],
+    <span class="property">management_methodologies</span>: [
+        <span class="string">"Gestión de proyectos"</span>,
+        <span class="string">"Scrum"</span>, <span class="string">"Kanban"</span>,
+        <span class="string">"JIRA"</span>, <span class="string">"Confluence"</span>, <span class="string">"Asana"</span>
+        <span class="string">"Draw.io"</span>
+    ],
+    <span class="property">architecture_ecosystem</span>: [
+        <span class="string">"REST"</span>, <span class="string">"SOAP"</span>, <span class="string">"XML"</span>, 
+        <span class="string">"OAuth2"</span>, <span class="string">"JWT"</span>,
+        <span class="string">"Payment Gateways"</span>, <span class="string">"DTE/FEL"</span>,
+        <span class="string">"Cybersource"</span>, <span class="string">"ePay"</span>,
+        <span class="string">"Vite"</span>, <span class="string">"Composer"</span>, <span class="string">"Postman"</span>,
+        <span class="string">"OpenAPI/Swagger"</span>,
+    ],
 {'}'}
 </code></pre>
 			</div>
 		</div>
 	</div>
 </section>
-
-
 
 <style>
 	.hero {
@@ -142,33 +181,88 @@
 	}
 
 	@keyframes heroGlitchIn {
-		0% { opacity: 0; transform: translateY(10px); }
-		15% { opacity: 1; transform: translateY(0) skewX(-3deg); }
-		25% { transform: skewX(4deg); }
-		35% { transform: skewX(-2deg); }
-		45% { transform: skewX(1deg); }
-		55% { transform: skewX(0); }
-		100% { opacity: 1; transform: translateY(0) skewX(0); }
+		0% {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+		15% {
+			opacity: 1;
+			transform: translateY(0) skewX(-3deg);
+		}
+		25% {
+			transform: skewX(4deg);
+		}
+		35% {
+			transform: skewX(-2deg);
+		}
+		45% {
+			transform: skewX(1deg);
+		}
+		55% {
+			transform: skewX(0);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0) skewX(0);
+		}
 	}
 
 	@keyframes heroGlitchLayerCyan {
-		0% { opacity: 0; transform: translate(0); }
-		10% { opacity: 0.8; transform: translate(-4px, 2px); }
-		20% { transform: translate(4px, -1px); }
-		30% { opacity: 0.6; transform: translate(-3px, 1px); }
-		40% { transform: translate(2px, -2px); }
-		50% { opacity: 0; transform: translate(0); }
-		100% { opacity: 0; transform: translate(0); }
+		0% {
+			opacity: 0;
+			transform: translate(0);
+		}
+		10% {
+			opacity: 0.8;
+			transform: translate(-4px, 2px);
+		}
+		20% {
+			transform: translate(4px, -1px);
+		}
+		30% {
+			opacity: 0.6;
+			transform: translate(-3px, 1px);
+		}
+		40% {
+			transform: translate(2px, -2px);
+		}
+		50% {
+			opacity: 0;
+			transform: translate(0);
+		}
+		100% {
+			opacity: 0;
+			transform: translate(0);
+		}
 	}
 
 	@keyframes heroGlitchLayerMagenta {
-		0% { opacity: 0; transform: translate(0); }
-		10% { opacity: 0.8; transform: translate(4px, -2px); }
-		20% { transform: translate(-4px, 1px); }
-		30% { opacity: 0.6; transform: translate(3px, -1px); }
-		40% { transform: translate(-2px, 2px); }
-		50% { opacity: 0; transform: translate(0); }
-		100% { opacity: 0; transform: translate(0); }
+		0% {
+			opacity: 0;
+			transform: translate(0);
+		}
+		10% {
+			opacity: 0.8;
+			transform: translate(4px, -2px);
+		}
+		20% {
+			transform: translate(-4px, 1px);
+		}
+		30% {
+			opacity: 0.6;
+			transform: translate(3px, -1px);
+		}
+		40% {
+			transform: translate(-2px, 2px);
+		}
+		50% {
+			opacity: 0;
+			transform: translate(0);
+		}
+		100% {
+			opacity: 0;
+			transform: translate(0);
+		}
 	}
 	.hero-title {
 		color: var(--text-muted);
@@ -191,7 +285,9 @@
 		text-decoration: none;
 		cursor: pointer;
 		touch-action: manipulation;
-		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		transition:
+			transform 0.3s ease,
+			box-shadow 0.3s ease;
 	}
 	.btn-hero:hover {
 		transform: translateY(-2px);
@@ -251,9 +347,15 @@
 		height: 12px;
 		border-radius: 50%;
 	}
-	.dot.red { background: #ff5f57; }
-	.dot.yellow { background: #ffbd2e; }
-	.dot.green { background: #28c840; }
+	.dot.red {
+		background: #ff5f57;
+	}
+	.dot.yellow {
+		background: #ffbd2e;
+	}
+	.dot.green {
+		background: #28c840;
+	}
 	.code-filename {
 		margin-left: auto;
 		font-size: 0.8rem;
@@ -267,10 +369,18 @@
 		line-height: 1.7;
 		overflow-x: auto;
 	}
-	.keyword { color: var(--accent-magenta); }
-	.variable { color: var(--accent-cyan); }
-	.property { color: var(--accent-cyan); }
-	.string { color: #34d399; }
+	.keyword {
+		color: var(--accent-magenta);
+	}
+	.variable {
+		color: var(--accent-cyan);
+	}
+	.property {
+		color: var(--accent-cyan);
+	}
+	.string {
+		color: var(--accent-green);
+	}
 
 	/* ── Animations ── */
 	.anim-float-shimmer {
@@ -291,12 +401,21 @@
 		will-change: transform;
 	}
 	@keyframes float {
-		0%, 100% { transform: translateY(0); }
-		50% { transform: translateY(-12px); }
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-12px);
+		}
 	}
 	@keyframes shimmer {
-		0% { left: -100%; }
-		100% { left: 100%; }
+		0% {
+			left: -100%;
+		}
+		100% {
+			left: 100%;
+		}
 	}
 
 	/* ── Responsive ── */
@@ -309,6 +428,13 @@
 			margin-left: auto;
 			margin-right: auto;
 		}
-		.code-block { max-width: 400px; }
+		.hero-actions {
+			justify-content: center;
+		}
+		.code-block {
+			max-width: 400px;
+			margin: 0 auto;
+			text-align: left;
+		}
 	}
 </style>

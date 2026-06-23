@@ -8,6 +8,13 @@
   --text-muted: #6b6b80;
   --accent-cyan: #00d4ff;
   --accent-magenta: #ff00aa;
+  --accent-green: #34d399;
+  --accent-purple: #a855f7;
+  --accent-red: #ff4444;
+  --color-email: #ea4335;
+  --color-linkedin: #0a66c2;
+  --color-github: #f0f0f0;
+  --color-whatsapp: #25d366;
   --accent-gradient: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.08);
@@ -217,19 +224,6 @@ a:hover { color: var(--accent-magenta); }
 
 .section-title h2 { margin-bottom: 0.5rem; }
 .section-title p { color: var(--text-muted); font-size: 1.1rem; }
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 15px rgba(0, 212, 255, 0.15); }
-  50% { box-shadow: 0 0 25px rgba(0, 212, 255, 0.3); }
-}
-
-.animate-float { animation: float 6s ease-in-out infinite; }
-.animate-pulse { animation: pulse-glow 3s ease-in-out infinite; will-change: box-shadow; }
 
 ::-webkit-scrollbar { 
   width: 10px; 

@@ -1,7 +1,3 @@
----
-
----
-
 <script is:inline>
 	document.addEventListener("DOMContentLoaded", () => {
 		const photoFrame = document.querySelector(".photo-frame");
@@ -69,10 +65,14 @@
 				<p class="about-bio">
 					Tech Lead con 10+ años construyendo software que genera impacto real. Lideré el
 					ecosistema Fintech de ShopShop durante casi 6 años, gestionando desde la arquitectura
-					hasta el despliegue de soluciones de pago que procesaron más de $2M en transacciones.
+					hasta el despliegue de soluciones de pago que procesaron millones en transacciones.
 				</p>
+				<a href="/recomendaciones" class="about-recommendations">
+					<svg class="rec-heart" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+					Ver recomendaciones →
+				</a>
 				<p class="about-bio">
-					Automatizé el 90% de operaciones fallidas en facturación electrónica y aceleré el ciclo
+					Automatizé el 90% de operaciones fallidas que antes requerian una intervención manual y aceleré el ciclo
 					de venta en un 30%. Hoy aplico metodologías basadas en LLMs y Spec-Driven Development
 					para entregar código robusto, escalable y documentado desde el diseño.
 				</p>
@@ -83,7 +83,7 @@
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
 						</div>
 						<h3 class="skill-title">Arquitectura</h3>
-						<p class="skill-desc">APIs escalables, microservicios, integración de pasarelas de pago y facturación electrónica</p>
+						<p class="skill-desc">APIs escalables, integraciones de punto a punto, integración de pasarelas de pago y facturación electrónica</p>
 					</div>
 
 					<div class="skill-card glass-card">
@@ -313,6 +313,40 @@
 		color: var(--text-primary);
 	}
 
+	.about-recommendations {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 0.9rem;
+		font-weight: 500;
+		color: var(--accent-magenta);
+		text-decoration: none;
+		transition: color 0.2s ease, gap 0.2s ease;
+	}
+
+	.about-recommendations:hover {
+		color: var(--accent-cyan);
+		gap: 0.6rem;
+	}
+
+	.rec-heart {
+		animation: heartbeat 1.5s ease-in-out infinite;
+	}
+
+	@keyframes heartbeat {
+		0%, 100% { transform: scale(1); }
+		15% { transform: scale(1.2); }
+		30% { transform: scale(1); }
+		45% { transform: scale(1.15); }
+		60% { transform: scale(1); }
+	}
+
+	@media (max-width: 968px) {
+		.about-recommendations {
+			justify-content: center;
+		}
+	}
+
 	/* ── Skills ── */
 	.skills-grid {
 		display: grid;
@@ -361,7 +395,7 @@
 
 	.skill-card:nth-child(3) .skill-icon {
 		background: rgba(52, 211, 153, 0.1);
-		color: #34d399;
+		color: var(--accent-green);
 	}
 
 	.skill-card:nth-child(3):hover .skill-icon {
@@ -399,7 +433,7 @@
 		background: rgba(168, 85, 247, 0.1);
 		border: 1px solid rgba(168, 85, 247, 0.15);
 		border-radius: var(--radius-md);
-		color: #a855f7;
+		color: var(--accent-purple);
 	}
 
 	.edu-info {

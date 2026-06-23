@@ -1,8 +1,4 @@
----
-
----
-
-<div class="preloader-v2" id="preloader">
+<div class="preloader" id="preloader">
 	<div class="hex-grid" aria-hidden="true">
 		<div class="hex-row">
 			<div class="hex"></div><div class="hex"></div><div class="hex"></div>
@@ -51,7 +47,7 @@
 			<span class="binary-line">01010100 01000101 01000011 01001000</span>
 		</div>
 
-		<div class="loading-bar-v2">
+		<div class="loading-bar">
 			<div class="bar-segments">
 				<div class="segment"></div>
 				<div class="segment"></div>
@@ -80,7 +76,7 @@
 </div>
 
 <style>
-	.preloader-v2 {
+	.preloader {
 		position: fixed;
 		inset: 0;
 		z-index: 9999;
@@ -92,7 +88,7 @@
 		transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
 	}
 
-	.preloader-v2.hidden {
+	.preloader.hidden {
 		opacity: 0;
 		visibility: hidden;
 		pointer-events: none;
@@ -199,8 +195,8 @@
 	}
 
 	.orbit-3 .orbit-dot {
-		background: #34d399;
-		box-shadow: 0 0 12px #34d399, 0 0 24px #34d399;
+		background: var(--accent-green);
+		box-shadow: 0 0 12px var(--accent-green), 0 0 24px var(--accent-green);
 	}
 
 	@keyframes orbitSpin {
@@ -361,7 +357,7 @@
 	}
 
 	/* ── Loading Bar ── */
-	.loading-bar-v2 {
+		.loading-bar {
 		position: relative;
 		width: 280px;
 	}
@@ -461,7 +457,7 @@
 			width: 36px;
 			height: 36px;
 		}
-		.loading-bar-v2 {
+	.loading-bar {
 			width: 220px;
 		}
 		.binary-scroll {
