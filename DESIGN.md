@@ -37,9 +37,13 @@ The background carries a subtle grid pattern (`rgba(0, 212, 255, 0.03)`) — a n
 
 ### Functional Colors
 - **Danger Red** (#FF4444) — Confidential/NDA states, security warnings
-- **Success Green** (#25D366) — Copy confirmation, WhatsApp brand
+- **Success Green** (#34D399) — Copy confirmation, active states
+- **Accent Purple** (#A855F7) — Reportería service indicator
+- **Accent Red** (#FF4444) — Laravel service indicator
 - **LinkedIn Blue** (#0A66C2) — Brand-specific icon backgrounds
 - **GitHub White** (#F0F0F0) — Brand-specific icon backgrounds
+- **WhatsApp Green** (#25D366) — Brand-specific icon backgrounds
+- **Email Red** (#EA4335) — Brand-specific icon backgrounds
 
 ### Banned Colors
 - Pure Black (#000000) — Use Void Black (#0A0A0F) instead
@@ -116,24 +120,80 @@ The background carries a subtle grid pattern (`rgba(0, 212, 255, 0.03)`) — a n
 
 ---
 
-## 5. Hero Section
+## 5. Preloader & Animations
+
+### Preloader Component
+- **Duration:** 1.5s loading screen
+- **Elements:** Orbit system, hex grid, code rain, progress bar, scan line
+- **Name Display:** "KEVIN VILLATORO" with glitch effect
+- **Event System:** Dispatches `preloader:done` event when complete
+- **Duration Control:** Reduced from 3s to 1.5s for faster initial load
+
+### ScrollButton Component
+- **Position:** Fixed, bottom-right corner
+- **Functionality:** Scroll to top/bottom toggle
+- **Visibility:** Appears after scrolling down
+- **Icon:** Chevron up/down with rotation animation
+
+### Glitch Effects
+- **Preloader Glitch:** "KEVIN VILLATORO" in preloader
+- **Hero Glitch:** "Kevin Villatoro" in Hero section
+- **Event System:** Preloader dispatches `preloader:done` event, Hero listens to trigger glitch
+- **Hero Glitch Timing:** Cascada 150ms entre nombre y apellido, solo se activa post-preloader
+
+---
+
+## 6. Hero Section
 
 ### Structure
 - **Layout:** Full-width, centered text within container
-- **Title:** "Hola, soy" (muted) + "Kevin Villatoro" (gradient text, large)
-- **Subtitle:** Role description in Text Secondary
+- **Title:** "Hola, soy" (muted) + "Kevin Villatoro" (glitch effect, activated after preloader)
+- **Subtitle:** "Tech Lead" in Text Secondary
+- **Action Buttons:** Recomendaciones (heart icon, magenta) + CV (document icon, cyan) + LinkedIn + GitHub
+- **Code Block:** Centered on mobile, shows example code with syntax highlighting
 - **Background:** Void Black with grid pattern overlay
 - **Floating shapes:** Geometric primitives (circle, square, triangle, hexagon) with slow vertical drift animation
+
+### Glitch Effect
+- **Trigger:** `preloader:done` event from Preloader component
+- **Timing:** Cascada 150ms entre nombre y apellido
+- **Class:** `.glitch-active` added via JS listener
+- **Cascada:** Nombre primero, apellido después
 
 ### Constraints
 - Maximum 2 lines of subtitle text
 - No scroll indicators or bouncing arrows
-- Gradient text on name only, not full title
+- Glitch on name only, not full title
 - Shapes never overlap text content
+- Code block centered on mobile with `margin: 0 auto; text-align: left`
 
 ---
 
-## 6. Layout Principles
+## 7. About Section
+
+### Photo Effects
+- **Frame:** Bracket frame with cyan/magenta corners
+- **Hover:** Scale 1.05 with scan line effect
+- **Experience Badge:** "10+" static, inside photo-frame
+- **Easter Egg:** Typing effect below photo frame on hover (6rem height, 2rem padding-top)
+
+### Skills Grid
+- **Layout:** 2-column grid on desktop, 1-column on mobile
+- **Categories:** Arquitectura, DevOps, Liderazgo
+- **Style:** Glass cards with icons
+
+### Education
+- **Layout:** Card with institution, degree, year
+- **Style:** Consistent with glass card design
+
+### Recommendations Link
+- **Text:** "Ver recomendaciones →" with heart icon
+- **Animation:** Heartbeat animation on heart icon
+- **Position:** Between bio paragraphs, centered on mobile (≤968px)
+
+---
+
+## 7. Layout Principles
 
 ### Grid System
 - **Container:** `max-width: 1200px`, centered with `padding: 0 1.5rem`
@@ -160,7 +220,7 @@ Each section follows:
 
 ---
 
-## 7. Motion & Interaction
+## 10. Motion & Interaction
 
 ### Transition Defaults
 - **Fast:** `0.2s ease` — Tags, small interactions
@@ -190,7 +250,7 @@ Each section follows:
 
 ---
 
-## 8. Anti-Patterns (Banned)
+## 11. Anti-Patterns (Banned)
 
 ### Visual
 - No pure black (#000000) or pure white (#FFFFFF)
@@ -226,7 +286,7 @@ Each section follows:
 
 ---
 
-## 9. Security Visual Language
+## 12. Security Visual Language
 
 ### Confidential Projects
 - **Overlay:** `rgba(0, 0, 0, 0.5)` with `backdrop-filter: blur(3px)`

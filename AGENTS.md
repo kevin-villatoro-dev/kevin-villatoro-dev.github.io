@@ -2,7 +2,7 @@
 
 ## Project
 
-Astro 6 static portfolio site. Single-page, no SSR, no API routes.
+Astro 6 static portfolio site for Kevin Villatoro (Tech Lead). Single-page, no SSR, no API routes.
 
 ## Commands
 
@@ -16,12 +16,21 @@ fnm exec --using=default -- npm run preview  # preview production build
 
 No lint, typecheck, or test scripts are configured. `npm run build` is the only verification step.
 
+## Deployment
+
+Configured for GitHub Pages with automatic deployment via GitHub Actions.
+
+- **Repository:** `kevin-villatoro-dev.github.io`
+- **URL:** `https://kevin-villatoro-dev.github.io/`
+- **Workflow:** `.github/workflows/deploy.yml`
+- **Trigger:** Push to `main` branch
+
 ## Structure
 
 ```
 src/
-├── components/   # Header, Hero, Timeline, Projects, ProjectCard, About, Formacion, Contact, Footer, ScrollButton, PreloaderV2
-├── layouts/      # Layout.astro (base HTML, Google Fonts, meta tags, ScrollButton, PreloaderV2)
+├── components/   # Header, Hero, Timeline, Projects, ProjectCard, About, Contact, Footer, ScrollButton, Preloader, PdfViewerStyles
+├── layouts/      # Layout.astro (base HTML, Google Fonts, meta tags, ScrollButton, Preloader)
 ├── pages/        # index.astro, cv.astro, recomendaciones.astro
 └── styles/       # global.css (CSS variables, theme, animations)
 ```
@@ -31,7 +40,7 @@ All content is hardcoded in component files. No CMS, no markdown, no dynamic dat
 ## Index Section Order
 
 ```
-Hero → Timeline → Projects → About → Formacion → Contact
+Hero → Timeline → Projects → About → Contact
 ```
 
 Order optimized for recruiter flow: experience first, then proof of work, soft skills, education, contact.
@@ -47,7 +56,7 @@ Order optimized for recruiter flow: experience first, then proof of work, soft s
 
 ## Preloader & Animations
 
-- **PreloaderV2**: 1.5s loading screen with orbit system, hex grid, glitch name effect
+- **Preloader**: 1.5s loading screen with orbit system, hex grid, glitch name effect
 - **Glitch effect**: "KEVIN VILLATORO" in preloader, "Kevin Villatoro" in Hero section
 - **Event system**: Preloader dispatches `preloader:done` event, Hero listens to trigger glitch
 - **Hero glitch**: Cascada 150ms entre nombre y apellido, solo se activa post-preloader
@@ -57,3 +66,20 @@ Order optimized for recruiter flow: experience first, then proof of work, soft s
 - `public/*.pdf` - PDF files (CV, recommendations)
 - `src/pages/cv.astro` - CV viewer page (renders PDF via PDF.js)
 - `src/pages/recomendaciones.astro` - Recommendations viewer page (carousel with PDF.js)
+
+## CSS Variables
+
+```css
+--bg-primary: #0a0a0f
+--bg-secondary: #12121a
+--bg-card: rgba(255, 255, 255, 0.03)
+--accent-cyan: #00d4ff
+--accent-magenta: #ff00aa
+--accent-green: #34d399
+--accent-purple: #a855f7
+--accent-red: #ff4444
+--color-email: #ea4335
+--color-linkedin: #0a66c2
+--color-github: #f0f0f0
+--color-whatsapp: #25d366
+```
