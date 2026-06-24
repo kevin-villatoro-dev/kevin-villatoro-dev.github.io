@@ -29,12 +29,12 @@ const projects = [
 		confidential: true,
 	},
 	{
-		title: "Ecommerce",
+		title: "Ecommerce / Shopping Cart",
 		description:
-			"Plataforma de comercio electrónico con arquitectura MVC. Carrito de compras en tiempo real, pasarela de pagos integrada y panel de administración para gestión de inventario, pedidos y reportes de ventas.",
-		tags: ["Laravel", "React", "PostgreSQL", "Vite", "REST", "Docker"],
+			"App de ecommerce en monorepo con Turborepo: storefront en React 19 + Vite + Tailwind CSS, backend en Fastify + Drizzle + PostgreSQL, y panel admin en Laravel 11. Incluye catálogo de productos, carrito persistido en localStorage, checkout con JWT, y gestión de órdenes.",
+		tags: ["Laravel", "React", "PostgreSQL", "Vite", "Nginx", "Tailwind CSS", "Docker", "pnpm", "Turborepo"],
 		image: "/images/projects/ecommerce-demo.svg",
-		github: "https://github.com/kevin-villatoro-dev/",
+		github: "https://github.com/kevin-villatoro-dev/carro-de-compras",
 	},
 	{
 		title: "Sistema de Finanzas",
@@ -42,16 +42,15 @@ const projects = [
 			"Panel de control financiero. Control de ingresos, egresos, balance general, recordatorios y notificaciones por correo.",
 		tags: ["PHP", "JavaScript", "MySQL", "Composer", "Git", "Bootstrap"],
 		image: "/images/projects/finanzas-demo.svg",
-		github: "https://github.com/kevin-villatoro-dev/",
 		confidential: true,
 	},
 	{
-		title: "API Gateway Modular",
+		title: "API Gateway",
 		description:
-			"Gateway centralizado para orquestar múltiples microservicios. Enrutamiento, autenticación, rate limiting y balanceo de carga con arquitectura modular y extensible.",
-		tags: ["Docker", "REST"],
+			"Gateway centralizado para orquestar múltiples microservicios con dashboard para visualizar el tráfico de las peticiones.",
+		tags: ["React", "Fastify", "Typescript", "JWT"],
 		image: "/images/projects/api-gateway-demo.svg",
-		github: "https://github.com/kevin-villatoro-dev/",
+		github: "https://github.com/kevin-villatoro-dev/api-gateway",
 	},
 ]
 
