@@ -1,13 +1,15 @@
 <script is:inline>
 	document.addEventListener("DOMContentLoaded", () => {
-		const photoFrame = document.querySelector(".photo-frame");
 		const easterEgg = document.getElementById("easter-egg");
+		const section = document.getElementById("sobre-mi");
 		const text = "Un buen desarrollador es aquel que encuentra soluciones a los problemas antes de que surjan.";
 		let typing = false;
 		let timeout = null;
+		let started = false;
 
-		photoFrame?.addEventListener("mouseenter", () => {
-			if (typing) return;
+		function startTyping() {
+			if (typing || started) return;
+			started = true;
 			typing = true;
 			easterEgg.innerHTML = '<span class="cursor"></span>';
 			let i = 0;
@@ -18,18 +20,31 @@
 					i++;
 					timeout = setTimeout(type, 40 + Math.random() * 30);
 				} else {
-					easterEgg.innerHTML = text;
-					typing = false;
+					timeout = setTimeout(() => {
+						easterEgg.innerHTML = "";
+						typing = false;
+						started = false;
+						timeout = setTimeout(startTyping, 500);
+					}, 3000);
 				}
 			}
 			type();
-		});
+		}
 
-		photoFrame?.addEventListener("mouseleave", () => {
-			clearTimeout(timeout);
-			typing = false;
-			easterEgg.innerHTML = "";
-		});
+		if (section) {
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							startTyping();
+							observer.disconnect();
+						}
+					});
+				},
+				{ threshold: 0.4 }
+			);
+			observer.observe(section);
+		}
 	});
 </script>
 
