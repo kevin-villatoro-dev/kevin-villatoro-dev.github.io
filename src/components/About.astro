@@ -1,13 +1,15 @@
 <script is:inline>
 	document.addEventListener("DOMContentLoaded", () => {
-		const photoFrame = document.querySelector(".photo-frame");
 		const easterEgg = document.getElementById("easter-egg");
+		const section = document.getElementById("sobre-mi");
 		const text = "Un buen desarrollador es aquel que encuentra soluciones a los problemas antes de que surjan.";
 		let typing = false;
 		let timeout = null;
+		let started = false;
 
-		photoFrame?.addEventListener("mouseenter", () => {
-			if (typing) return;
+		function startTyping() {
+			if (typing || started) return;
+			started = true;
 			typing = true;
 			easterEgg.innerHTML = '<span class="cursor"></span>';
 			let i = 0;
@@ -18,18 +20,31 @@
 					i++;
 					timeout = setTimeout(type, 40 + Math.random() * 30);
 				} else {
-					easterEgg.innerHTML = text;
-					typing = false;
+					timeout = setTimeout(() => {
+						easterEgg.innerHTML = "";
+						typing = false;
+						started = false;
+						timeout = setTimeout(startTyping, 500);
+					}, 3000);
 				}
 			}
 			type();
-		});
+		}
 
-		photoFrame?.addEventListener("mouseleave", () => {
-			clearTimeout(timeout);
-			typing = false;
-			easterEgg.innerHTML = "";
-		});
+		if (section) {
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							startTyping();
+							observer.disconnect();
+						}
+					});
+				},
+				{ threshold: 0.4 }
+			);
+			observer.observe(section);
+		}
 	});
 </script>
 
@@ -41,7 +56,7 @@
 		</div>
 
 		<div class="about-grid">
-			<div class="about-photo">
+		<div class="about-photo">
 				<div class="photo-wrapper">
 					<div class="photo-frame glass-card">
 						<img src="/profile.png" alt="Kevin Villatoro" class="photo-img" loading="lazy" />
@@ -54,12 +69,34 @@
 							<span class="exp-number">10+</span>
 							<span class="exp-label">años</span>
 						</div>
+					</div>
+					<div class="easter-egg-container">
+						<p class="easter-egg" id="easter-egg"></p>
+					</div>
 				</div>
-				<div class="easter-egg-container">
-					<p class="easter-egg" id="easter-egg"></p>
+
+				<div class="looking-for">
+					<h3 class="looking-for-title">Lo que busco</h3>
+					<div class="looking-for-list">
+						<div class="looking-for-item" data-color="cyan">
+							<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+							<span class="looking-for-label">Trabajo Remoto, Híbrido, Presencial</span>
+						</div>
+                        <!-- <div class="looking-for-item" data-color="magenta">
+							<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+							<span class="looking-for-label">Roles de Tech Lead / Full stack developer</span>
+						</div> -->
+						<div class="looking-for-item" data-color="purple">
+							<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+							<span class="looking-for-label">Aprendizaje continuo</span>
+						</div>
+						<div class="looking-for-item" data-color="green">
+							<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+							<span class="looking-for-label">Tiempo completo</span>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
 
 			<div class="about-content">
 				<p class="about-bio">
@@ -118,8 +155,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+					</div>
+				</div>
 	</div>
 </section>
 
@@ -132,7 +169,7 @@
 		display: grid;
 		grid-template-columns: auto 1fr;
 		gap: 4rem;
-		align-items: center;
+		align-items: start;
 	}
 
 	/* ── Photo ── */
@@ -144,6 +181,8 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		position: sticky;
+		top: 6rem;
 	}
 
 	.photo-frame {
@@ -293,6 +332,68 @@
 		color: var(--bg-primary);
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
+	}
+
+	/* ── Looking For ── */
+	.looking-for {
+		margin-top: 2rem;
+		max-width: 280px;
+	}
+
+	.looking-for-title {
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: var(--text-muted);
+		margin-bottom: 1rem;
+		text-align: center;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+	}
+
+	.looking-for-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	.looking-for-item {
+		display: flex;
+		align-items: center;
+		gap: 0.7rem;
+		padding: 0.5rem 0.7rem;
+		border-left: 3px solid transparent;
+		border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+		transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.looking-for-item:hover {
+		transform: translateX(4px);
+		background: rgba(255, 255, 255, 0.03);
+	}
+
+	[data-color="cyan"]     { border-left-color: var(--accent-cyan); }
+	[data-color="magenta"]  { border-left-color: var(--accent-magenta); }
+	[data-color="green"]    { border-left-color: var(--accent-green); }
+	[data-color="purple"]   { border-left-color: var(--accent-purple); }
+
+	[data-color="cyan"]     svg { color: var(--accent-cyan); }
+	[data-color="magenta"]  svg { color: var(--accent-magenta); }
+	[data-color="green"]    svg { color: var(--accent-green); }
+	[data-color="purple"]   svg { color: var(--accent-purple); }
+
+	[data-color="cyan"]:hover     { box-shadow: -4px 0 16px rgba(0, 212, 255, 0.15); }
+	[data-color="magenta"]:hover  { box-shadow: -4px 0 16px rgba(255, 0, 170, 0.15); }
+	[data-color="green"]:hover    { box-shadow: -4px 0 16px rgba(52, 211, 153, 0.15); }
+	[data-color="purple"]:hover   { box-shadow: -4px 0 16px rgba(168, 85, 247, 0.15); }
+
+	.looking-for-label {
+		font-size: 0.82rem;
+		color: var(--text-secondary);
+		transition: color 0.2s ease;
+	}
+
+	.looking-for-item:hover .looking-for-label {
+		color: var(--text-primary);
 	}
 
 	/* ── Content ── */
@@ -501,7 +602,17 @@
 
 		.about-photo {
 			display: flex;
-			justify-content: center;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.photo-wrapper {
+			position: static;
+		}
+
+		.looking-for {
+			max-width: 320px;
+			margin-inline: auto;
 		}
 
 		.photo-frame {
