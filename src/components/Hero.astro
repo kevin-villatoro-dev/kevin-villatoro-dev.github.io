@@ -6,20 +6,34 @@
 				el.classList.add("glitch-active")
 			}, i * 150)
 		})
+
+		const titleEls = document.querySelectorAll(".hero-title-segment")
+		titleEls.forEach((el, i) => {
+			setTimeout(() => {
+				el.classList.add("segment-active")
+			}, 300 + i * 200)
+		})
 	})
 </script>
 
 <section class="hero section" id="hero">
 	<div class="container">
 		<div class="hero-content">
-			<p class="hero-greeting">Hola, soy</p>
 			<h1 class="hero-name">
-				<span class="glitch-hero" data-text="Kevin">Kevin</span><br /><span
+				<span class="glitch-hero" data-text="Kevin">Kevin Alberto</span><br /><span
 					class="glitch-hero glitch-hero-sub"
-					data-text="Villatoro">Villatoro</span
+					data-text="Villatoro">Villatoro Arroyo</span
 				>
 			</h1>
-			<h2 class="hero-title">Tech Lead</h2>
+			<h2 class="hero-title">
+				<span class="hero-title-segment segment-cyan" style="--i:0">Tech Lead</span>
+				<span class="hero-title-dot">·</span>
+				<span class="hero-title-segment segment-magenta" style="--i:1">Full Stack Developer</span>
+				<span class="hero-title-dot">·</span>
+				<span class="hero-title-segment segment-green" style="--i:2">Fintech</span>
+				<span class="hero-title-dot">·</span>
+				<span class="hero-title-segment segment-purple" style="--i:3">Payment Gateways</span>
+			</h2>
 
 			<div class="hero-actions">
 				<a href="/recomendaciones" class="btn-hero btn-hero-magenta">
@@ -123,13 +137,6 @@
 		grid-template-columns: 1fr 1fr;
 		gap: 4rem;
 		align-items: center;
-	}
-	.hero-greeting {
-		font-size: 1.1rem;
-		color: var(--accent-cyan);
-		font-weight: 500;
-		margin-bottom: 0.5rem;
-		letter-spacing: 0.05em;
 	}
 	.hero-name {
 		margin-bottom: 0.5rem;
@@ -267,6 +274,40 @@
 		color: var(--text-muted);
 		font-weight: 500;
 		margin-bottom: 1.5rem;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.hero-title-dot {
+		color: var(--text-muted);
+		opacity: 0.4;
+	}
+
+	.hero-title-segment {
+		opacity: 0;
+		transform: translateY(8px);
+		transition: opacity 0.5s ease, transform 0.5s ease;
+		transition-delay: calc(var(--i) * 0.15s);
+	}
+
+	.hero-title-segment.segment-active {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.segment-cyan { color: var(--accent-cyan); }
+	.segment-magenta { color: var(--accent-magenta); }
+	.segment-green { color: var(--accent-green); }
+	.segment-purple { color: var(--accent-purple); }
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero-title-segment {
+			opacity: 1;
+			transform: none;
+			transition: none;
+		}
 	}
 	.hero-actions {
 		display: flex;
@@ -422,6 +463,9 @@
 		.hero .container {
 			grid-template-columns: 1fr;
 			text-align: center;
+		}
+		.hero-title {
+			justify-content: center;
 		}
 		.hero-description {
 			margin-left: auto;
