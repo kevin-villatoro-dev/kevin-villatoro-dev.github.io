@@ -44,7 +44,70 @@ const timeline = [
 		],
 	},
 ]
+
+const prefersReducedMotion = typeof window !== 'undefined'
+	? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+	: false
 ---
+
+<script>
+	function initTimeline() {
+		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+		if (prefersReducedMotion) {
+			// Make everything visible immediately
+			document.querySelectorAll('.timeline-item').forEach(el => el.classList.add('visible'))
+			return
+		}
+
+		const section = document.getElementById('trayectoria')
+		const items = section?.querySelectorAll('.timeline-item')
+		const line = section?.querySelector('.timeline-line') as HTMLElement | null
+
+		if (!items?.length) return
+
+		// Reveal cards on scroll (bidirectional: re-animate when scrolling back up)
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('visible')
+					} else {
+						entry.target.classList.remove('visible')
+					}
+				})
+			},
+			{ threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+		)
+
+		items.forEach((item) => observer.observe(item))
+
+		// Animate timeline line with scroll
+		if (line) {
+			const updateLine = () => {
+				const rect = section!.getBoundingClientRect()
+				const sectionHeight = rect.height
+				const viewportHeight = window.innerHeight
+				const scrolled = viewportHeight - rect.top
+				const total = sectionHeight + viewportHeight
+				const progress = Math.min(Math.max(scrolled / total, 0), 1)
+				line.style.setProperty('--line-progress', `${progress * 100}%`)
+			}
+
+			window.addEventListener('scroll', updateLine, { passive: true })
+			updateLine()
+		}
+	}
+
+	// Run on DOM ready
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initTimeline)
+	} else {
+		initTimeline()
+	}
+
+	// Also run on astro page transitions
+	document.addEventListener('astro:page-load', initTimeline)
+</script>
 
 <section id="trayectoria" class="timeline-section section">
 	<div class="container">
@@ -94,16 +157,30 @@ const timeline = [
 		padding: 2rem 0;
 	}
 
+	/* ── Animated timeline line ── */
 	.timeline-line {
 		position: absolute;
 		left: 50%;
 		top: 0;
 		bottom: 0;
 		width: 2px;
-		background: linear-gradient(180deg, transparent, var(--accent-cyan), var(--accent-magenta), transparent);
+		background: rgba(255, 255, 255, 0.06);
 		transform: translateX(-50%);
 	}
 
+	.timeline-line::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: var(--line-progress, 0%);
+		background: linear-gradient(180deg, var(--accent-cyan), var(--accent-magenta));
+		box-shadow: 0 0 12px rgba(0, 212, 255, 0.5), 0 0 24px rgba(255, 0, 170, 0.3);
+		transition: height 0.08s linear;
+	}
+
+	/* ── Timeline items (initial hidden state) ── */
 	.timeline-item {
 		position: relative;
 		width: 50%;
@@ -123,6 +200,7 @@ const timeline = [
 		padding-right: 0;
 	}
 
+	/* ── Timeline dots ── */
 	.timeline-dot {
 		position: absolute;
 		top: 0.5rem;
@@ -143,6 +221,7 @@ const timeline = [
 		left: -7px;
 	}
 
+	/* ── Timeline cards ── */
 	.timeline-card {
 		padding: 1.5rem;
 		text-align: left;
@@ -175,6 +254,7 @@ const timeline = [
 		margin-bottom: 0.75rem;
 	}
 
+	/* ── Highlights ── */
 	.timeline-highlights {
 		list-style: none;
 		padding: 0;
@@ -199,6 +279,116 @@ const timeline = [
 		font-weight: bold;
 	}
 
+	/* ═══════════════════════════════════════
+	   GLOBAL: JS-driven animation classes
+	   (bypass Astro scoped styles)
+	   ═══════════════════════════════════════ */
+
+	:global(.timeline-item) {
+		opacity: 0;
+		transition: opacity 0.6s ease, transform 0.6s ease;
+	}
+
+	:global(.timeline-item.left) {
+		transform: translateX(-40px);
+	}
+
+	:global(.timeline-item.right) {
+		transform: translateX(40px);
+	}
+
+	:global(.timeline-item.visible) {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	:global(.timeline-item.visible .timeline-dot) {
+		animation: dotPulse 2.5s ease-in-out infinite;
+	}
+
+	@keyframes dotPulse {
+		0%, 100% {
+			box-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+			transform: scale(1);
+		}
+		50% {
+			box-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 32px rgba(0, 212, 255, 0.3);
+			transform: scale(1.15);
+		}
+	}
+
+	:global(.timeline-item.left .timeline-card:hover) {
+		transform: translateY(-4px) scale(1.02);
+		box-shadow: 0 8px 32px rgba(0, 212, 255, 0.15);
+		border-color: rgba(0, 212, 255, 0.3);
+	}
+
+	:global(.timeline-item.right .timeline-card:hover) {
+		transform: translateY(-4px) scale(1.02);
+		box-shadow: 0 8px 32px rgba(255, 0, 170, 0.15);
+		border-color: rgba(255, 0, 170, 0.3);
+	}
+
+	/* ── Highlights staggered ── */
+	:global(.timeline-highlights li) {
+		opacity: 0;
+		transform: translateX(-10px);
+		transition: opacity 0.4s ease, transform 0.4s ease, color 0.2s ease;
+	}
+
+	:global(.timeline-item.visible .timeline-highlights li) {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	:global(.timeline-item.visible .timeline-highlights li:nth-child(1)) { transition-delay: 0.25s; }
+	:global(.timeline-item.visible .timeline-highlights li:nth-child(2)) { transition-delay: 0.35s; }
+	:global(.timeline-item.visible .timeline-highlights li:nth-child(3)) { transition-delay: 0.45s; }
+	:global(.timeline-item.visible .timeline-highlights li:nth-child(4)) { transition-delay: 0.55s; }
+	:global(.timeline-item.visible .timeline-highlights li:nth-child(5)) { transition-delay: 0.65s; }
+	:global(.timeline-item.visible .timeline-highlights li:nth-child(6)) { transition-delay: 0.75s; }
+
+	:global(.timeline-highlights li:hover) {
+		color: var(--text-primary);
+	}
+
+	:global(.timeline-highlights li:hover::before) {
+		color: var(--accent-magenta);
+	}
+
+	/* ── Reduced motion ── */
+	@media (prefers-reduced-motion: reduce) {
+		:global(.timeline-item) {
+			opacity: 1;
+			transform: none;
+			transition: none;
+		}
+
+		:global(.timeline-item.left),
+		:global(.timeline-item.right) {
+			transform: none;
+		}
+
+		.timeline-line::after {
+			transition: none;
+		}
+
+		:global(.timeline-item.visible .timeline-dot) {
+			animation: none;
+		}
+
+		:global(.timeline-highlights li) {
+			opacity: 1;
+			transform: none;
+			transition: none;
+		}
+
+		:global(.timeline-card:hover) {
+			transform: none;
+		}
+	}
+
+	/* ── Mobile ── */
 	@media (max-width: 768px) {
 		.timeline-line {
 			left: 20px;
@@ -210,6 +400,18 @@ const timeline = [
 			padding-right: 0 !important;
 			left: 0 !important;
 			text-align: left !important;
+		}
+
+		:global(.timeline-item.left) {
+			transform: translateX(40px);
+		}
+
+		:global(.timeline-item.right) {
+			transform: translateX(40px);
+		}
+
+		:global(.timeline-item.visible) {
+			transform: translateX(0);
 		}
 
 		.timeline-item .timeline-dot {
