@@ -1,3 +1,12 @@
+---
+const typingPhrases = [
+	"Tech Lead building scalable systems...",
+	"Fintech & Payment Gateways expert...",
+	"Full Stack Developer & Architect...",
+	"Turning complexity into scale...",
+];
+---
+
 <script>
 	window.addEventListener("preloader:done", () => {
 		const glitchEls = document.querySelectorAll(".glitch-hero")
@@ -13,10 +22,141 @@
 				el.classList.add("segment-active")
 			}, 300 + i * 200)
 		})
+
+		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+
+		const canvas = document.getElementById("particle-canvas") as HTMLCanvasElement
+		if (!canvas) return
+		const ctx = canvas.getContext("2d")
+		if (!ctx) return
+
+		let w = 0, h = 0
+		let mouse = { x: -9999, y: -9999 }
+		const particles: { x: number; y: number; vx: number; vy: number; r: number; color: string }[] = []
+		const COUNT = 50
+		const CONNECTION_DIST = 120
+		const MOUSE_RADIUS = 100
+		const colors = ["rgba(0,212,255,", "rgba(255,0,170,"]
+
+		function resize() {
+			const rect = canvas!.closest('.hero')!.getBoundingClientRect()
+			w = rect.width
+			h = rect.height
+			canvas!.width = w * devicePixelRatio
+			canvas!.height = h * devicePixelRatio
+			canvas!.style.width = w + "px"
+			canvas!.style.height = h + "px"
+			ctx!.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0)
+		}
+
+		function createParticles() {
+			particles.length = 0
+			for (let i = 0; i < COUNT; i++) {
+				particles.push({
+					x: Math.random() * w,
+					y: Math.random() * h,
+					vx: (Math.random() - 0.5) * 0.4,
+					vy: (Math.random() - 0.5) * 0.4,
+					r: Math.random() * 1.5 + 0.5,
+					color: colors[Math.floor(Math.random() * colors.length)],
+				})
+			}
+		}
+
+		function draw() {
+			ctx!.clearRect(0, 0, w, h)
+
+			for (let i = 0; i < particles.length; i++) {
+				const p = particles[i]
+
+				const dx = mouse.x - p.x
+				const dy = mouse.y - p.y
+				const dist = Math.sqrt(dx * dx + dy * dy)
+				if (dist < MOUSE_RADIUS) {
+					const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS
+					p.vx -= (dx / dist) * force * 0.5
+					p.vy -= (dy / dist) * force * 0.5
+				}
+
+				p.x += p.vx
+				p.y += p.vy
+				p.vx *= 0.99
+				p.vy *= 0.99
+
+				if (p.x < 0) { p.x = 0; p.vx *= -1 }
+				if (p.x > w) { p.x = w; p.vx *= -1 }
+				if (p.y < 0) { p.y = 0; p.vy *= -1 }
+				if (p.y > h) { p.y = h; p.vy *= -1 }
+
+				ctx!.beginPath()
+				ctx!.arc(p.x, p.y, p.r, 0, Math.PI * 2)
+				ctx!.fillStyle = p.color + "0.6)"
+				ctx!.fill()
+
+				for (let j = i + 1; j < particles.length; j++) {
+					const q = particles[j]
+					const cdx = p.x - q.x
+					const cdy = p.y - q.y
+					const cdist = Math.sqrt(cdx * cdx + cdy * cdy)
+					if (cdist < CONNECTION_DIST) {
+						ctx!.beginPath()
+						ctx!.moveTo(p.x, p.y)
+						ctx!.lineTo(q.x, q.y)
+						ctx!.strokeStyle = p.color + (0.15 * (1 - cdist / CONNECTION_DIST)).toFixed(2) + ")"
+						ctx!.stroke()
+					}
+				}
+			}
+			requestAnimationFrame(draw)
+		}
+
+		resize()
+		createParticles()
+		draw()
+
+		window.addEventListener("resize", () => { resize(); createParticles() })
+		canvas.addEventListener("mousemove", (e) => {
+			const rect = canvas.getBoundingClientRect()
+			mouse.x = e.clientX - rect.left
+			mouse.y = e.clientY - rect.top
+		})
+		canvas.addEventListener("mouseleave", () => { mouse.x = -9999; mouse.y = -9999 })
+
+		// Typing carousel
+		const typingEl = document.querySelector(".typing-text") as HTMLElement | null
+		if (!typingEl) return
+		const phrases = JSON.parse(typingEl.dataset.phrases || "[]")
+		if (!phrases.length) return
+		let phraseIdx = 0, charIdx = 0, isDeleting = false
+
+		function typeLoop() {
+			const current = phrases[phraseIdx]
+			if (!isDeleting) {
+				typingEl!.textContent = current.substring(0, charIdx + 1)
+				charIdx++
+				if (charIdx === current.length) {
+					setTimeout(() => { isDeleting = true; typeLoop() }, 2000)
+					return
+				}
+				setTimeout(typeLoop, 60 + Math.random() * 40)
+			} else {
+				typingEl!.textContent = current.substring(0, charIdx - 1)
+				charIdx--
+				if (charIdx === 0) {
+					isDeleting = false
+					phraseIdx = (phraseIdx + 1) % phrases.length
+					setTimeout(typeLoop, 400)
+					return
+				}
+				setTimeout(typeLoop, 30)
+			}
+		}
+		setTimeout(typeLoop, 1000)
 	})
 </script>
 
 <section class="hero section" id="hero">
+	<canvas id="particle-canvas" class="particle-canvas"></canvas>
 	<div class="container">
 		<div class="hero-content">
 			<h1 class="hero-name">
@@ -78,49 +218,40 @@
 		</div>
 
 		<div class="hero-visual">
-			<div class="code-block glass-card anim-float-shimmer">
-				<div class="code-header">
-					<span class="dot red"></span>
-					<span class="dot yellow"></span>
-					<span class="dot green"></span>
-					<span class="code-filename">skills.ts</span>
+			<div class="hero-info glass-card">
+				<div class="typing-line">
+					<span class="prompt">&gt;</span>
+					<span
+						class="typing-text"
+						data-phrases={JSON.stringify(typingPhrases)}
+					></span>
+					<span class="cursor">|</span>
 				</div>
-				<pre
-					class="code-content"><code><span class="keyword">const</span> <span class="variable">skills</span> = {'{'}
-    <span class="property">languages</span>: [
-        <span class="string">"PHP"</span>, <span class="string">"JavaScript"</span>, <span class="string">"TypeScript"</span>,
-        <span class="string">"Python"</span>, <span class="string">"Java"</span>, <span class="string">"C#"</span>
-    ],
-    <span class="property">databases</span>: [
-        <span class="string">"MySQL"</span>, <span class="string">"MariaDB"</span>,
-        <span class="string">"PostgreSQL"</span>
-    ],
-    <span class="property">backend</span>: [
-        <span class="string">"Laravel"</span>, <span class="string">"Node.js"</span>, <span class="string">"Next.js"</span>,
-        <span class="string">"FastAPI"</span>, <span class="string">"Flask"</span>
-    ],
-    <span class="property">frontend</span>: [
-        <span class="string">"Astro"</span>, <span class="string">"React"</span>, <span class="string">"Tailwind CSS"</span>,
-        <span class="string">"jQuery"</span>, <span class="string">"Ajax"</span>, <span class="string">"Axios"</span>
-        <span class="string">"Bootstrap"</span>
-    ],
-    <span class="property">devops</span>: [
-        <span class="string">"Docker"</span>, <span class="string">"CI/CD"</span>,
-        <span class="string">"Git"</span>, <span class="string">"Github"</span>, <span class="string">"Gitlab"</span>
-    ],
-    <span class="property">management_methodologies</span>: [
-        <span class="string">"Scrum"</span>, <span class="string">"Kanban"</span>, <span class="string">"Draw.io"</span>
-        <span class="string">"Jira"</span>, <span class="string">"Confluence"</span>, <span class="string">"Asana"</span>
-    ],
-    <span class="property">architecture_ecosystem</span>: [
-        <span class="string">"OpenAPI/Swagger"</span>, <span class="string">"Soap + Xml"</span>,
-        <span class="string">"OAuth2/JWT"</span>, <span class="string">"DTE/FEL"</span>, <span class="string">"LLMs"</span>,
-        <span class="string">"Vite"</span>, <span class="string">"Composer"</span>, <span class="string">"Postman"</span>,
-        <span class="string">"Payment Gateways (Cybersource/ePay)"</span>,
-    ],
-{'}'}
-</code></pre>
+				<div class="hero-stats">
+					<div class="stat">
+						<span class="stat-number">10+</span>
+						<span class="stat-label">años</span>
+					</div>
+					<div class="stat">
+						<span class="stat-number">44</span>
+						<span class="stat-label">tecnologías</span>
+					</div>
+					<div class="stat">
+						<span class="stat-number">50+</span>
+						<span class="stat-label">proyectos</span>
+					</div>
+				</div>
+				<a href="#skills" class="hero-cta-visual">
+					Ver stack completo
+					<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+				</a>
 			</div>
+		</div>
+
+		<div class="section-cta">
+			<a href="#trayectoria" aria-label="Ir a trayectoria">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+			</a>
 		</div>
 	</div>
 </section>
@@ -131,6 +262,8 @@
 		display: flex;
 		align-items: center;
 		padding-top: 6rem;
+		position: relative;
+		overflow: hidden;
 	}
 	.hero .container {
 		display: grid;
@@ -358,104 +491,124 @@
 		margin-bottom: 2rem;
 		line-height: 1.8;
 	}
+
+	/* ── Hero Visual ── */
 	.hero-visual {
+		position: relative;
 		display: flex;
+		align-items: center;
 		justify-content: center;
 		contain: layout style;
 	}
-	.code-block {
+
+	.particle-canvas {
+		position: absolute;
+		inset: 0;
 		width: 100%;
-		max-width: 450px;
-		padding: 0;
-		overflow: hidden;
+		height: 100%;
+		pointer-events: auto;
 	}
-	.code-block:hover {
-		transform: none;
-		box-shadow: var(--glass-shadow);
-		backdrop-filter: none;
+
+	.hero-info {
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 380px;
+		padding: 1.75rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		pointer-events: auto;
 	}
-	.code-header {
+
+	.typing-line {
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
-		padding: 1rem 1.25rem;
-		background: rgba(0, 0, 0, 0.3);
-		border-bottom: 1px solid var(--glass-border);
-	}
-	.dot {
-		width: 12px;
-		height: 12px;
-		border-radius: 50%;
-	}
-	.dot.red {
-		background: #ff5f57;
-	}
-	.dot.yellow {
-		background: #ffbd2e;
-	}
-	.dot.green {
-		background: #28c840;
-	}
-	.code-filename {
-		margin-left: auto;
-		font-size: 0.8rem;
-		color: var(--text-muted);
-		font-family: monospace;
-	}
-	.code-content {
-		padding: 1.5rem;
 		font-family: "SF Mono", "Fira Code", monospace;
-		font-size: 0.85rem;
-		line-height: 1.7;
-		overflow-x: auto;
-	}
-	.keyword {
-		color: var(--accent-magenta);
-	}
-	.variable {
-		color: var(--accent-cyan);
-	}
-	.property {
-		color: var(--accent-cyan);
-	}
-	.string {
-		color: var(--accent-green);
+		font-size: 0.88rem;
 	}
 
-	/* ── Animations ── */
-	.anim-float-shimmer {
-		position: relative;
+	.prompt {
+		color: var(--accent-magenta);
+		flex-shrink: 0;
+	}
+
+	.typing-text {
+		color: var(--accent-cyan);
+		white-space: nowrap;
 		overflow: hidden;
-		animation: float 4s ease-in-out infinite;
-		will-change: transform;
 	}
-	.anim-float-shimmer::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: -100%;
+
+	.cursor {
+		color: var(--accent-cyan);
+		animation: blink 1s step-end infinite;
+	}
+
+	@keyframes blink {
+		0%, 100% { opacity: 1 }
+		50% { opacity: 0 }
+	}
+
+	.hero-stats {
+		display: flex;
+		justify-content: center;
+		gap: 2rem;
+		padding: 1rem 0;
+		border-top: 1px solid var(--glass-border);
+		border-bottom: 1px solid var(--glass-border);
+	}
+
+	.stat {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.2rem;
+	}
+
+	.stat-number {
+		font-size: 1.5rem;
+		font-weight: 700;
+		background: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.stat-label {
+		font-size: 0.7rem;
+		color: var(--text-muted);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.hero-cta-visual {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.4rem;
 		width: 100%;
-		height: 100%;
-		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-		animation: shimmer 4s infinite;
-		will-change: transform;
+		padding: 0.75rem;
+		font-size: 0.82rem;
+		font-weight: 500;
+		color: var(--accent-cyan);
+		text-decoration: none;
+		border: 1px solid var(--glass-border);
+		border-radius: var(--radius-md);
+		transition: background 0.25s ease, border-color 0.25s ease;
 	}
-	@keyframes float {
-		0%,
-		100% {
-			transform: translateY(0);
-		}
-		50% {
-			transform: translateY(-12px);
-		}
+
+	.hero-cta-visual:hover {
+		background: rgba(0, 212, 255, 0.08);
+		border-color: rgba(0, 212, 255, 0.3);
 	}
-	@keyframes shimmer {
-		0% {
-			left: -100%;
-		}
-		100% {
-			left: 100%;
-		}
+
+	.hero-cta-visual svg {
+		transition: transform 0.25s ease;
+	}
+
+	.hero-cta-visual:hover svg {
+		transform: translateX(3px);
 	}
 
 	/* ── Responsive ── */
@@ -474,10 +627,15 @@
 		.hero-actions {
 			justify-content: center;
 		}
-		.code-block {
-			max-width: 400px;
-			margin: 0 auto;
-			text-align: left;
+		.hero-info {
+			max-width: 340px;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.cursor {
+			animation: none;
+			opacity: 1;
 		}
 	}
 </style>

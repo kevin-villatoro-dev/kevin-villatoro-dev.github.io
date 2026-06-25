@@ -1,51 +1,35 @@
-<script is:inline>
-	document.addEventListener("DOMContentLoaded", () => {
-		const easterEgg = document.getElementById("easter-egg");
-		const section = document.getElementById("sobre-mi");
-		const text = "Un buen desarrollador es aquel que encuentra soluciones a los problemas antes de que surjan.";
-		let typing = false;
-		let timeout = null;
-		let started = false;
+<script>
+	window.addEventListener("preloader:done", () => {
+		const typingEl = document.getElementById("easter-egg") as HTMLElement | null
+		if (!typingEl) return
+		const phrases = JSON.parse(typingEl.dataset.phrases || "[]")
+		if (!phrases.length) return
+		let phraseIdx = 0, charIdx = 0, isDeleting = false
 
-		function startTyping() {
-			if (typing || started) return;
-			started = true;
-			typing = true;
-			easterEgg.innerHTML = '<span class="cursor"></span>';
-			let i = 0;
-
-			function type() {
-				if (i < text.length) {
-					easterEgg.innerHTML = text.substring(0, i + 1) + '<span class="cursor"></span>';
-					i++;
-					timeout = setTimeout(type, 40 + Math.random() * 30);
-				} else {
-					timeout = setTimeout(() => {
-						easterEgg.innerHTML = "";
-						typing = false;
-						started = false;
-						timeout = setTimeout(startTyping, 500);
-					}, 3000);
+		function typeLoop() {
+			const current = phrases[phraseIdx]
+			if (!isDeleting) {
+				typingEl!.textContent = current.substring(0, charIdx + 1)
+				charIdx++
+				if (charIdx === current.length) {
+					setTimeout(() => { isDeleting = true; typeLoop() }, 3000)
+					return
 				}
+				setTimeout(typeLoop, 40 + Math.random() * 30)
+			} else {
+				typingEl!.textContent = current.substring(0, charIdx - 1)
+				charIdx--
+				if (charIdx === 0) {
+					isDeleting = false
+					phraseIdx = (phraseIdx + 1) % phrases.length
+					setTimeout(typeLoop, 500)
+					return
+				}
+				setTimeout(typeLoop, 20)
 			}
-			type();
 		}
-
-		if (section) {
-			const observer = new IntersectionObserver(
-				(entries) => {
-					entries.forEach((entry) => {
-						if (entry.isIntersecting) {
-							startTyping();
-							observer.disconnect();
-						}
-					});
-				},
-				{ threshold: 0.4 }
-			);
-			observer.observe(section);
-		}
-	});
+		setTimeout(typeLoop, 1000)
+	})
 </script>
 
 <section id="sobre-mi" class="about section">
@@ -71,7 +55,15 @@
 						</div>
 					</div>
 					<div class="easter-egg-container">
-						<p class="easter-egg" id="easter-egg"></p>
+						<p
+							class="easter-egg"
+							id="easter-egg"
+							data-phrases={JSON.stringify([
+								"Un buen desarrollador es aquel que encuentra soluciones a los problemas antes de que surjan.",
+								"La tecnología es solo una herramienta; las personas son quienes construyen el futuro.",
+								"El mejor código es el que resuelve problemas reales, no el que impresiona en GitHub.",
+							])}
+						></p>
 					</div>
 				</div>
 
@@ -155,8 +147,14 @@
 						</div>
 					</div>
 				</div>
-					</div>
 				</div>
+			</div>
+
+		<div class="section-cta">
+			<a href="#contacto" aria-label="Ir a contacto">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+			</a>
+		</div>
 	</div>
 </section>
 
@@ -238,18 +236,18 @@
 		max-width: 280px;
 	}
 
-	.easter-egg .cursor {
+	.easter-egg::after {
+		content: "|";
 		display: inline-block;
-		width: 2px;
-		height: 1em;
-		background: var(--accent-cyan);
+		color: var(--accent-cyan);
 		margin-left: 2px;
-		animation: blink 0.7s step-end infinite;
+		animation: blink 1s step-end infinite;
 		vertical-align: text-bottom;
 	}
 
 	@keyframes blink {
-		50% { opacity: 0; }
+		0%, 100% { opacity: 1 }
+		50% { opacity: 0 }
 	}
 
 	.corner {

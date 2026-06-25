@@ -1,0 +1,326 @@
+---
+const categories = [
+	{
+		title: "Lenguajes",
+		color: "cyan",
+		wide: false,
+		icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+		skills: [
+			{ name: "PHP", source: "skillicons", iconId: "php" },
+			{ name: "JavaScript", source: "skillicons", iconId: "js" },
+			{ name: "TypeScript", source: "skillicons", iconId: "ts" },
+			{ name: "Python", source: "skillicons", iconId: "python" },
+			{ name: "Java", source: "skillicons", iconId: "java" },
+			{ name: "C#", source: "skillicons", iconId: "cs" },
+		],
+	},
+	{
+		title: "Backend",
+		color: "magenta",
+		wide: false,
+		icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>',
+		skills: [
+			{ name: "Laravel", source: "skillicons", iconId: "laravel" },
+			{ name: "Node.js", source: "skillicons", iconId: "nodejs" },
+			{ name: "Next.js", source: "simple", slug: "next.js", color: "000000" },
+			{ name: "FastAPI", source: "skillicons", iconId: "fastapi" },
+			{ name: "Flask", source: "skillicons", iconId: "flask" },
+		],
+	},
+	{
+		title: "Frontend",
+		color: "cyan",
+		wide: false,
+		icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+		skills: [
+			{ name: "Astro", source: "skillicons", iconId: "astro" },
+			{ name: "React", source: "skillicons", iconId: "react" },
+			{ name: "Tailwind CSS", source: "skillicons", iconId: "tailwind" },
+			{ name: "jQuery", source: "skillicons", iconId: "jquery" },
+			{ name: "Bootstrap", source: "skillicons", iconId: "bootstrap" },
+			{ name: "Ajax", source: "phosphor", phClass: "ph-arrows-clockwise" },
+			{ name: "Axios", source: "phosphor", phClass: "ph-lightning" },
+		],
+	},
+	{
+		title: "Bases de datos",
+		color: "green",
+		wide: false,
+		icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>',
+		skills: [
+			{ name: "MySQL", source: "simple", slug: "mysql", color: "4479A1" },
+			{ name: "MariaDB", source: "simple", slug: "mariadb", color: "003545" },
+			{ name: "PostgreSQL", source: "skillicons", iconId: "postgresql" },
+		],
+	},
+	{
+		title: "DevOps",
+		color: "purple",
+		wide: false,
+		icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>',
+		skills: [
+			{ name: "Docker", source: "skillicons", iconId: "docker" },
+			{ name: "CI/CD", source: "phosphor", phClass: "ph-arrows-clockwise" },
+			{ name: "Git", source: "skillicons", iconId: "git" },
+			{ name: "GitHub", source: "skillicons", iconId: "github" },
+			{ name: "GitLab", source: "skillicons", iconId: "gitlab" },
+		],
+	},
+	{
+		title: "Gestión & metodologías",
+		color: "green",
+		wide: false,
+		icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 14l2 2 4-4"/></svg>',
+		skills: [
+			{ name: "Scrum", source: "phosphor", phClass: "ph-circles-three" },
+			{ name: "Kanban", source: "phosphor", phClass: "ph-columns" },
+			{ name: "Draw.io", source: "phosphor", phClass: "ph-graph" },
+			{ name: "Jira", source: "simple", slug: "jira", color: "0052CC" },
+			{ name: "Confluence", source: "simple", slug: "confluence", color: "172B4D" },
+			{ name: "Asana", source: "simple", slug: "asana", color: "F06A6A" },
+		],
+	},
+	{
+		title: "Arquitectura & Ecosistema",
+		color: "magenta",
+		wide: true,
+		icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>',
+		skills: [
+			{ name: "OpenAPI", source: "simple", slug: "openapiinitiative", color: "6BA539" },
+			{ name: "Swagger", source: "simple", slug: "swagger", color: "85EA2D" },
+			{ name: "Soap", source: "phosphor", phClass: "ph-file-text" },
+			{ name: "Xml", source: "phosphor", phClass: "ph-code" },
+			{ name: "OAuth2", source: "phosphor", phClass: "ph-lock-key" },
+			{ name: "JWT", source: "phosphor", phClass: "ph-shield-check" },
+			{ name: "DTE/FEL", source: "phosphor", phClass: "ph-receipt" },
+			{ name: "LLMs", source: "phosphor", phClass: "ph-brain" },
+			{ name: "Vite", source: "skillicons", iconId: "vite" },
+			{ name: "Composer", source: "simple", slug: "composer", color: "885630" },
+			{ name: "Postman", source: "skillicons", iconId: "postman" },
+		],
+	},
+]
+---
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+
+<section id="skills" class="skills section">
+	<div class="container">
+		<div class="section-title">
+			<h2>Stack & <span class="gradient-text">Herramientas</span></h2>
+			<p>Tecnologías, plataformas y metodologías que utilizo para desarrollar soluciones de datos y software</p>
+		</div>
+		<div class="skills-bento">
+			{
+				categories.map((cat) => (
+					<div class={`skill-bento-card ${cat.wide ? "wide" : ""}`}>
+						<div class="skill-bento-header">
+							<div class="skill-bento-icon" data-color={cat.color} set:html={cat.icon} />
+						<h3 class="skill-bento-title">{cat.title}</h3>
+						</div>
+						<div class="skill-grid">
+							{cat.skills.map((skill) => (
+								<div class="tech-card">
+									{skill.source === "skillicons" ? (
+										<div class="tech-icon tech-icon-skillicons">
+											<img
+												src={`https://skillicons.dev/icons?i=${skill.iconId}&theme=dark`}
+												alt=""
+												width="44"
+												height="44"
+												loading="lazy"
+											/>
+										</div>
+									) : skill.source === "simple" ? (
+										<div class="tech-icon" style={`background: #${skill.color};`}>
+											<img
+												src={`https://cdn.simpleicons.org/${skill.slug}/ffffff`}
+												alt=""
+												width="20"
+												height="20"
+												loading="lazy"
+											/>
+										</div>
+									) : (
+										<div class="tech-icon tech-icon-phosphor">
+											<i class={`ph ${skill.phClass}`} />
+										</div>
+									)}
+									<span class="tech-card-name">{skill.name}</span>
+								</div>
+							))}
+						</div>
+					</div>
+				))
+			}
+		</div>
+
+		<div class="section-cta">
+			<a href="#proyectos" aria-label="Ir a proyectos destacados">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+			</a>
+		</div>
+	</div>
+</section>
+
+<style>
+	.skills-bento {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1rem;
+	}
+
+	.skill-bento-card {
+		padding: 1.5rem;
+		overflow: hidden;
+		background: var(--glass-bg);
+		border: 1px solid var(--glass-border);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--glass-shadow);
+		transition: background 0.3s ease, border-color 0.3s ease;
+	}
+
+	.skill-bento-card:hover {
+		background: var(--bg-card-hover);
+		border-color: rgba(255, 255, 255, 0.12);
+	}
+
+	.skill-bento-card.wide {
+		grid-column: span 3;
+	}
+
+	.skill-bento-header {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.skill-bento-icon {
+		width: 32px;
+		height: 32px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: var(--radius-md);
+		flex-shrink: 0;
+	}
+
+	[data-color="cyan"] {
+		background: rgba(0, 212, 255, 0.1);
+		color: var(--accent-cyan);
+	}
+	[data-color="magenta"] {
+		background: rgba(255, 0, 170, 0.1);
+		color: var(--accent-magenta);
+	}
+	[data-color="green"] {
+		background: rgba(52, 211, 153, 0.1);
+		color: var(--accent-green);
+	}
+	[data-color="purple"] {
+		background: rgba(168, 85, 247, 0.1);
+		color: var(--accent-purple);
+	}
+
+	.skill-bento-title {
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: var(--text-primary);
+	}
+
+	.skill-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+		gap: 0.6rem;
+	}
+
+	.tech-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.7rem 0.4rem;
+		border-radius: var(--radius-md);
+		transition: transform 0.25s ease;
+	}
+
+	.tech-card:hover {
+		transform: translateY(-2px);
+	}
+
+	.tech-icon {
+		width: 44px;
+		height: 44px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: var(--radius-md);
+		flex-shrink: 0;
+		transition: transform 0.25s ease, box-shadow 0.25s ease;
+	}
+
+	.tech-card:hover .tech-icon {
+		transform: scale(1.08);
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+	}
+
+	.tech-icon img {
+		width: 20px;
+		height: 20px;
+	}
+
+	.tech-icon-skillicons {
+		background: none;
+		padding: 0;
+	}
+
+	.tech-icon-skillicons img {
+		width: 44px;
+		height: 44px;
+		border-radius: 12px;
+	}
+
+	.tech-icon-phosphor {
+		background: #1a1a2e;
+	}
+
+	.tech-icon-phosphor :global(i) {
+		font-size: 22px;
+		color: white;
+		line-height: 1;
+	}
+
+	.tech-card-name {
+		font-size: 0.68rem;
+		color: var(--text-muted);
+		text-align: center;
+		line-height: 1.2;
+		word-break: break-word;
+	}
+
+	.tech-card:hover .tech-card-name {
+		color: var(--text-secondary);
+	}
+
+	@media (max-width: 968px) {
+		.skills-bento {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		.skill-bento-card.wide {
+			grid-column: span 2;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.skills-bento {
+			grid-template-columns: 1fr;
+		}
+		.skill-bento-card.wide {
+			grid-column: span 1;
+		}
+		.skill-grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+</style>
