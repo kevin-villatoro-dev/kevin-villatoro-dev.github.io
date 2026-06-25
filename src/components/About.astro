@@ -4,7 +4,9 @@
 		if (!typingEl) return
 		const phrases = JSON.parse(typingEl.dataset.phrases || "[]")
 		if (!phrases.length) return
-		let phraseIdx = 0, charIdx = 0, isDeleting = false
+		let phraseIdx = 0,
+			charIdx = 0,
+			isDeleting = false
 
 		function typeLoop() {
 			const current = phrases[phraseIdx]
@@ -12,7 +14,10 @@
 				typingEl!.textContent = current.substring(0, charIdx + 1)
 				charIdx++
 				if (charIdx === current.length) {
-					setTimeout(() => { isDeleting = true; typeLoop() }, 3000)
+					setTimeout(() => {
+						isDeleting = true
+						typeLoop()
+					}, 3000)
 					return
 				}
 				setTimeout(typeLoop, 40 + Math.random() * 30)
@@ -30,6 +35,34 @@
 		}
 		setTimeout(typeLoop, 1000)
 	})
+
+	// Tilt 3D Effect for glass-cards
+	const initTilt = () => {
+		const cards = document.querySelectorAll(".about-photo-wrapper, .skill-card, .edu-card")
+
+		cards.forEach((card) => {
+			const el = card as HTMLElement
+
+			el.addEventListener("mousemove", (e: Event) => {
+				const mouseEvent = e as MouseEvent
+				const rect = el.getBoundingClientRect()
+				const x = mouseEvent.clientX - rect.left
+				const y = mouseEvent.clientY - rect.top
+				const centerX = rect.width / 2
+				const centerY = rect.height / 2
+				const rotateX = (y - centerY) / 20
+				const rotateY = (centerX - x) / 20
+
+				el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`
+			})
+
+			el.addEventListener("mouseleave", () => {
+				el.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)"
+			})
+		})
+	}
+
+	initTilt()
 </script>
 
 <section id="sobre-mi" class="about section">
@@ -40,47 +73,103 @@
 		</div>
 
 		<div class="about-grid">
-		<div class="about-photo">
-				<div class="photo-wrapper">
-					<div class="photo-frame glass-card">
-						<img src="/profile.png" alt="Kevin Villatoro" class="photo-img" loading="lazy" />
-						<div class="photo-glow"></div>
-						<div class="corner corner-tl"></div>
-						<div class="corner corner-tr"></div>
-						<div class="corner corner-bl"></div>
-						<div class="corner corner-br"></div>
-						<div class="experience-badge">
-							<span class="exp-number">10+</span>
-							<span class="exp-label">años</span>
+			<div class="about-photo-wrapper glass-card">
+				<div class="about-photo">
+					<div class="photo-wrapper">
+						<div class="photo-frame">
+							<img src="/profile.png" alt="Kevin Villatoro" class="photo-img" loading="lazy" />
+							<div class="photo-glow"></div>
+							<div class="corner corner-tl"></div>
+							<div class="corner corner-tr"></div>
+							<div class="corner corner-bl"></div>
+							<div class="corner corner-br"></div>
+							<div class="experience-badge">
+								<span class="exp-number">10+</span>
+								<span class="exp-label">años</span>
+							</div>
+						</div>
+						<div class="easter-egg-container">
+							<p
+								class="easter-egg"
+								id="easter-egg"
+								data-phrases={JSON.stringify([
+									"Un buen desarrollador es aquel que encuentra soluciones a los problemas antes de que surjan.",
+									"La tecnología es solo una herramienta; las personas son quienes construyen el futuro.",
+									"El mejor código es el que resuelve problemas reales, no el que impresiona en GitHub.",
+								])}
+							>
+							</p>
 						</div>
 					</div>
-					<div class="easter-egg-container">
-						<p
-							class="easter-egg"
-							id="easter-egg"
-							data-phrases={JSON.stringify([
-								"Un buen desarrollador es aquel que encuentra soluciones a los problemas antes de que surjan.",
-								"La tecnología es solo una herramienta; las personas son quienes construyen el futuro.",
-								"El mejor código es el que resuelve problemas reales, no el que impresiona en GitHub.",
-							])}
-						></p>
-					</div>
-				</div>
 
-				<div class="looking-for">
-					<h3 class="looking-for-title">Lo que busco</h3>
-					<div class="looking-for-list">
-						<div class="looking-for-item" data-color="cyan">
-							<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-							<span class="looking-for-label">Trabajo Remoto, Híbrido, Presencial</span>
-						</div>
-						<div class="looking-for-item" data-color="purple">
-							<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-							<span class="looking-for-label">Aprendizaje continuo</span>
-						</div>
-						<div class="looking-for-item" data-color="green">
-							<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-							<span class="looking-for-label">Tiempo completo</span>
+					<div class="looking-for">
+						<h3 class="looking-for-title">Lo que busco</h3>
+						<div class="looking-for-list">
+							<div class="looking-for-item" data-color="cyan">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="14"
+									height="14"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg
+								>
+								<span class="looking-for-label">Roles sugeridos: Tech Lead · Full Stack · AI Engineer · Database Administrator</span>
+							</div>
+							<div class="looking-for-item" data-color="purple">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="14"
+									height="14"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									aria-hidden="true"
+									><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path
+										d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+									></path></svg
+								>
+								<span class="looking-for-label">Modalidad: Remoto preferente · Abierto a Híbrido/Presencial</span>
+							</div>
+							<div class="looking-for-item" data-color="green">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="14"
+									height="14"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									aria-hidden="true"
+									><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg
+								>
+								<span class="looking-for-label">Disponibilidad: Tiempo completo · Inmediata</span>
+							</div>
+							<div class="looking-for-item" data-color="magenta">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="14"
+									height="14"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									aria-hidden="true"
+									><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg
+								>
+								<span class="looking-for-label">Industria: Abierto a cualquier sector</span>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -88,29 +177,60 @@
 
 			<div class="about-content">
 				<p class="about-bio">
-					Tech Lead con 10+ años construyendo software que genera impacto real. Lideré el
-					ecosistema Fintech de ShopShop durante casi 6 años, gestionando desde la arquitectura
-					hasta el despliegue de soluciones de pago que procesaron millones en transacciones.
+					Tech Lead con 10+ años construyendo software que genera impacto real. Lideré el ecosistema Fintech de ShopShop durante
+					casi 6 años, gestionando desde la arquitectura hasta el despliegue de soluciones de pago que procesaron millones en
+					transacciones.
 				</p>
-				
+
 				<p class="about-bio">
-					Automatizé el 90% de operaciones fallidas que antes requerian una intervención manual y aceleré el ciclo
-					de venta en un 30%. Hoy aplico metodologías basadas en LLMs y Spec-Driven Development
-					para entregar código robusto, escalable y documentado desde el diseño.
+					Automatizé el 90% de operaciones fallidas que antes requerian una intervención manual y aceleré el ciclo de venta en un
+					30%. Hoy aplico metodologías basadas en LLMs y Spec-Driven Development para entregar código robusto, escalable y
+					documentado desde el diseño.
 				</p>
 
 				<div class="skills-grid">
 					<div class="skill-card glass-card">
 						<div class="skill-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								aria-hidden="true"
+								><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"
+								></path></svg
+							>
 						</div>
 						<h3 class="skill-title">Arquitectura</h3>
-						<p class="skill-desc">APIs escalables, integraciones de punto a punto, integración de pasarelas de pago y facturación electrónica</p>
+						<p class="skill-desc">
+							APIs escalables, integraciones de punto a punto, integración de pasarelas de pago y facturación electrónica
+						</p>
 					</div>
 
 					<div class="skill-card glass-card">
 						<div class="skill-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								aria-hidden="true"
+								><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect
+									x="14"
+									y="14"
+									width="7"
+									height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg
+							>
 						</div>
 						<h3 class="skill-title">DevOps</h3>
 						<p class="skill-desc">Docker, CI/CD, despliegue portátil, documentación técnica con OpenAPI/Swagger</p>
@@ -118,7 +238,20 @@
 
 					<div class="skill-card glass-card">
 						<div class="skill-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								aria-hidden="true"
+								><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path
+									d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg
+							>
 						</div>
 						<h3 class="skill-title">Liderazgo</h3>
 						<p class="skill-desc">Gestión de equipos, Scrum/Kanban, toma de decisiones técnicas, mentoria de desarrollo</p>
@@ -127,7 +260,18 @@
 
 				<div class="edu-card glass-card">
 					<div class="edu-icon">
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 6 3 12 0v-5"/></svg>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 6 3 12 0v-5"></path></svg
+						>
 					</div>
 					<div class="edu-info">
 						<span class="edu-title">Ingeniería en Sistemas de Información y Ciencias de la Computación</span>
@@ -140,12 +284,20 @@
 						</div>
 					</div>
 				</div>
-				</div>
 			</div>
+		</div>
 
 		<div class="section-cta">
 			<a href="#trayectoria" aria-label="Ir a trayectoria">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg
+				>
 			</a>
 		</div>
 	</div>
@@ -163,6 +315,14 @@
 		align-items: start;
 	}
 
+	/* ── Photo Wrapper (Holographic Card) ── */
+	.about-photo-wrapper {
+		padding: 1.5rem;
+		transform-style: preserve-3d;
+		will-change: transform;
+		transition: transform 0.3s ease-out;
+	}
+
 	/* ── Photo ── */
 	.about-photo {
 		position: relative;
@@ -172,8 +332,6 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		position: sticky;
-		top: 6rem;
 	}
 
 	.photo-frame {
@@ -206,10 +364,20 @@
 	}
 
 	@keyframes scanLine {
-		0% { top: 0; opacity: 0; }
-		10% { opacity: 1; }
-		90% { opacity: 1; }
-		100% { top: 100%; opacity: 0; }
+		0% {
+			top: 0;
+			opacity: 0;
+		}
+		10% {
+			opacity: 1;
+		}
+		90% {
+			opacity: 1;
+		}
+		100% {
+			top: 100%;
+			opacity: 0;
+		}
 	}
 
 	.easter-egg-container {
@@ -239,8 +407,13 @@
 	}
 
 	@keyframes blink {
-		0%, 100% { opacity: 1 }
-		50% { opacity: 0 }
+		0%,
+		100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0;
+		}
 	}
 
 	.corner {
@@ -327,7 +500,9 @@
 
 	/* ── Looking For ── */
 	.looking-for {
-		margin-top: 2rem;
+		margin-top: 1.5rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--glass-border);
 		max-width: 280px;
 	}
 
@@ -354,37 +529,37 @@
 		padding: 0.5rem 0.7rem;
 		border-left: 3px solid transparent;
 		border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-		transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 	}
 
-	.looking-for-item:hover {
-		transform: translateX(4px);
-		background: rgba(255, 255, 255, 0.03);
+	[data-color="cyan"] {
+		border-left-color: var(--accent-cyan);
+	}
+	[data-color="magenta"] {
+		border-left-color: var(--accent-magenta);
+	}
+	[data-color="green"] {
+		border-left-color: var(--accent-green);
+	}
+	[data-color="purple"] {
+		border-left-color: var(--accent-purple);
 	}
 
-	[data-color="cyan"]     { border-left-color: var(--accent-cyan); }
-	[data-color="magenta"]  { border-left-color: var(--accent-magenta); }
-	[data-color="green"]    { border-left-color: var(--accent-green); }
-	[data-color="purple"]   { border-left-color: var(--accent-purple); }
-
-	[data-color="cyan"]     svg { color: var(--accent-cyan); }
-	[data-color="magenta"]  svg { color: var(--accent-magenta); }
-	[data-color="green"]    svg { color: var(--accent-green); }
-	[data-color="purple"]   svg { color: var(--accent-purple); }
-
-	[data-color="cyan"]:hover     { box-shadow: -4px 0 16px rgba(0, 212, 255, 0.15); }
-	[data-color="magenta"]:hover  { box-shadow: -4px 0 16px rgba(255, 0, 170, 0.15); }
-	[data-color="green"]:hover    { box-shadow: -4px 0 16px rgba(52, 211, 153, 0.15); }
-	[data-color="purple"]:hover   { box-shadow: -4px 0 16px rgba(168, 85, 247, 0.15); }
+	[data-color="cyan"] svg {
+		color: var(--accent-cyan);
+	}
+	[data-color="magenta"] svg {
+		color: var(--accent-magenta);
+	}
+	[data-color="green"] svg {
+		color: var(--accent-green);
+	}
+	[data-color="purple"] svg {
+		color: var(--accent-purple);
+	}
 
 	.looking-for-label {
 		font-size: 0.82rem;
 		color: var(--text-secondary);
-		transition: color 0.2s ease;
-	}
-
-	.looking-for-item:hover .looking-for-label {
-		color: var(--text-primary);
 	}
 
 	/* ── Content ── */
@@ -413,7 +588,9 @@
 		font-weight: 500;
 		color: var(--accent-magenta);
 		text-decoration: none;
-		transition: color 0.2s ease, gap 0.2s ease;
+		transition:
+			color 0.2s ease,
+			gap 0.2s ease;
 	}
 
 	.about-recommendations:hover {
@@ -426,11 +603,22 @@
 	}
 
 	@keyframes heartbeat {
-		0%, 100% { transform: scale(1); }
-		15% { transform: scale(1.2); }
-		30% { transform: scale(1); }
-		45% { transform: scale(1.15); }
-		60% { transform: scale(1); }
+		0%,
+		100% {
+			transform: scale(1);
+		}
+		15% {
+			transform: scale(1.2);
+		}
+		30% {
+			transform: scale(1);
+		}
+		45% {
+			transform: scale(1.15);
+		}
+		60% {
+			transform: scale(1);
+		}
 	}
 
 	@media (max-width: 968px) {
@@ -450,12 +638,11 @@
 	.skill-card {
 		padding: 1.5rem;
 		text-align: center;
-		transition: transform 0.3s ease, box-shadow 0.3s ease;
-	}
-
-	.skill-card:hover {
-		transform: translateY(-4px);
-		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+		transition:
+			transform 0.3s ease-out,
+			box-shadow 0.3s ease;
+		transform-style: preserve-3d;
+		will-change: transform;
 	}
 
 	.skill-icon {
@@ -468,7 +655,9 @@
 		background: rgba(0, 212, 255, 0.1);
 		border-radius: var(--radius-md);
 		color: var(--accent-cyan);
-		transition: background 0.3s ease, color 0.3s ease;
+		transition:
+			background 0.3s ease,
+			color 0.3s ease;
 	}
 
 	.skill-card:hover .skill-icon {
@@ -513,6 +702,9 @@
 		gap: 1rem;
 		padding: 1.25rem 1.5rem;
 		margin-top: 0.5rem;
+		transform-style: preserve-3d;
+		will-change: transform;
+		transition: transform 0.3s ease-out;
 	}
 
 	.edu-icon {
@@ -572,8 +764,13 @@
 	}
 
 	@keyframes progressPulse {
-		0%, 100% { opacity: 1; }
-		50% { opacity: 0.7; }
+		0%,
+		100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0.7;
+		}
 	}
 
 	.edu-progress-label {
