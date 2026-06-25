@@ -78,3 +78,4 @@ src/
 ## Rules
 
 - Use skills astro, frontend-design for any structural change
+- Testing and verification of your changes

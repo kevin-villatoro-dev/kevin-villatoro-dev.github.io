@@ -19,6 +19,8 @@
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --bg-preloader: #050508;
+  --bg-icon-phosphor: #1a1a2e;
   --font-heading: "Space Grotesk", system-ui, sans-serif;
   --font-body: system-ui, -apple-system, "Segoe UI", sans-serif;
   --section-padding: clamp(4rem, 8vw, 8rem);

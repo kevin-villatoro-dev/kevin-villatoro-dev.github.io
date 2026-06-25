@@ -1,10 +1,5 @@
 ---
-const typingPhrases = [
-	"Tech Lead building scalable systems...",
-	"Fintech & Payment Gateways expert...",
-	"Full Stack Developer & Architect...",
-	"Turning complexity into scale...",
-];
+
 ---
 
 <script>
@@ -18,9 +13,12 @@ const typingPhrases = [
 
 		const titleEls = document.querySelectorAll(".hero-title-segment")
 		titleEls.forEach((el, i) => {
-			setTimeout(() => {
-				el.classList.add("segment-active")
-			}, 300 + i * 200)
+			setTimeout(
+				() => {
+					el.classList.add("segment-active")
+				},
+				300 + i * 200,
+			)
 		})
 
 		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
@@ -29,8 +27,11 @@ const typingPhrases = [
 		if (!canvas) return
 		const ctx = canvas.getContext("2d")
 		if (!ctx) return
+		const hero = canvas.closest(".hero") as HTMLElement
+		if (!hero) return
 
-		let w = 0, h = 0
+		let w = 0,
+			h = 0
 		let mouse = { x: -9999, y: -9999 }
 		const particles: { x: number; y: number; vx: number; vy: number; r: number; color: string }[] = []
 		const COUNT = 50
@@ -39,7 +40,7 @@ const typingPhrases = [
 		const colors = ["rgba(0,212,255,", "rgba(255,0,170,"]
 
 		function resize() {
-			const rect = canvas!.closest('.hero')!.getBoundingClientRect()
+			const rect = hero!.getBoundingClientRect()
 			w = rect.width
 			h = rect.height
 			canvas!.width = w * devicePixelRatio
@@ -83,10 +84,22 @@ const typingPhrases = [
 				p.vx *= 0.99
 				p.vy *= 0.99
 
-				if (p.x < 0) { p.x = 0; p.vx *= -1 }
-				if (p.x > w) { p.x = w; p.vx *= -1 }
-				if (p.y < 0) { p.y = 0; p.vy *= -1 }
-				if (p.y > h) { p.y = h; p.vy *= -1 }
+				if (p.x < 0) {
+					p.x = 0
+					p.vx *= -1
+				}
+				if (p.x > w) {
+					p.x = w
+					p.vx *= -1
+				}
+				if (p.y < 0) {
+					p.y = 0
+					p.vy *= -1
+				}
+				if (p.y > h) {
+					p.y = h
+					p.vy *= -1
+				}
 
 				ctx!.beginPath()
 				ctx!.arc(p.x, p.y, p.r, 0, Math.PI * 2)
@@ -114,44 +127,19 @@ const typingPhrases = [
 		createParticles()
 		draw()
 
-		window.addEventListener("resize", () => { resize(); createParticles() })
-		canvas.addEventListener("mousemove", (e) => {
-			const rect = canvas.getBoundingClientRect()
+		window.addEventListener("resize", () => {
+			resize()
+			createParticles()
+		})
+		hero.addEventListener("mousemove", (e) => {
+			const rect = hero.getBoundingClientRect()
 			mouse.x = e.clientX - rect.left
 			mouse.y = e.clientY - rect.top
 		})
-		canvas.addEventListener("mouseleave", () => { mouse.x = -9999; mouse.y = -9999 })
-
-		// Typing carousel
-		const typingEl = document.querySelector(".typing-text") as HTMLElement | null
-		if (!typingEl) return
-		const phrases = JSON.parse(typingEl.dataset.phrases || "[]")
-		if (!phrases.length) return
-		let phraseIdx = 0, charIdx = 0, isDeleting = false
-
-		function typeLoop() {
-			const current = phrases[phraseIdx]
-			if (!isDeleting) {
-				typingEl!.textContent = current.substring(0, charIdx + 1)
-				charIdx++
-				if (charIdx === current.length) {
-					setTimeout(() => { isDeleting = true; typeLoop() }, 2000)
-					return
-				}
-				setTimeout(typeLoop, 60 + Math.random() * 40)
-			} else {
-				typingEl!.textContent = current.substring(0, charIdx - 1)
-				charIdx--
-				if (charIdx === 0) {
-					isDeleting = false
-					phraseIdx = (phraseIdx + 1) % phrases.length
-					setTimeout(typeLoop, 400)
-					return
-				}
-				setTimeout(typeLoop, 30)
-			}
-		}
-		setTimeout(typeLoop, 1000)
+		hero.addEventListener("mouseleave", () => {
+			mouse.x = -9999
+			mouse.y = -9999
+		})
 	})
 </script>
 
@@ -174,6 +162,12 @@ const typingPhrases = [
 				<span class="hero-title-dot">·</span>
 				<span class="hero-title-segment segment-purple" style="--i:3">Payment Gateways</span>
 			</h2>
+
+			<p class="hero-description">
+				Tech Lead con 10+ años construyendo software que genera impacto real. Lideré el ecosistema Fintech de ShopShop durante casi
+				6 años, gestionando desde la arquitectura hasta el despliegue de soluciones de pago que procesaron millones en
+				transacciones.
+			</p>
 
 			<div class="hero-actions">
 				<a href="/recomendaciones" class="btn-hero btn-hero-magenta">
@@ -210,49 +204,20 @@ const typingPhrases = [
 					Currículum
 				</a>
 			</div>
+	</div>
 
-			<p class="hero-description">
-				Experto en liderar el diseño técnico y el ciclo completo de despliegue de aplicaciones. Transformo la complejidad técnica en
-				sistemas eficientes y listos para el futuro.
-			</p>
-		</div>
-
-		<div class="hero-visual">
-			<div class="hero-info glass-card">
-				<div class="typing-line">
-					<span class="prompt">&gt;</span>
-					<span
-						class="typing-text"
-						data-phrases={JSON.stringify(typingPhrases)}
-					></span>
-					<span class="cursor">|</span>
-				</div>
-				<div class="hero-stats">
-					<div class="stat">
-						<span class="stat-number">10+</span>
-						<span class="stat-label">años</span>
-					</div>
-					<div class="stat">
-						<span class="stat-number">44</span>
-						<span class="stat-label">tecnologías</span>
-					</div>
-					<div class="stat">
-						<span class="stat-number">50+</span>
-						<span class="stat-label">proyectos</span>
-					</div>
-				</div>
-				<a href="#skills" class="hero-cta-visual">
-					Ver stack completo
-					<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-				</a>
-			</div>
-		</div>
-
-		<div class="section-cta">
-			<a href="#trayectoria" aria-label="Ir a trayectoria">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-			</a>
-		</div>
+	<div class="section-cta">
+		<a href="#sobre-mi" aria-label="Ir a sobre mí">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg
+			>
+		</a>
 	</div>
 </section>
 
@@ -260,16 +225,34 @@ const typingPhrases = [
 	.hero {
 		min-height: 100dvh;
 		display: flex;
-		align-items: center;
+		flex-direction: column;
 		padding-top: 6rem;
 		position: relative;
 		overflow: hidden;
+		scroll-margin-top: 5rem;
 	}
 	.hero .container {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 4rem;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
 		align-items: center;
+		justify-content: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+	}
+	.hero-content {
+		width: 100%;
+		max-width: 800px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.hero .section-cta {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
 	}
 	.hero-name {
 		margin-bottom: 0.5rem;
@@ -410,6 +393,7 @@ const typingPhrases = [
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
+		justify-content: center;
 		gap: 0.5rem;
 	}
 
@@ -421,7 +405,9 @@ const typingPhrases = [
 	.hero-title-segment {
 		opacity: 0;
 		transform: translateY(8px);
-		transition: opacity 0.5s ease, transform 0.5s ease;
+		transition:
+			opacity 0.5s ease,
+			transform 0.5s ease;
 		transition-delay: calc(var(--i) * 0.15s);
 	}
 
@@ -430,10 +416,18 @@ const typingPhrases = [
 		transform: translateY(0);
 	}
 
-	.segment-cyan { color: var(--accent-cyan); }
-	.segment-magenta { color: var(--accent-magenta); }
-	.segment-green { color: var(--accent-green); }
-	.segment-purple { color: var(--accent-purple); }
+	.segment-cyan {
+		color: var(--accent-cyan);
+	}
+	.segment-magenta {
+		color: var(--accent-magenta);
+	}
+	.segment-green {
+		color: var(--accent-green);
+	}
+	.segment-purple {
+		color: var(--accent-purple);
+	}
 
 	@media (prefers-reduced-motion: reduce) {
 		.hero-title-segment {
@@ -446,6 +440,9 @@ const typingPhrases = [
 		display: flex;
 		gap: 1rem;
 		margin-bottom: 1.5rem;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
 	}
 	.btn-hero {
 		display: inline-flex;
@@ -487,18 +484,10 @@ const typingPhrases = [
 	}
 	.hero-description {
 		font-size: 1.1rem;
-		max-width: 500px;
-		margin-bottom: 2rem;
+		max-width: 600px;
+		margin-inline: auto;
+		margin-bottom: 1.5rem;
 		line-height: 1.8;
-	}
-
-	/* ── Hero Visual ── */
-	.hero-visual {
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		contain: layout style;
 	}
 
 	.particle-canvas {
@@ -506,136 +495,16 @@ const typingPhrases = [
 		inset: 0;
 		width: 100%;
 		height: 100%;
-		pointer-events: auto;
-	}
-
-	.hero-info {
-		position: relative;
-		z-index: 1;
-		width: 100%;
-		max-width: 380px;
-		padding: 1.75rem;
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
-		pointer-events: auto;
-	}
-
-	.typing-line {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-family: "SF Mono", "Fira Code", monospace;
-		font-size: 0.88rem;
-	}
-
-	.prompt {
-		color: var(--accent-magenta);
-		flex-shrink: 0;
-	}
-
-	.typing-text {
-		color: var(--accent-cyan);
-		white-space: nowrap;
-		overflow: hidden;
-	}
-
-	.cursor {
-		color: var(--accent-cyan);
-		animation: blink 1s step-end infinite;
-	}
-
-	@keyframes blink {
-		0%, 100% { opacity: 1 }
-		50% { opacity: 0 }
-	}
-
-	.hero-stats {
-		display: flex;
-		justify-content: center;
-		gap: 2rem;
-		padding: 1rem 0;
-		border-top: 1px solid var(--glass-border);
-		border-bottom: 1px solid var(--glass-border);
-	}
-
-	.stat {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.2rem;
-	}
-
-	.stat-number {
-		font-size: 1.5rem;
-		font-weight: 700;
-		background: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-	}
-
-	.stat-label {
-		font-size: 0.7rem;
-		color: var(--text-muted);
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-	}
-
-	.hero-cta-visual {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 0.4rem;
-		width: 100%;
-		padding: 0.75rem;
-		font-size: 0.82rem;
-		font-weight: 500;
-		color: var(--accent-cyan);
-		text-decoration: none;
-		border: 1px solid var(--glass-border);
-		border-radius: var(--radius-md);
-		transition: background 0.25s ease, border-color 0.25s ease;
-	}
-
-	.hero-cta-visual:hover {
-		background: rgba(0, 212, 255, 0.08);
-		border-color: rgba(0, 212, 255, 0.3);
-	}
-
-	.hero-cta-visual svg {
-		transition: transform 0.25s ease;
-	}
-
-	.hero-cta-visual:hover svg {
-		transform: translateX(3px);
+		pointer-events: none;
 	}
 
 	/* ── Responsive ── */
 	@media (max-width: 968px) {
-		.hero .container {
-			grid-template-columns: 1fr;
-			text-align: center;
-		}
 		.hero-title {
 			justify-content: center;
 		}
-		.hero-description {
-			margin-left: auto;
-			margin-right: auto;
-		}
 		.hero-actions {
 			justify-content: center;
-		}
-		.hero-info {
-			max-width: 340px;
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.cursor {
-			animation: none;
-			opacity: 1;
 		}
 	}
 </style>
