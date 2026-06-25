@@ -32,3 +32,6 @@ ehthumbs.db
 
 # fnm
 .fnmrc
+
+# playwright
+.playwright-mcp/

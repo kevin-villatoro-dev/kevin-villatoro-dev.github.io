@@ -19,6 +19,8 @@
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --bg-preloader: #050508;
+  --bg-icon-phosphor: #1a1a2e;
   --font-heading: "Space Grotesk", system-ui, sans-serif;
   --font-body: system-ui, -apple-system, "Segoe UI", sans-serif;
   --section-padding: clamp(4rem, 8vw, 8rem);
@@ -224,6 +226,64 @@ a:hover { color: var(--accent-magenta); }
 
 .section-title h2 { margin-bottom: 0.5rem; }
 .section-title p { color: var(--text-muted); font-size: 1.1rem; }
+
+/* ── Section CTA ── */
+.section-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.section-cta a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  color: var(--text-muted);
+  text-decoration: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  border-radius: 50%;
+  transition: color 0.3s ease;
+  animation: ctaBreathe 2.5s ease-in-out infinite;
+}
+
+.section-cta a svg {
+  width: 96px;
+  height: 96px;
+  stroke-width: 1;
+}
+
+.section-cta a:hover {
+  color: var(--accent-cyan);
+}
+
+.section-cta a:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+@keyframes ctaBreathe {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-cta a {
+    animation: none;
+    opacity: 0.7;
+  }
+}
 
 ::-webkit-scrollbar { 
   width: 10px; 

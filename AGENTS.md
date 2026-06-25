@@ -35,29 +35,20 @@ src/
 └── styles/       # global.css (CSS variables, theme, animations)
 ```
 
-All content is hardcoded in component files. No CMS, no markdown, no dynamic data.
-
 ## Index Section Order
 
-```
-Hero → Timeline → Projects → About → Contact
-```
-
-Order optimized for recruiter flow: experience first, then proof of work, soft skills, education, contact.
+- Hero → Timeline → Timeline -> Skills -> Projects → About → Contact
 
 ## Conventions
 
-- Dark theme with CSS custom properties (`--accent-cyan`, `--accent-magenta`, etc.)
-- Glassmorphism card style via `.glass-card` class
-- Google Fonts: Space Grotesk (headings) + system-ui (body)
-- Components use `<style>` blocks with scoped CSS (Astro default)
 - Client-side JS: Header hamburger menu (mobile), ScrollButton (scroll to top/bottom), PDF viewer pages (cv, recomendaciones) via PDF.js
 - `prefers-reduced-motion` respected globally
+- Tab with 4 spaces in code
 
 ## Preloader & Animations
 
 - **Preloader**: 1.5s loading screen with orbit system, hex grid, glitch name effect
-- **Glitch effect**: "KEVIN VILLATORO" in preloader, "Kevin Villatoro" in Hero section
+- **Glitch effect**: "KEVIN ALBERTO VILLATORO ARROYO" in preloader, "Kevin Alberto Villatoro Arroyo" in Hero section
 - **Event system**: Preloader dispatches `preloader:done` event, Hero listens to trigger glitch
 - **Hero glitch**: Cascada 150ms entre nombre y apellido, solo se activa post-preloader
 
@@ -83,3 +74,8 @@ Order optimized for recruiter flow: experience first, then proof of work, soft s
 --color-github: #f0f0f0
 --color-whatsapp: #25d366
 ```
+
+## Rules
+
+- Use skills astro, frontend-design for any structural change
+- Testing and verification of your changes
