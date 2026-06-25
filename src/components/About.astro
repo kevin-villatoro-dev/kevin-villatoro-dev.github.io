@@ -38,7 +38,7 @@
 
 	// Tilt 3D Effect for glass-cards
 	const initTilt = () => {
-		const cards = document.querySelectorAll(".about-photo-wrapper, .skill-card, .edu-card")
+		const cards = document.querySelectorAll(".about-photo-wrapper, .skill-card")
 
 		cards.forEach((card) => {
 			const el = card as HTMLElement
@@ -310,7 +310,7 @@
 
 	.about-grid {
 		display: grid;
-		grid-template-columns: auto 1fr;
+		grid-template-columns: 1fr 2fr;
 		gap: 4rem;
 		align-items: start;
 	}
@@ -338,46 +338,8 @@
 		position: relative;
 		padding: 0;
 		overflow: visible;
-		width: 280px;
-		height: 280px;
-		transition: transform 0.3s ease;
-	}
-
-	.photo-frame:hover {
-		transform: scale(1.03);
-	}
-
-	.photo-frame::before {
-		content: "";
-		position: absolute;
-		left: 0;
-		right: 0;
-		height: 2px;
-		z-index: 4;
-		opacity: 0;
-		pointer-events: none;
-		background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-magenta), transparent);
-	}
-
-	.photo-frame:hover::before {
-		animation: scanLine 1.2s ease-in-out infinite;
-	}
-
-	@keyframes scanLine {
-		0% {
-			top: 0;
-			opacity: 0;
-		}
-		10% {
-			opacity: 1;
-		}
-		90% {
-			opacity: 1;
-		}
-		100% {
-			top: 100%;
-			opacity: 0;
-		}
+		width: 100%;
+		aspect-ratio: 1;
 	}
 
 	.easter-egg-container {
@@ -394,7 +356,7 @@
 		color: var(--text-muted);
 		text-align: center;
 		line-height: 1.5;
-		max-width: 280px;
+		width: 100%;
 	}
 
 	.easter-egg::after {
@@ -418,38 +380,40 @@
 
 	.corner {
 		position: absolute;
-		width: 32px;
-		height: 32px;
+		width: 20px;
+		height: 20px;
 		border-style: solid;
+		border-width: 2px;
+		border-radius: 4px;
 		z-index: 3;
 		pointer-events: none;
 	}
 
 	.corner-tl {
-		top: -24px;
-		left: -24px;
-		border-width: 3px 0 0 3px;
+		top: -12px;
+		left: -12px;
+		border-width: 2px 0 0 2px;
 		border-color: var(--accent-cyan);
 	}
 
 	.corner-tr {
-		top: -24px;
-		right: -24px;
-		border-width: 3px 3px 0 0;
+		top: -12px;
+		right: -12px;
+		border-width: 2px 2px 0 0;
 		border-color: var(--accent-magenta);
 	}
 
 	.corner-bl {
-		bottom: -24px;
-		left: -24px;
-		border-width: 0 0 3px 3px;
+		bottom: -12px;
+		left: -12px;
+		border-width: 0 0 2px 2px;
 		border-color: var(--accent-magenta);
 	}
 
 	.corner-br {
-		bottom: -24px;
-		right: -24px;
-		border-width: 0 3px 3px 0;
+		bottom: -12px;
+		right: -12px;
+		border-width: 0 2px 2px 0;
 		border-color: var(--accent-cyan);
 	}
 
@@ -503,7 +467,7 @@
 		margin-top: 1.5rem;
 		padding-top: 1.5rem;
 		border-top: 1px solid var(--glass-border);
-		max-width: 280px;
+		width: 100%;
 	}
 
 	.looking-for-title {
@@ -803,11 +767,6 @@
 			margin-inline: auto;
 		}
 
-		.photo-frame {
-			width: 220px;
-			height: 220px;
-		}
-
 		.skills-grid {
 			grid-template-columns: repeat(3, 1fr);
 		}
@@ -816,11 +775,6 @@
 	@media (max-width: 640px) {
 		.skills-grid {
 			grid-template-columns: 1fr;
-		}
-
-		.photo-frame {
-			width: 180px;
-			height: 180px;
 		}
 
 		.experience-badge {
