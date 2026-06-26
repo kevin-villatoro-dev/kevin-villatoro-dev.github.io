@@ -301,6 +301,20 @@
 	.mobile-external {
 		color: var(--text-secondary) !important;
 	}
+	@media (max-width: 1024px) {
+		.nav-links {
+			gap: 1.25rem;
+		}
+		.nav-links a {
+			gap: 0;
+		}
+		.nav-links a svg {
+			display: none;
+		}
+		.hamburger {
+			display: none;
+		}
+	}
 	@media (max-width: 640px) {
 		.nav-links {
 			display: none;
