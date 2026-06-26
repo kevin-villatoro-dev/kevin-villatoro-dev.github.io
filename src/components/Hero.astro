@@ -21,7 +21,7 @@
 			)
 		})
 
-		const sectionNavEls = document.querySelectorAll(".btn-section-nav")
+		const sectionNavEls = document.querySelectorAll(".section-link")
 		sectionNavEls.forEach((el, i) => {
 			setTimeout(
 				() => {
@@ -174,7 +174,7 @@
 			</h2>
 
 			<div class="hero-actions">
-				<a href="/recomendaciones" class="btn-hero btn-hero-magenta">
+				<a href="/recomendaciones" class="btn btn-magenta">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="16"
@@ -189,7 +189,7 @@
 					>
 					Recomendaciones
 				</a>
-				<a href="/cv" class="btn-hero btn-hero-cyan">
+				<a href="/cv" class="btn btn-cyan">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="16"
@@ -216,26 +216,15 @@
 			</p>
 
 			<nav class="hero-section-nav" aria-label="Navegación de secciones">
-				<a href="#sobre-mi" class="btn-section-nav" style="--i:0">
-					<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
-					Sobre mí
-				</a>
-				<a href="#trayectoria" class="btn-section-nav" style="--i:1">
-					<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
-					Trayectoria
-				</a>
-				<a href="#skills" class="btn-section-nav" style="--i:2">
-					<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-					Stack
-				</a>
-				<a href="#proyectos" class="btn-section-nav" style="--i:3">
-					<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-					Proyectos
-				</a>
-				<a href="#contacto" class="btn-section-nav" style="--i:4">
-					<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-					Contacto
-				</a>
+				<a href="#sobre-mi" class="section-link" style="--i:0">Sobre mí</a>
+				<span class="section-sep" aria-hidden="true">/</span>
+				<a href="#trayectoria" class="section-link" style="--i:1">Trayectoria</a>
+				<span class="section-sep" aria-hidden="true">/</span>
+				<a href="#skills" class="section-link" style="--i:2">Stack</a>
+				<span class="section-sep" aria-hidden="true">/</span>
+				<a href="#proyectos" class="section-link" style="--i:3">Proyectos</a>
+				<span class="section-sep" aria-hidden="true">/</span>
+				<a href="#contacto" class="section-link" style="--i:4">Contacto</a>
 			</nav>
 	</div>
 
@@ -477,44 +466,7 @@
 		align-items: center;
 		flex-wrap: wrap;
 	}
-	.btn-hero {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		padding: 0.75rem 1.5rem;
-		font-size: 0.95rem;
-		font-weight: 500;
-		border-radius: var(--radius-full);
-		text-decoration: none;
-		cursor: pointer;
-		touch-action: manipulation;
-		transition:
-			transform 0.3s ease,
-			box-shadow 0.3s ease;
-	}
-	.btn-hero:hover {
-		transform: translateY(-2px);
-	}
-	.btn-hero:focus-visible {
-		outline: 2px solid var(--accent-cyan);
-		outline-offset: 2px;
-	}
-	.btn-hero-magenta {
-		background: var(--accent-magenta);
-		color: var(--bg-primary);
-	}
-	.btn-hero-magenta:hover {
-		box-shadow: 0 8px 24px rgba(255, 0, 170, 0.3);
-		color: var(--bg-primary);
-	}
-	.btn-hero-cyan {
-		background: var(--accent-cyan);
-		color: var(--bg-primary);
-	}
-	.btn-hero-cyan:hover {
-		box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
-		color: var(--bg-primary);
-	}
+
 	.hero-description {
 		font-size: 1.1rem;
 		max-width: 600px;
@@ -531,55 +483,64 @@
 		flex-wrap: wrap;
 	}
 
-	.btn-section-nav {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.35rem;
-		padding: 0.45rem 0.85rem;
+	.section-sep {
+		color: var(--text-muted);
+		opacity: 0.3;
 		font-size: 0.8rem;
+		user-select: none;
+	}
+
+	.section-link {
+		font-size: 0.85rem;
 		font-weight: 500;
 		color: var(--text-secondary);
-		background: transparent;
-		border: 1px solid var(--glass-border);
-		border-radius: var(--radius-full);
 		text-decoration: none;
-		cursor: pointer;
-		touch-action: manipulation;
+		position: relative;
+		padding-bottom: 2px;
 		opacity: 0;
 		transform: translateY(8px);
 		transition:
 			color 0.3s ease,
-			border-color 0.3s ease,
-			background 0.3s ease,
-			box-shadow 0.3s ease,
 			opacity 0.4s ease,
 			transform 0.4s ease;
-		transition-delay: opacity 0.4s ease, transform 0.4s ease;
 	}
 
-	.btn-section-nav.section-nav-active {
+	.section-link::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 0;
+		height: 1px;
+		background: var(--accent-cyan);
+		transition: width 0.3s ease;
+	}
+
+	.section-link:hover {
+		color: var(--accent-cyan);
+	}
+
+	.section-link:hover::after {
+		width: 100%;
+	}
+
+	.section-link:focus-visible {
+		outline: 2px solid var(--accent-cyan);
+		outline-offset: 4px;
+		border-radius: 2px;
+	}
+
+	.section-link.section-nav-active {
 		opacity: 1;
 		transform: translateY(0);
 		transition-delay: calc(var(--i) * 0.08s);
 	}
 
-	.btn-section-nav:hover {
-		color: var(--accent-cyan);
-		border-color: rgba(0, 212, 255, 0.4);
-		background: rgba(0, 212, 255, 0.08);
-		box-shadow: 0 0 12px rgba(0, 212, 255, 0.15);
-	}
-
-	.btn-section-nav:focus-visible {
-		outline: 2px solid var(--accent-cyan);
-		outline-offset: 2px;
-	}
-
 	@media (prefers-reduced-motion: reduce) {
-		.btn-section-nav {
+		.section-link {
 			opacity: 1;
 			transform: none;
-			transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+			transition: color 0.2s ease;
 		}
 	}
 
