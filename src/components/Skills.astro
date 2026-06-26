@@ -107,8 +107,8 @@ const categories = [
 <section id="skills" class="skills section">
 	<div class="container">
 		<div class="section-title">
-			<h2>Stack & <span class="gradient-text">Herramientas</span></h2>
-			<p>Tecnologías, plataformas y metodologías que utilizo para desarrollar soluciones de datos y software</p>
+			<h2>Stack <span class="gradient-text">tecnológico</span></h2>
+			<p>Tecnologías, herramientas y metodologías que utilizo para diseñar y desarrollar soluciones de software y datos</p>
 		</div>
 		<div class="skills-bento">
 			{
@@ -116,7 +116,7 @@ const categories = [
 					<div class={`skill-bento-card ${cat.wide ? "wide" : ""}`}>
 						<div class="skill-bento-header">
 							<div class="skill-bento-icon" data-color={cat.color} set:html={cat.icon} />
-						<h3 class="skill-bento-title">{cat.title}</h3>
+							<h3 class="skill-bento-title">{cat.title}</h3>
 						</div>
 						<div class="skill-grid">
 							{cat.skills.map((skill) => (
@@ -157,7 +157,15 @@ const categories = [
 
 		<div class="section-cta">
 			<a href="#proyectos" aria-label="Ir a proyectos destacados">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg
+				>
 			</a>
 		</div>
 	</div>
@@ -177,7 +185,9 @@ const categories = [
 		border: 1px solid var(--glass-border);
 		border-radius: var(--radius-lg);
 		box-shadow: var(--glass-shadow);
-		transition: background 0.3s ease, border-color 0.3s ease;
+		transition:
+			background 0.3s ease,
+			border-color 0.3s ease;
 	}
 
 	.skill-bento-card:hover {
@@ -257,7 +267,9 @@ const categories = [
 		justify-content: center;
 		border-radius: var(--radius-md);
 		flex-shrink: 0;
-		transition: transform 0.25s ease, box-shadow 0.25s ease;
+		transition:
+			transform 0.25s ease,
+			box-shadow 0.25s ease;
 	}
 
 	.tech-card:hover .tech-icon {
