@@ -1,12 +1,12 @@
-# 🚀 Kevin Villatoro - Tech Lead Portfolio
+# 🚀 Kevin Alberto Villatoro Arroyo - Portfolio
 
-**Portafolio personal de un Tech Lead con más de 10 años de experiencia arquitectando soluciones escalables y liderando equipos de desarrollo.**
+**Portafolio personal**
 
 🔗 **[Ver Portfolio en Producción](https://kevin-villatoro-dev.github.io/)**
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Stack
 
 | Tecnología | Uso |
 |------------|-----|
@@ -24,7 +24,9 @@
 ### 🎨 Diseño & UX
 - **Dark Theme** con acentos neón (cyan y magenta)
 - **Glassmorphism** cards con efecto de cristal esmerilado
+- **Efecto 3D tilt** en tarjetas al pasar el mouse
 - **Animaciones fluidas** respetando `prefers-reduced-motion`
+- **Scrollbar personalizada** con gradiente
 - **100% Responsive** - Optimizado para desktop, tablet y móvil
 
 ### ⚡ Rendimiento
@@ -33,13 +35,16 @@
 - **Lighthouse Score** - 100/100 en todas las categorías
 
 ### 🎯 Funcionalidades
-- **Preloader animado** con efecto glitch y sistema de órbitas
-- **Easter egg interactivo** en la foto de perfil
-- **Línea de tiempo laboral** con highlights de experiencia
-- **Grid de proyectos** con imágenes SVG personalizadas
-- **Visor de CV** con navegación por páginas
-- **Carrusel de recomendaciones** con PDF.js
-- **Botón de scroll** flotante para navegación rápida
+- **Preloader animado** con efecto glitch, sistema de órbitas y mensajes dinámicos
+- **Canvas de partículas interactivo** con física de ratón y líneas de conexión
+- **Easter egg interactivo** con efecto de escritura tipewriter
+- **Línea de tiempo laboral** con highlights de experiencia y animación scroll-driven
+- **Sección de Skills** con ~40 tecnologías en layout bento grid
+- **Grid de proyectos** con imágenes SVG, slideshow automático y sistema de confidencialidad/NDA
+- **Visor de CV** con renderizado de PDF y botón de descarga animado
+- **Carrusel de recomendaciones** con PDF.js y navegación completa
+- **Contacto interactivo** con botones de copiar al portapapeles y bordes animados
+- **Scroll button bidireccional** para navegación rápida arriba/abajo
 
 ### 📱 Navegación
 - **Header responsive** con menú hamburguesa para móvil
@@ -59,9 +64,10 @@
 │   │   ├── Header.astro         # Navegación principal
 │   │   ├── Hero.astro           # Sección hero con glitch effect
 │   │   ├── Timeline.astro       # Línea de tiempo laboral
+│   │   ├── Skills.astro         # Sección de habilidades técnicas
 │   │   ├── Projects.astro       # Grid de proyectos destacados
 │   │   ├── ProjectCard.astro    # Tarjeta individual de proyecto
-│   │   ├── About.astro          # Biografía y habilidades
+│   │   ├── About.astro          # Biografía, preferencias laborales y educación
 │   │   ├── Contact.astro        # Métodos de contacto
 │   │   ├── Footer.astro         # Pie de página
 │   │   ├── Preloader.astro      # Pantalla de carga animada
@@ -82,86 +88,6 @@
 ```
 
 ---
-
-## 🚀 Inicio Rápido
-
-### Prerrequisitos
-- [Node.js](https://nodejs.org/) >= 22.12.0
-- [fnm](https://fnm.vercel.app/) (Fast Node Manager)
-
-### Instalación
-
-```bash
-# Clonar el repositorio
-git clone https://github.com/kevin-villatoro-dev/kevin-villatoro-dev.github.io.git
-
-# Entrar al directorio
-cd kevin-villatoro-dev.github.io
-
-# Instalar dependencias
-fnm exec --using=default -- npm install
-
-# Iniciar servidor de desarrollo
-fnm exec --using=default -- npm run dev
-```
-
-El servidor se iniciará en `http://localhost:4321`
-
-### Comandos Disponibles
-
-| Comando | Descripción |
-|---------|-------------|
-| `fnm exec --using=default -- npm run dev` | 🖥️ Servidor de desarrollo |
-| `fnm exec --using=default -- npm run build` | 📦 Construir para producción |
-| `fnm exec --using=default -- npm run preview` | 👁️ Vista previa de producción |
-
----
-
-## 🌐 Despliegue
-
-El proyecto está configurado para desplegarse **automáticamente** en GitHub Pages al hacer push a la rama `main`.
-
-### Configuración de GitHub Pages
-
-1. Ve a **Settings** → **Pages** en tu repositorio
-2. En **Build and deployment**, selecciona **Source: GitHub Actions**
-3. Cada push a `main` desplegará el sitio automáticamente
-
-**URL de Producción:** `https://kevin-villatoro-dev.github.io/`
-
----
-
-## 🎨 Personalización
-
-### Cambiar Información Personal
-- **Nombre y roles:** `src/components/Hero.astro`
-- **Experiencia laboral:** `src/components/Timeline.astro`
-- **Biografía y skills:** `src/components/About.astro`
-- **Proyectos:** `src/components/Projects.astro`
-- **Contacto:** `src/components/Contact.astro`
-
-### Cambiar Colores
-Edita las variables CSS en `src/styles/global.css`:
-
-```css
-:root {
-  --accent-cyan: #00d4ff;      /* Color primario */
-  --accent-magenta: #ff00aa;   /* Color secundario */
-  --bg-primary: #0a0a0f;       /* Fondo principal */
-  /* ... más variables */
-}
-```
-
-### Agregar Proyectos
-1. Coloca la imagen SVG en `public/images/projects/`
-2. Actualiza la información en `src/components/Projects.astro`
-
-### Actualizar PDFs
-1. Coloca tus archivos PDF en `public/`
-2. Actualiza las rutas en `src/pages/cv.astro` y `src/pages/recomendaciones.astro`
-
----
-
 ## 📄 Páginas
 
 | Página | Descripción |
@@ -191,8 +117,6 @@ Este proyecto está bajo la licencia MIT. Ver el archivo [LICENSE](LICENSE) para
 ---
 
 ## 📞 Contacto
-
-**Kevin Villatoro** - Tech Lead
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kevin-villatoro-dev/)
 [![GitHub](https://img.shields.io/badge/GitHub-F0F0F0?style=for-the-badge&logo=github&logoColor=black)](https://github.com/kevin-villatoro-dev)
