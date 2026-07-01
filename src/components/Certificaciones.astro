@@ -1,0 +1,793 @@
+---
+const certifications = [
+    { file: "m_1.pdf" },
+	{ file: "ia_1.pdf" },
+	{ file: "pmi_1.pdf" },
+	{ file: "pmi_2.pdf" },
+	{ file: "pmi_3.pdf" },
+	{ file: "pmi_4.pdf" },
+	{ file: "lkd_02.pdf" },
+	{ file: "pmi_5.pdf" },
+	{ file: "lkd_p_1.pdf" },
+	{ file: "lkd_p_2.pdf" },
+	{ file: "lkd_p_3.pdf" },
+	{ file: "lkd_p_4.pdf" },
+	{ file: "lkd_p_5.pdf" },
+	{ file: "lkd_p_6.pdf" },
+	{ file: "lkd_00.pdf" },
+	{ file: "lkd_01.pdf" },
+	{ file: "lkd_03.pdf" },
+]
+---
+
+<section id="certificaciones" class="certificaciones section">
+	<div class="certificaciones-inner">
+		<div class="section-title">
+			<h2>Certificaciones <span class="gradient-text">profesionales</span></h2>
+			<p>Credenciales y certificaciones que validan mi experiencia y conocimientos</p>
+		</div>
+
+		<div class="carousel-wrapper">
+			<button class="cert-arrow cert-arrow-left" id="cert-prev" aria-label="Anterior">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg
+				>
+			</button>
+
+			<div class="carousel-viewport" id="cert-viewport">
+				<div class="carousel-track" id="cert-track">
+					{
+						certifications.map((cert) => (
+							<div class="cert-card" data-file={cert.file}>
+								<div class="cert-preview">
+									<canvas class="cert-canvas" data-pdf={`/certifications/${cert.file}`} />
+									<div class="cert-skeleton">
+										<div class="cert-skeleton-bar" />
+										<div class="cert-skeleton-bar short" />
+									</div>
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+
+			<button class="cert-arrow cert-arrow-right" id="cert-next" aria-label="Siguiente">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg
+				>
+			</button>
+		</div>
+
+		<div class="cert-counter">
+			<span id="cert-current">1</span> / <span id="cert-total">{certifications.length}</span>
+		</div>
+
+		<div class="section-cta">
+			<a href="#proyectos" aria-label="Ir a proyectos">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg
+				>
+			</a>
+		</div>
+	</div>
+
+	<div class="cert-modal" id="cert-modal" role="dialog" aria-modal="true" aria-label="Visor de certificación">
+		<div class="cert-modal-backdrop" id="cert-modal-backdrop"></div>
+		<div class="cert-modal-content">
+			<button class="cert-modal-close" id="cert-modal-close" aria-label="Cerrar">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg
+				>
+			</button>
+			<div class="cert-modal-pdf">
+				<canvas id="cert-modal-canvas"></canvas>
+				<div class="cert-modal-loading" id="cert-modal-loading">
+					<div class="pdf-wave-loader">
+						<div class="pdf-wave-bar"></div>
+						<div class="pdf-wave-bar"></div>
+						<div class="pdf-wave-bar"></div>
+						<div class="pdf-wave-bar"></div>
+						<div class="pdf-wave-bar"></div>
+					</div>
+					<span>Cargando certificación...</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" define:vars={{}}></script>
+<script is:inline>
+	;(function () {
+		pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"
+
+		const track = document.getElementById("cert-track")
+		const allCards = track ? Array.from(track.querySelectorAll(".cert-card")) : []
+		const prevBtn = document.getElementById("cert-prev")
+		const nextBtn = document.getElementById("cert-next")
+		const counterEl = document.getElementById("cert-current")
+		const totalEl = document.getElementById("cert-total")
+		const modal = document.getElementById("cert-modal")
+		const modalBackdrop = document.getElementById("cert-modal-backdrop")
+		const modalClose = document.getElementById("cert-modal-close")
+		const modalCanvas = document.getElementById("cert-modal-canvas")
+		const modalLoading = document.getElementById("cert-modal-loading")
+
+		const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+		let autoPlayInterval = null
+		const AUTOPLAY_DELAY = 2000
+		let currentIndex = 0
+
+		const pdfCache = new Map()
+		const renderingLocks = new Set()
+
+		async function renderPDFPreview(canvas) {
+			const url = canvas.getAttribute("data-pdf")
+			if (!url || canvas.classList.contains("revealed")) return
+			if (renderingLocks.has(url)) return
+
+			const container = canvas.closest(".cert-preview")
+			const containerWidth = container ? container.offsetWidth : 0
+			if (containerWidth === 0) return
+
+			if (pdfCache.has(url)) {
+				const cached = pdfCache.get(url)
+				if (cached.width > 0) {
+					canvas.width = cached.width
+					canvas.height = cached.height
+					const ctx = canvas.getContext("2d")
+					ctx.drawImage(cached, 0, 0)
+					canvas.classList.add("revealed")
+					const skeleton = canvas.closest(".cert-preview").querySelector(".cert-skeleton")
+					if (skeleton) skeleton.classList.add("hidden")
+					return
+				} else {
+					pdfCache.delete(url)
+				}
+			}
+
+			renderingLocks.add(url)
+			try {
+				const pdf = await pdfjsLib.getDocument(url).promise
+				const page = await pdf.getPage(1)
+				const unscaledViewport = page.getViewport({ scale: 1 })
+				const scale = containerWidth / unscaledViewport.width
+				const viewport = page.getViewport({ scale: scale })
+				const ctx = canvas.getContext("2d")
+				canvas.width = viewport.width
+				canvas.height = viewport.height
+				await page.render({ canvasContext: ctx, viewport: viewport }).promise
+
+				const offscreen = document.createElement("canvas")
+				offscreen.width = canvas.width
+				offscreen.height = canvas.height
+				offscreen.getContext("2d").drawImage(canvas, 0, 0)
+				pdfCache.set(url, offscreen)
+
+				canvas.classList.add("revealed")
+				const skeleton = container.querySelector(".cert-skeleton")
+				if (skeleton) skeleton.classList.add("hidden")
+			} catch (e) {
+				console.error("Error loading PDF preview:", url, e)
+			} finally {
+				renderingLocks.delete(url)
+			}
+		}
+
+		function updatePositions() {
+			const isMobile = window.innerWidth <= 640
+			allCards.forEach((card, i) => {
+				const offset = i - currentIndex
+				const absOffset = Math.abs(offset)
+
+				const canvas = card.querySelector(".cert-canvas")
+				const shouldRender = canvas && !canvas.classList.contains("revealed")
+
+				if (absOffset > 1) {
+					card.style.display = "none"
+					card.removeAttribute("data-center")
+				} else if (isMobile && absOffset === 1) {
+					// Mobile: hide side cards, only show center
+					card.style.display = "none"
+					card.removeAttribute("data-center")
+				} else {
+					// Re-show: if canvas was rendered at 0 width, force re-render
+					if (canvas && canvas.classList.contains("revealed") && canvas.width === 0) {
+						canvas.classList.remove("revealed")
+						canvas.width = 0
+						canvas.height = 0
+					}
+					card.style.display = ""
+				}
+
+				if (absOffset > 1 || (isMobile && absOffset === 1)) {
+					// skip
+				} else if (offset === 0) {
+					card.style.opacity = "1"
+					card.style.pointerEvents = "auto"
+					card.style.transform = reducedMotion ? "scale(1)" : "scale(1) translateZ(0)"
+					card.style.zIndex = "3"
+					card.setAttribute("data-center", "true")
+					if (shouldRender) renderPDFPreview(canvas)
+				} else {
+					const dir = offset > 0 ? 1 : -1
+					const tx = reducedMotion ? 0 : dir * 70
+					const tz = reducedMotion ? 0 : -80
+					const sc = reducedMotion ? 0.9 : 0.85
+					card.style.opacity = "0.5"
+					card.style.pointerEvents = "auto"
+					card.style.transform = "scale(" + sc + ") translateX(" + tx + "px) translateZ(" + tz + "px)"
+					card.style.zIndex = "2"
+					card.removeAttribute("data-center")
+					if (shouldRender) renderPDFPreview(canvas)
+				}
+			})
+
+			if (counterEl) counterEl.textContent = String(currentIndex + 1)
+		}
+
+		function goNext() {
+			currentIndex = currentIndex < allCards.length - 1 ? currentIndex + 1 : 0
+			updatePositions()
+		}
+
+		function goPrev() {
+			currentIndex = currentIndex > 0 ? currentIndex - 1 : allCards.length - 1
+			updatePositions()
+		}
+
+		async function renderFullPDF(url) {
+			if (!modalCanvas) return
+			const ctx = modalCanvas.getContext("2d")
+			if (modalLoading) modalLoading.classList.remove("hidden")
+			modalCanvas.classList.remove("revealed")
+			try {
+				const pdf = await pdfjsLib.getDocument(url).promise
+				const totalPages = pdf.numPages
+				const firstPage = await pdf.getPage(1)
+				const scale = 2
+				const viewport = firstPage.getViewport({ scale: scale })
+				const totalHeight = viewport.height * totalPages
+				modalCanvas.width = viewport.width
+				modalCanvas.height = totalHeight
+				for (let i = 1; i <= totalPages; i++) {
+					const page = await pdf.getPage(i)
+					const vp = page.getViewport({ scale: scale })
+					const yOffset = (i - 1) * vp.height
+					await page.render({ canvasContext: ctx, viewport: vp, transform: [1, 0, 0, 1, 0, yOffset] }).promise
+				}
+				if (modalLoading) modalLoading.classList.add("hidden")
+				modalCanvas.classList.add("revealed")
+			} catch (e) {
+				console.error("Error loading full PDF:", url, e)
+				if (modalLoading) modalLoading.innerHTML = "<span>Error al cargar el PDF</span>"
+			}
+		}
+
+		function openModal(file) {
+			if (!modal) return
+			modal.classList.add("open")
+			document.body.style.overflow = "hidden"
+			renderFullPDF("/certifications/" + file)
+		}
+
+		function closeModal() {
+			if (!modal) return
+			modal.classList.remove("open")
+			document.body.style.overflow = ""
+			if (modalCanvas) {
+				const ctx = modalCanvas.getContext("2d")
+				ctx.clearRect(0, 0, modalCanvas.width, modalCanvas.height)
+				modalCanvas.classList.remove("revealed")
+			}
+			if (modalLoading) {
+				modalLoading.classList.remove("hidden")
+				modalLoading.innerHTML =
+					'<div class="pdf-wave-loader"><div class="pdf-wave-bar"></div><div class="pdf-wave-bar"></div><div class="pdf-wave-bar"></div><div class="pdf-wave-bar"></div><div class="pdf-wave-bar"></div></div><span>Cargando certificación...</span>'
+			}
+		}
+
+		allCards.forEach((card) => {
+			card.addEventListener("click", () => openModal(card.dataset.file))
+		})
+
+		if (prevBtn)
+			prevBtn.addEventListener("click", function () {
+				stopAutoPlay()
+				goPrev()
+			})
+		if (nextBtn)
+			nextBtn.addEventListener("click", function () {
+				stopAutoPlay()
+				goNext()
+			})
+		if (modalClose) modalClose.addEventListener("click", closeModal)
+		if (modalBackdrop) modalBackdrop.addEventListener("click", closeModal)
+		document.addEventListener("keydown", function (e) {
+			if (e.key === "Escape" && modal && modal.classList.contains("open")) closeModal()
+			if (e.key === "ArrowLeft" && !(modal && modal.classList.contains("open"))) {
+				stopAutoPlay()
+				goPrev()
+			}
+			if (e.key === "ArrowRight" && !(modal && modal.classList.contains("open"))) {
+				stopAutoPlay()
+				goNext()
+			}
+		})
+
+		function startAutoPlay() {
+			if (reducedMotion || autoPlayInterval) return
+			autoPlayInterval = setInterval(goNext, AUTOPLAY_DELAY)
+		}
+
+		function stopAutoPlay() {
+			if (autoPlayInterval) {
+				clearInterval(autoPlayInterval)
+				autoPlayInterval = null
+			}
+		}
+
+		var wrapper = document.querySelector(".carousel-wrapper")
+		if (wrapper) {
+			wrapper.addEventListener("mouseenter", stopAutoPlay)
+			wrapper.addEventListener("mouseleave", startAutoPlay)
+		}
+
+		var touchStartX = 0
+		var viewport = document.getElementById("cert-viewport")
+		if (viewport) {
+			viewport.addEventListener(
+				"touchstart",
+				function (e) {
+					touchStartX = e.touches[0].clientX
+					stopAutoPlay()
+				},
+				{ passive: true },
+			)
+			viewport.addEventListener(
+				"touchend",
+				function (e) {
+					var diff = touchStartX - e.changedTouches[0].clientX
+					if (Math.abs(diff) > 50) {
+						diff > 0 ? goNext() : goPrev()
+					}
+					startAutoPlay()
+				},
+				{ passive: true },
+			)
+		}
+
+		if (totalEl) totalEl.textContent = String(allCards.length)
+		updatePositions()
+		startAutoPlay()
+	})()
+</script>
+
+<style>
+	.certificaciones-inner {
+		width: 92vw;
+		max-width: none;
+		margin: 0 auto;
+	}
+
+	.carousel-wrapper {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem 60px 2rem;
+	}
+
+	.carousel-viewport {
+		overflow: hidden;
+		width: 100%;
+		max-width: 1400px;
+	}
+
+	.carousel-track {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1.5rem;
+		perspective: 1200px;
+		min-height: 400px;
+	}
+
+	.cert-card {
+		flex: 0 0 364px;
+		cursor: pointer;
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+		border: 1px solid var(--glass-border);
+		background: var(--glass-bg);
+		transition:
+			transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+			opacity 0.5s ease,
+			border-color 0.3s ease,
+			box-shadow 0.3s ease;
+		position: relative;
+		will-change: transform, opacity;
+	}
+
+	.cert-card:hover {
+		border-color: rgba(0, 212, 255, 0.4);
+	}
+
+	.cert-card::after {
+		content: "";
+		position: absolute;
+		inset: -20px;
+		border-radius: var(--radius-lg);
+		background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.35), transparent 70%);
+		z-index: -1;
+		pointer-events: none;
+		opacity: 0;
+		transition: opacity 0.5s ease;
+		filter: blur(16px);
+	}
+	.cert-card[data-center="true"]::after {
+		opacity: 1;
+	}
+
+	.cert-preview {
+		position: relative;
+		width: 100%;
+		overflow: hidden;
+		background: var(--bg-secondary);
+	}
+
+	.cert-canvas {
+		width: 100%;
+		height: auto;
+		display: block;
+		opacity: 0;
+		transform: scale(0.96);
+		transition:
+			opacity 0.5s ease,
+			transform 0.5s ease;
+	}
+	.cert-canvas.revealed {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	.cert-skeleton {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		padding: 2rem;
+		transition: opacity 0.3s ease;
+	}
+	.cert-skeleton.hidden {
+		opacity: 0;
+		pointer-events: none;
+	}
+	.cert-skeleton-bar {
+		width: 70%;
+		height: 10px;
+		border-radius: 4px;
+		background: linear-gradient(90deg, var(--glass-bg), rgba(255, 255, 255, 0.08), var(--glass-bg));
+		background-size: 200% 100%;
+		animation: skeletonShimmer 1.5s infinite;
+	}
+	.cert-skeleton-bar.short {
+		width: 45%;
+		height: 8px;
+	}
+	@keyframes skeletonShimmer {
+		0% {
+			background-position: 200% 0;
+		}
+		100% {
+			background-position: -200% 0;
+		}
+	}
+
+	.cert-arrow {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 10;
+		width: 48px;
+		height: 48px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: var(--glass-bg);
+		border: 1px solid var(--glass-border);
+		border-radius: 50%;
+		color: var(--text-muted);
+		cursor: pointer;
+		opacity: 0.6;
+		transition:
+			opacity 0.3s ease,
+			background 0.3s ease,
+			color 0.3s ease,
+			transform 0.2s ease;
+		backdrop-filter: blur(8px);
+	}
+	.cert-arrow:hover {
+		opacity: 1;
+		background: rgba(0, 212, 255, 0.15);
+		color: var(--accent-cyan);
+	}
+	.cert-arrow:active {
+		transform: translateY(-50%) scale(0.9);
+	}
+	.cert-arrow-left {
+		left: 0;
+	}
+	.cert-arrow-right {
+		right: 0;
+	}
+
+	.cert-counter {
+		text-align: center;
+		margin-top: 1rem;
+		font-size: 0.85rem;
+		color: var(--text-muted);
+		font-variant-numeric: tabular-nums;
+		letter-spacing: 0.15em;
+		display: none;
+	}
+
+	@media (max-width: 1024px) {
+		.cert-card {
+			flex: 0 0 300px;
+		}
+		.carousel-track {
+			gap: 1rem;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.certificaciones-inner {
+			width: 100vw;
+		}
+		.carousel-wrapper {
+			padding: 1rem 16px 2rem;
+		}
+		.carousel-viewport {
+			overflow: hidden;
+		}
+		.carousel-track {
+			gap: 0;
+			min-height: auto;
+		}
+		.cert-card {
+			flex: 0 0 85vw;
+			min-width: 0;
+		}
+		.cert-card[data-center="true"]::after {
+			display: none;
+		}
+		.cert-arrow {
+			display: none;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.carousel-track {
+			scroll-behavior: auto;
+		}
+		.cert-card {
+			transition:
+				border-color 0.2s ease,
+				opacity 0.2s ease;
+		}
+		.cert-card:hover {
+			transform: none;
+		}
+		.cert-card::after {
+			transition: none;
+			filter: none;
+		}
+		.cert-canvas {
+			transition: opacity 0.2s ease;
+			transform: none;
+		}
+		.cert-canvas.revealed {
+			transform: none;
+		}
+		.cert-skeleton-bar {
+			animation: none;
+		}
+		.cert-arrow {
+			transition: opacity 0.2s ease;
+		}
+		.cert-modal-content {
+			transition: none;
+			transform: none;
+		}
+		.cert-modal.open .cert-modal-content {
+			transform: none;
+		}
+		#cert-modal-canvas {
+			transition: opacity 0.2s ease;
+			transform: none;
+		}
+		#cert-modal-canvas.revealed {
+			transform: none;
+		}
+	}
+
+	.cert-modal {
+		position: fixed;
+		inset: 0;
+		z-index: 200;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.3s ease;
+	}
+	.cert-modal.open {
+		opacity: 1;
+		pointer-events: all;
+	}
+	.cert-modal-backdrop {
+		position: absolute;
+		inset: 0;
+		background: rgba(5, 5, 8, 0.88);
+		backdrop-filter: blur(10px);
+	}
+	.cert-modal-content {
+		position: relative;
+		width: 90vw;
+		max-width: 900px;
+		max-height: 90vh;
+		background: var(--bg-secondary);
+		border: 1px solid var(--glass-border);
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+		box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+		transform: scale(0.95) translateY(10px);
+		transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+	.cert-modal.open .cert-modal-content {
+		transform: scale(1) translateY(0);
+	}
+	.cert-modal-close {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		z-index: 10;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid var(--glass-border);
+		border-radius: 50%;
+		color: var(--text-primary);
+		cursor: pointer;
+		transition:
+			background 0.3s ease,
+			transform 0.3s ease,
+			color 0.3s ease;
+	}
+	.cert-modal-close:hover {
+		background: rgba(255, 68, 68, 0.2);
+		border-color: var(--accent-red);
+		color: var(--accent-red);
+		transform: rotate(90deg);
+	}
+	.cert-modal-pdf {
+		width: 100%;
+		max-height: 90vh;
+		overflow-y: auto;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	#cert-modal-canvas {
+		display: block;
+		max-width: 100%;
+		opacity: 0;
+		transform: scale(0.95);
+		transition:
+			opacity 0.4s ease,
+			transform 0.4s ease;
+	}
+	#cert-modal-canvas.revealed {
+		opacity: 1;
+		transform: scale(1);
+	}
+	.cert-modal-loading {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+		color: var(--text-secondary);
+		font-size: 0.9rem;
+		transition: opacity 0.3s ease;
+	}
+	.cert-modal-loading.hidden {
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.pdf-wave-loader {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		height: 50px;
+	}
+	.pdf-wave-bar {
+		width: 8px;
+		height: 20px;
+		border-radius: 4px;
+		animation: pdfWave 1.2s ease-in-out infinite;
+	}
+	.pdf-wave-bar:nth-child(1) {
+		background: var(--accent-cyan);
+		animation-delay: 0s;
+	}
+	.pdf-wave-bar:nth-child(2) {
+		background: var(--accent-cyan);
+		animation-delay: 0.1s;
+	}
+	.pdf-wave-bar:nth-child(3) {
+		background: var(--accent-purple);
+		animation-delay: 0.2s;
+	}
+	.pdf-wave-bar:nth-child(4) {
+		background: var(--accent-magenta);
+		animation-delay: 0.3s;
+	}
+	.pdf-wave-bar:nth-child(5) {
+		background: var(--accent-magenta);
+		animation-delay: 0.4s;
+	}
+	@keyframes pdfWave {
+		0%,
+		100% {
+			height: 20px;
+			opacity: 0.6;
+		}
+		50% {
+			height: 45px;
+			opacity: 1;
+		}
+	}
+</style>

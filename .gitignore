@@ -35,3 +35,6 @@ ehthumbs.db
 
 # playwright
 .playwright-mcp/
+
+# Agentes
+AGENTS.md
