@@ -24,7 +24,7 @@ const { title, description = "Kevin Alberto Villatoro Arroyo | Portafolio Profes
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-    <meta property="og:image" content="https://kevin-villatoro-dev.github.io/og-image-github.jpg" />
+		<meta property="og:image" content="https://kevin-villatoro-dev.github.io/og-image-github.jpg" />
 		<meta property="og:url" content="https://kevin-villatoro-dev.github.io" />
 		<meta property="og:site_name" content="Kevin Alberto Villatoro Arroyo" />
 
@@ -32,7 +32,7 @@ const { title, description = "Kevin Alberto Villatoro Arroyo | Portafolio Profes
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://kevin-villatoro-dev.github.io/og-image-github.jpg" />
+		<meta name="twitter:image" content="https://kevin-villatoro-dev.github.io/og-image-github.jpg" />
 		<link rel="canonical" href="https://kevin-villatoro-dev.github.io" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -46,6 +46,17 @@ const { title, description = "Kevin Alberto Villatoro Arroyo | Portafolio Profes
 			<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 		</noscript>
 		<title>{title}</title>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-CRPBDXBYQG"></script>
+		<script>
+			window.dataLayer = window.dataLayer || []
+			function gtag() {
+				dataLayer.push(arguments)
+			}
+			gtag("js", new Date())
+
+			gtag("config", "G-CRPBDXBYQG")
+		</script>
 	</head>
 	<body>
 		<Preloader />
