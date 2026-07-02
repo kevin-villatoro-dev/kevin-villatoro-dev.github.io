@@ -18,7 +18,16 @@ const { title, description = "Kevin Alberto Villatoro Arroyo | Portafolio Profes
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="theme-color" content="#0a0a0f" />
+		<meta name="theme-color" content="#f9fafb" />
+		<script is:inline>
+			(function() {
+				var stored = localStorage.getItem('theme');
+				var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+				var theme = stored || (prefersLight ? 'light' : 'light');
+				document.documentElement.setAttribute('data-theme', theme);
+				document.querySelector('meta[name="theme-color"]').content = theme === 'light' ? '#f9fafb' : '#0a0a0f';
+			})();
+		</script>
 
 		<!-- Open Graph -->
 		<meta property="og:type" content="website" />
@@ -67,7 +76,8 @@ const { title, description = "Kevin Alberto Villatoro Arroyo | Portafolio Profes
 
 	<script is:inline>
 		const container = document.getElementById("shapes")
-		const colors = ["#00d4ff", "#ff00aa"]
+		const isLight = document.documentElement.getAttribute("data-theme") === "light"
+		const colors = isLight ? ["#C9A227", "#1E3A8A"] : ["#00d4ff", "#ff00aa"]
 		const shapes = ["circle", "square", "triangle", "hexagon"]
 
 		for (let i = 0; i < 12; i++) {
