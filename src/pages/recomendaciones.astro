@@ -168,19 +168,19 @@ import PdfViewerStyles from '../components/PdfViewerStyles.astro';
   .rec-viewer .pdf-back-link:hover {
     color: var(--accent-magenta);
     border-color: var(--accent-magenta);
-    background: rgba(255, 0, 170, 0.1);
+    background: color-mix(in srgb, var(--accent-magenta) 10%, transparent);
     transform: translateX(-5px);
   }
 
   .rec-viewer .pdf-title {
     color: var(--accent-magenta);
-    text-shadow: 0 0 30px rgba(255, 0, 170, 0.3);
+    text-shadow: 0 0 30px color-mix(in srgb, var(--accent-magenta) 30%, transparent);
     animation: titlePulse 3s ease-in-out infinite;
   }
 
   @keyframes titlePulse {
-    0%, 100% { text-shadow: 0 0 30px rgba(255, 0, 170, 0.3); }
-    50% { text-shadow: 0 0 50px rgba(255, 0, 170, 0.5), 0 0 80px rgba(0, 212, 255, 0.3); }
+    0%, 100% { text-shadow: 0 0 30px color-mix(in srgb, var(--accent-magenta) 30%, transparent); }
+    50% { text-shadow: 0 0 50px color-mix(in srgb, var(--accent-magenta) 50%, transparent), 0 0 80px color-mix(in srgb, var(--accent-cyan) 30%, transparent); }
   }
 
   .page-indicator {
@@ -188,8 +188,8 @@ import PdfViewerStyles from '../components/PdfViewerStyles.astro';
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: rgba(255, 0, 170, 0.1);
-    border: 1px solid rgba(255, 0, 170, 0.3);
+    background: color-mix(in srgb, var(--accent-magenta) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-magenta) 30%, transparent);
     border-radius: var(--radius-full);
     color: var(--accent-magenta);
     font-size: 0.95rem;
@@ -228,10 +228,10 @@ import PdfViewerStyles from '../components/PdfViewerStyles.astro';
   }
 
   .nav-btn:hover:not(:disabled) {
-    background: rgba(255, 0, 170, 0.2);
+    background: color-mix(in srgb, var(--accent-magenta) 20%, transparent);
     border-color: var(--accent-magenta);
     transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(255, 0, 170, 0.4);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--accent-magenta) 40%, transparent);
   }
 
   .nav-btn:disabled {
@@ -283,7 +283,7 @@ import PdfViewerStyles from '../components/PdfViewerStyles.astro';
     align-items: center;
     gap: 1rem;
     padding: 1rem 1.5rem;
-    background: linear-gradient(90deg, rgba(255, 0, 170, 0.1), transparent);
+    background: linear-gradient(90deg, color-mix(in srgb, var(--accent-magenta) 10%, transparent), transparent);
     border-bottom: 1px solid var(--glass-border);
   }
 
@@ -298,7 +298,7 @@ import PdfViewerStyles from '../components/PdfViewerStyles.astro';
     font-weight: 700;
     font-size: 1rem;
     border-radius: 50%;
-    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+    box-shadow: 0 4px 15px color-mix(in srgb, var(--accent-cyan) 40%, transparent);
   }
 
   .page-title {
@@ -370,13 +370,13 @@ import PdfViewerStyles from '../components/PdfViewerStyles.astro';
   }
 
   .dot:hover {
-    background: rgba(255, 0, 170, 0.5);
+    background: color-mix(in srgb, var(--accent-magenta) 50%, transparent);
     transform: scale(1.2);
   }
 
   .dot.active {
     background: var(--accent-magenta);
-    box-shadow: 0 0 15px rgba(255, 0, 170, 0.6);
+    box-shadow: 0 0 15px color-mix(in srgb, var(--accent-magenta) 60%, transparent);
     transform: scale(1.3);
   }
 
