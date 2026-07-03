@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import PdfViewerStyles from '../components/PdfViewerStyles.astro';
 ---
 
-<Layout title="CV - Kevin Villatoro">
+<Layout title="CV - Kevin Alberto Villatoro Arroyo">
   <PdfViewerStyles />
   <div class="cv-viewer">
     <div class="pdf-header-bar">
@@ -46,7 +46,7 @@ import PdfViewerStyles from '../components/PdfViewerStyles.astro';
     </div>
   </div>
 
-  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" define:vars={{}}></script>
+  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script is:inline>
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     
