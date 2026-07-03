@@ -1,5 +1,5 @@
 <script>
-	window.addEventListener("preloader:done", () => {
+	function runAboutAnimations() {
 		const typingEl = document.getElementById("easter-egg") as HTMLElement | null
 		if (!typingEl) return
 		const phrases = JSON.parse(typingEl.dataset.phrases || "[]")
@@ -34,7 +34,9 @@
 			}
 		}
 		setTimeout(typeLoop, 1000)
-	})
+	}
+
+	window.addEventListener("preloader:done", runAboutAnimations)
 
 	// Tilt 3D Effect for glass-cards
 	const initTilt = () => {

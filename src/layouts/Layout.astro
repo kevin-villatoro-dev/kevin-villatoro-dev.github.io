@@ -1,5 +1,6 @@
 ---
 import Preloader from "../components/Preloader.astro"
+import ThemeModal from "../components/ThemeModal.astro"
 import ScrollButton from "../components/ScrollButton.astro"
 
 interface Props {
@@ -68,6 +69,7 @@ const { title, description = "Kevin Alberto Villatoro Arroyo | Portafolio Profes
 		</script>
 	</head>
 	<body>
+		<ThemeModal />
 		<Preloader />
 		<div class="shapes" id="shapes"></div>
 		<slot />

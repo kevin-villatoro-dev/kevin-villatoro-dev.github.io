@@ -445,6 +445,9 @@
 		label.textContent = isLight ? "Modo oscuro" : "Modo claro"
 	}
 
+	window.updateToggleIcons = updateToggleIcons
+	window.updateMobileThemeLabel = updateMobileThemeLabel
+
 	function handleThemeToggle() {
 		const html = document.documentElement
 		const current = html.getAttribute("data-theme")

@@ -3,7 +3,7 @@
 ---
 
 <script>
-	window.addEventListener("preloader:done", () => {
+	function runHeroAnimations() {
 		const glitchEls = document.querySelectorAll(".glitch-hero")
 		glitchEls.forEach((el, i) => {
 			setTimeout(() => {
@@ -167,7 +167,9 @@
 			mouse.x = -9999
 			mouse.y = -9999
 		})
-	})
+	}
+
+	window.addEventListener("preloader:done", runHeroAnimations)
 </script>
 
 <section class="hero section" id="hero">
