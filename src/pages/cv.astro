@@ -128,7 +128,7 @@ import PdfViewerStyles from '../components/PdfViewerStyles.astro';
   .cv-viewer .pdf-back-link:hover {
     color: var(--accent-cyan);
     border-color: var(--accent-cyan);
-    background: rgba(0, 212, 255, 0.1);
+    background: color-mix(in srgb, var(--accent-cyan) 10%, transparent);
     transform: translateX(-5px);
   }
 
@@ -137,8 +137,8 @@ import PdfViewerStyles from '../components/PdfViewerStyles.astro';
   }
 
   @keyframes glowText {
-    0%, 100% { filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.25)); }
-    50% { filter: drop-shadow(0 0 12px rgba(255, 0, 170, 0.35)); }
+    0%, 100% { filter: drop-shadow(0 0 8px color-mix(in srgb, var(--accent-cyan) 25%, transparent)); }
+    50% { filter: drop-shadow(0 0 12px color-mix(in srgb, var(--accent-magenta) 35%, transparent)); }
   }
 
   .btn-download {
@@ -153,7 +153,7 @@ import PdfViewerStyles from '../components/PdfViewerStyles.astro';
     font-size: 0.9rem;
     border-radius: var(--radius-full);
     transition: box-shadow 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 4px 15px color-mix(in srgb, var(--accent-cyan) 30%, transparent);
     position: relative;
     overflow: hidden;
     animation: bounceScale 2s ease-in-out infinite;
@@ -203,8 +203,8 @@ import PdfViewerStyles from '../components/PdfViewerStyles.astro';
   }
 
   @keyframes btnPulse {
-    0%, 100% { box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3); }
-    50% { box-shadow: 0 4px 25px rgba(0, 212, 255, 0.5), 0 0 35px rgba(255, 0, 170, 0.2); }
+    0%, 100% { box-shadow: 0 4px 15px color-mix(in srgb, var(--accent-cyan) 30%, transparent); }
+    50% { box-shadow: 0 4px 25px color-mix(in srgb, var(--accent-cyan) 50%, transparent), 0 0 35px color-mix(in srgb, var(--accent-magenta) 20%, transparent); }
   }
 
   @keyframes btnSuccess {
@@ -240,7 +240,7 @@ import PdfViewerStyles from '../components/PdfViewerStyles.astro';
     content: '';
     position: fixed;
     inset: 0;
-    background: radial-gradient(circle at center, rgba(0, 212, 255, 0.15), transparent 70%);
+    background: radial-gradient(circle at center, color-mix(in srgb, var(--accent-cyan) 15%, transparent), transparent 70%);
     animation: flashEffect 1s ease-out forwards;
     pointer-events: none;
     z-index: 100;

@@ -441,7 +441,7 @@ const certifications = [
 	}
 
 	.cert-card:hover {
-		border-color: rgba(0, 212, 255, 0.4);
+		border-color: color-mix(in srgb, var(--accent-cyan) 40%, transparent);
 	}
 
 	.cert-card::after {
@@ -449,7 +449,7 @@ const certifications = [
 		position: absolute;
 		inset: -20px;
 		border-radius: var(--radius-lg);
-		background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.35), transparent 70%);
+		background: radial-gradient(ellipse at center, color-mix(in srgb, var(--accent-cyan) 35%, transparent), transparent 70%);
 		z-index: -1;
 		pointer-events: none;
 		opacity: 0;
@@ -543,7 +543,7 @@ const certifications = [
 	}
 	.cert-arrow:hover {
 		opacity: 1;
-		background: rgba(0, 212, 255, 0.15);
+		background: color-mix(in srgb, var(--accent-cyan) 15%, transparent);
 		color: var(--accent-cyan);
 	}
 	.cert-arrow:active {

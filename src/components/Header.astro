@@ -51,6 +51,12 @@
 		</ul>
 		<ul class="nav-icons">
 			<li>
+				<button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
+					<svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+					<svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+				</button>
+			</li>
+			<li>
 				<a href="/recomendaciones" class="nav-icon-link" aria-label="Recomendaciones" title="Recomendaciones">
 					<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
 				</a>
@@ -113,6 +119,13 @@
 			</li>
 			<li class="mobile-divider" aria-hidden="true"></li>
 			<li>
+				<button class="mobile-theme-toggle" id="mobile-theme-toggle">
+					<svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+					<svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+					<span class="mobile-theme-label"></span>
+				</button>
+			</li>
+			<li>
 				<a href="/recomendaciones" class="mobile-external">
 					<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="var(--accent-magenta)" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
 					Recomendaciones
@@ -136,13 +149,13 @@
 		right: 0;
 		z-index: 100;
 		padding: 1rem 0;
-		background: rgba(10, 10, 15, 0.8);
+		background: var(--header-bg);
 		backdrop-filter: blur(12px);
 		border-bottom: 1px solid var(--glass-border);
 	}
 	@supports not (backdrop-filter: blur(1px)) {
 		.header {
-			background: rgba(10, 10, 15, 0.98);
+			background: var(--header-bg);
 		}
 	}
 	.nav {
@@ -229,15 +242,72 @@
 	}
 	.nav-icon-link:hover {
 		transform: scale(1.15);
-		background: rgba(255, 0, 170, 0.15);
-		box-shadow: 0 0 12px rgba(255, 0, 170, 0.3);
+		background: color-mix(in srgb, var(--accent-magenta) 15%, transparent);
+		box-shadow: 0 0 12px color-mix(in srgb, var(--accent-magenta) 30%, transparent);
 	}
 	.nav-icon-cyan {
 		color: var(--accent-cyan);
 	}
 	.nav-icon-cyan:hover {
-		background: rgba(0, 212, 255, 0.15);
-		box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+		background: color-mix(in srgb, var(--accent-cyan) 15%, transparent);
+		box-shadow: 0 0 12px color-mix(in srgb, var(--accent-cyan) 30%, transparent);
+	}
+	.theme-toggle,
+	.mobile-theme-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		background: transparent;
+		border: 1px solid var(--glass-border);
+		color: var(--text-secondary);
+		cursor: pointer;
+		transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+	}
+	.theme-toggle:hover,
+	.mobile-theme-toggle:hover {
+		transform: scale(1.1);
+		background: rgba(0, 0, 0, 0.05);
+		color: var(--accent-cyan);
+		border-color: var(--accent-cyan);
+	}
+	[data-theme="dark"] .theme-toggle:hover,
+	[data-theme="dark"] .mobile-theme-toggle:hover {
+		background: color-mix(in srgb, var(--accent-cyan) 15%, transparent);
+	}
+	.theme-toggle .icon-sun,
+	.mobile-theme-toggle .icon-sun {
+		display: none;
+	}
+	.theme-toggle .icon-moon,
+	.mobile-theme-toggle .icon-moon {
+		display: block;
+	}
+	[data-theme="dark"] .theme-toggle .icon-sun,
+	[data-theme="dark"] .mobile-theme-toggle .icon-sun {
+		display: block;
+	}
+	[data-theme="dark"] .theme-toggle .icon-moon,
+	[data-theme="dark"] .mobile-theme-toggle .icon-moon {
+		display: none;
+	}
+	.mobile-theme-toggle {
+		width: 100%;
+		justify-content: flex-start;
+		gap: 0.75rem;
+		padding: 0.5rem 0;
+		height: auto;
+		border: none;
+		border-radius: 0;
+		font-size: 1.1rem;
+		font-weight: 500;
+		font-family: var(--font-body);
+	}
+	.mobile-theme-toggle:hover {
+		background: transparent;
+		transform: translateX(4px);
 	}
 	.hamburger {
 		display: none;
@@ -272,7 +342,7 @@
 		top: 100%;
 		left: 0;
 		right: 0;
-		background: rgba(10, 10, 15, 0.95);
+		background: var(--header-bg);
 		backdrop-filter: blur(16px);
 		border-bottom: 1px solid var(--glass-border);
 		padding: 1.5rem;
@@ -357,4 +427,41 @@
 			menu.classList.remove("open")
 		})
 	})
+
+	function updateToggleIcons() {
+		const isDark = document.documentElement.getAttribute("data-theme") === "dark"
+		document.querySelectorAll(".theme-toggle .icon-sun, .mobile-theme-toggle .icon-sun").forEach(el => {
+			el.style.display = isDark ? "block" : "none"
+		})
+		document.querySelectorAll(".theme-toggle .icon-moon, .mobile-theme-toggle .icon-moon").forEach(el => {
+			el.style.display = isDark ? "none" : "block"
+		})
+	}
+
+	function updateMobileThemeLabel() {
+		const label = document.querySelector(".mobile-theme-label")
+		if (!label) return
+		const isLight = document.documentElement.getAttribute("data-theme") !== "dark"
+		label.textContent = isLight ? "Modo oscuro" : "Modo claro"
+	}
+
+	window.updateToggleIcons = updateToggleIcons
+	window.updateMobileThemeLabel = updateMobileThemeLabel
+
+	function handleThemeToggle() {
+		const html = document.documentElement
+		const current = html.getAttribute("data-theme")
+		const next = current === "dark" ? "light" : "dark"
+		html.setAttribute("data-theme", next)
+		localStorage.setItem("theme", next)
+		document.querySelector('meta[name="theme-color"]').content = next === "light" ? "#f9fafb" : "#0a0a0f"
+		updateToggleIcons()
+		updateMobileThemeLabel()
+	}
+
+	document.getElementById("theme-toggle")?.addEventListener("click", handleThemeToggle)
+	document.getElementById("mobile-theme-toggle")?.addEventListener("click", handleThemeToggle)
+
+	updateToggleIcons()
+	updateMobileThemeLabel()
 </script>
