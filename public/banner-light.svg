@@ -26,42 +26,65 @@
   <rect width="1584" height="396" fill="url(#bgGlow)"/>
   <rect width="1584" height="396" fill="url(#bgGlow2)"/>
   
-  <!-- Decorative shapes (left side, floating elements) -->
+  <!-- Decorative shapes (left side) -->
   <!-- Circles -->
-  <circle cx="80" cy="60" r="20" fill="none" stroke="#C9A227" stroke-width="1" opacity="0.3"/>
-  <circle cx="200" cy="320" r="30" fill="none" stroke="#1E3A8A" stroke-width="1" opacity="0.2"/>
-  <circle cx="120" cy="200" r="15" fill="none" stroke="#C9A227" stroke-width="1" opacity="0.18"/>
+  <circle cx="80" cy="60" r="20" fill="none" stroke="#C9A227" stroke-width="2" opacity="0.5"/>
+  <circle cx="200" cy="320" r="30" fill="none" stroke="#1E3A8A" stroke-width="2" opacity="0.45"/>
+  <circle cx="120" cy="200" r="15" fill="none" stroke="#C9A227" stroke-width="2" opacity="0.4"/>
+  <circle cx="50" cy="150" r="12" fill="none" stroke="#1E3A8A" stroke-width="2" opacity="0.4"/>
   
   <!-- Squares (rotated) -->
-  <rect x="300" y="50" width="25" height="25" fill="none" stroke="#1E3A8A" stroke-width="1" opacity="0.2" transform="rotate(45 312.5 62.5)"/>
-  <rect x="60" y="300" width="18" height="18" fill="none" stroke="#C9A227" stroke-width="1" opacity="0.2" transform="rotate(45 69 309)"/>
+  <rect x="300" y="50" width="25" height="25" fill="none" stroke="#1E3A8A" stroke-width="2" opacity="0.45" transform="rotate(45 312.5 62.5)"/>
+  <rect x="60" y="300" width="18" height="18" fill="none" stroke="#C9A227" stroke-width="2" opacity="0.45" transform="rotate(45 69 309)"/>
+  <rect x="220" y="280" width="15" height="15" fill="none" stroke="#C9A227" stroke-width="2" opacity="0.4" transform="rotate(45 227.5 287.5)"/>
   
   <!-- Triangles -->
-  <polygon points="250,150 265,125 280,150" fill="none" stroke="#C9A227" stroke-width="1" opacity="0.25"/>
-  <polygon points="150,350 165,325 180,350" fill="none" stroke="#1E3A8A" stroke-width="1" opacity="0.2"/>
+  <polygon points="250,150 265,125 280,150" fill="none" stroke="#C9A227" stroke-width="2" opacity="0.45"/>
+  <polygon points="150,350 165,325 180,350" fill="none" stroke="#1E3A8A" stroke-width="2" opacity="0.45"/>
+  <polygon points="180,80 195,55 210,80" fill="none" stroke="#1E3A8A" stroke-width="2" opacity="0.4"/>
   
   <!-- Sparkles -->
-  <path d="M350,100 L353,112 L365,115 L353,118 L350,130 L347,118 L335,115 L347,112 Z" fill="#C9A227" opacity="0.35"/>
-  <path d="M100,140 L102,148 L110,150 L102,152 L100,160 L98,152 L90,150 L98,148 Z" fill="#1E3A8A" opacity="0.25"/>
+  <path d="M350,100 L353,112 L365,115 L353,118 L350,130 L347,118 L335,115 L347,112 Z" fill="#C9A227" opacity="0.5"/>
+  <path d="M100,140 L102,148 L110,150 L102,152 L100,160 L98,152 L90,150 L98,148 Z" fill="#1E3A8A" opacity="0.45"/>
+  <path d="M280,200 L283,212 L295,215 L283,218 L280,230 L277,218 L265,215 L277,212 Z" fill="#C9A227" opacity="0.45"/>
+  
+  <!-- Decorative shapes (right side) -->
+  <!-- Circles -->
+  <circle cx="1420" cy="70" r="22" fill="none" stroke="#C9A227" stroke-width="2" opacity="0.5"/>
+  <circle cx="1500" cy="310" r="18" fill="none" stroke="#1E3A8A" stroke-width="2" opacity="0.45"/>
+  <circle cx="1460" cy="180" r="12" fill="none" stroke="#C9A227" stroke-width="2" opacity="0.4"/>
+  
+  <!-- Squares (rotated) -->
+  <rect x="1450" y="250" width="20" height="20" fill="none" stroke="#1E3A8A" stroke-width="2" opacity="0.45" transform="rotate(45 1460 260)"/>
+  <rect x="1520" y="100" width="16" height="16" fill="none" stroke="#C9A227" stroke-width="2" opacity="0.4" transform="rotate(45 1528 108)"/>
+  
+  <!-- Triangles -->
+  <polygon points="1480,130 1495,105 1510,130" fill="none" stroke="#1E3A8A" stroke-width="2" opacity="0.45"/>
+  <polygon points="1400,320 1415,295 1430,320" fill="none" stroke="#C9A227" stroke-width="2" opacity="0.4"/>
+  
+  <!-- Sparkles -->
+  <path d="M1450,60 L1453,72 L1465,75 L1453,78 L1450,90 L1447,78 L1435,75 L1447,72 Z" fill="#1E3A8A" opacity="0.5"/>
+  <path d="M1500,220 L1502,228 L1510,230 L1502,232 L1500,240 L1498,232 L1490,230 L1498,228 Z" fill="#C9A227" opacity="0.45"/>
+  <path d="M1420,200 L1423,212 L1435,215 L1423,218 L1420,230 L1417,218 L1405,215 L1417,212 Z" fill="#1E3A8A" opacity="0.4"/>
   
   <!-- Accent line at bottom -->
   <rect x="0" y="392" width="1584" height="4" fill="url(#accentGradient)" opacity="0.85"/>
   
-  <!-- Text content (right-aligned, ~600px from right) -->
+  <!-- Text content (right-aligned, +15% from previous) -->
   <g>
     <!-- Main text -->
-    <text x="1050" y="170" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="38" font-weight="700" fill="#1c1917" letter-spacing="-0.5" text-anchor="end">Ideando soluciones,</text>
-    <text x="1050" y="220" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="38" font-weight="700" fill="#1c1917" letter-spacing="-0.5" text-anchor="end">programando realidades.</text>
+    <text x="1328" y="160" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="57" font-weight="700" fill="#1c1917" letter-spacing="-0.75" text-anchor="end">Ideando soluciones,</text>
+    <text x="1328" y="240" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="57" font-weight="700" fill="#1c1917" letter-spacing="-0.75" text-anchor="end">programando realidades.</text>
     
     <!-- Divider line -->
-    <rect x="830" y="245" width="100" height="2" fill="url(#accentGradient)" opacity="0.5"/>
+    <rect x="1086" y="260" width="242" height="3" fill="url(#accentGradient)" opacity="0.5"/>
     
     <!-- URL -->
-    <text x="1050" y="280" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" font-weight="400" fill="#57534e" text-anchor="end" letter-spacing="0.5">https://kevin-villatoro-dev.github.io/</text>
+    <text x="1328" y="295" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="24" font-weight="400" fill="#57534e" text-anchor="end" letter-spacing="0.75">https://kevin-villatoro-dev.github.io/</text>
   </g>
   
   <!-- KAVA brand mark (subtle, top right) -->
-  <g opacity="0.5">
+  <g opacity="0.6">
     <text x="1530" y="40" font-family="monospace" font-size="16" font-weight="bold" fill="url(#accentGradient)" text-anchor="end">KAVA</text>
   </g>
 </svg>
