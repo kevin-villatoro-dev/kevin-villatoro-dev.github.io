@@ -455,6 +455,12 @@
 		html.setAttribute("data-theme", next)
 		localStorage.setItem("theme", next)
 		document.querySelector('meta[name="theme-color"]').content = next === "light" ? "#f9fafb" : "#0a0a0f"
+		var favicon = document.querySelector('link[rel="icon"]')
+		if (favicon) favicon.href = next === "light" ? "/favicon-light.svg" : "/favicon.svg"
+		var ogImage = next === "light" ? "og-image-light.jpg" : "og-image-dark.jpg"
+		document.querySelector('meta[property="og:image"]').content = "https://kevin-villatoro-dev.github.io/" + ogImage
+		var twitterImage = next === "light" ? "banner-light.jpg" : "banner-dark.jpg"
+		document.querySelector('meta[name="twitter:image"]').content = "https://kevin-villatoro-dev.github.io/" + twitterImage
 		updateToggleIcons()
 		updateMobileThemeLabel()
 	}
