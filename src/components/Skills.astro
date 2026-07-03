@@ -418,6 +418,18 @@ const tabs = [
 	}
 
 	document.addEventListener("DOMContentLoaded", initSkillsTabs)
+
+	function updateSkillIcons() {
+		const theme = document.documentElement.getAttribute("data-theme") || "light"
+		const skillTheme = theme === "dark" ? "dark" : "light"
+		document.querySelectorAll('img[src*="skillicons.dev"]').forEach((img) => {
+			const el = img as HTMLImageElement
+			el.src = el.src.replace(/theme=(dark|light)/, "theme=" + skillTheme)
+		})
+	}
+
+	document.addEventListener("DOMContentLoaded", updateSkillIcons)
+	window.addEventListener("theme-changed", updateSkillIcons)
 </script>
 
 <style>
@@ -625,19 +637,19 @@ const tabs = [
 	}
 
 	[data-color="cyan"] {
-		background: rgba(0, 212, 255, 0.1);
+		background: color-mix(in srgb, var(--accent-cyan) 10%, transparent);
 		color: var(--accent-cyan);
 	}
 	[data-color="magenta"] {
-		background: rgba(255, 0, 170, 0.1);
+		background: color-mix(in srgb, var(--accent-magenta) 10%, transparent);
 		color: var(--accent-magenta);
 	}
 	[data-color="green"] {
-		background: rgba(52, 211, 153, 0.1);
+		background: color-mix(in srgb, var(--accent-green) 10%, transparent);
 		color: var(--accent-green);
 	}
 	[data-color="purple"] {
-		background: rgba(168, 85, 247, 0.1);
+		background: color-mix(in srgb, var(--accent-purple) 10%, transparent);
 		color: var(--accent-purple);
 	}
 

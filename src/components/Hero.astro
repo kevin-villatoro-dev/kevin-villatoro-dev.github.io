@@ -3,7 +3,7 @@
 ---
 
 <script>
-	window.addEventListener("preloader:done", () => {
+	function runHeroAnimations() {
 		const glitchEls = document.querySelectorAll(".glitch-hero")
 		glitchEls.forEach((el, i) => {
 			setTimeout(() => {
@@ -61,7 +61,10 @@
 		const COUNT = 50
 		const CONNECTION_DIST = 120
 		const MOUSE_RADIUS = 100
-		const colors = ["rgba(0,212,255,", "rgba(255,0,170,"]
+		const isLight = document.documentElement.getAttribute("data-theme") !== "dark"
+		const colors = isLight
+			? ["rgba(201,162,39,", "rgba(30,58,138,"]
+			: ["rgba(0,212,255,", "rgba(255,0,170,"]
 
 		function resize() {
 			const rect = hero!.getBoundingClientRect()
@@ -164,7 +167,9 @@
 			mouse.x = -9999
 			mouse.y = -9999
 		})
-	})
+	}
+
+	window.addEventListener("preloader:done", runHeroAnimations)
 </script>
 
 <section class="hero section" id="hero">
@@ -579,8 +584,8 @@
 			margin: 0.5rem auto 0;
 			background: repeating-linear-gradient(
 				90deg,
-				rgba(0, 212, 255, 0.7) 0px,
-				rgba(0, 212, 255, 0.7) 12px,
+				color-mix(in srgb, var(--accent-cyan) 70%, transparent) 0px,
+				color-mix(in srgb, var(--accent-cyan) 70%, transparent) 12px,
 				transparent 12px,
 				transparent 18px
 			);
@@ -730,7 +735,7 @@
 
 		.section-link:hover {
 			color: var(--accent-cyan);
-			background: rgba(0, 212, 255, 0.06);
+			background: color-mix(in srgb, var(--accent-cyan) 6%, transparent);
 		}
 
 		.section-link:hover::after {

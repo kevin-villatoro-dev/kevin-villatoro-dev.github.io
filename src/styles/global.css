@@ -21,6 +21,7 @@
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   --bg-preloader: #050508;
   --bg-icon-phosphor: #1a1a2e;
+  --header-bg: rgba(10, 10, 15, 0.8);
   --font-heading: "Space Grotesk", system-ui, sans-serif;
   --font-body: system-ui, -apple-system, "Segoe UI", sans-serif;
   --section-padding: clamp(4rem, 8vw, 8rem);
@@ -33,6 +34,53 @@
   --radius-md: 12px;
   --radius-lg: 20px;
   --radius-full: 9999px;
+}
+
+[data-theme="light"] {
+  --bg-primary: #f9fafb;
+  --bg-secondary: #f3f4f6;
+  --bg-card: rgba(0, 0, 0, 0.02);
+  --bg-card-hover: rgba(0, 0, 0, 0.05);
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --text-muted: #a8a29e;
+  --accent-cyan: #C9A227;
+  --accent-magenta: #1E3A8A;
+  --accent-green: #059669;
+  --accent-purple: #7c3aed;
+  --accent-red: #dc2626;
+  --color-email: #ea4335;
+  --color-linkedin: #0a66c2;
+  --color-github: #24292e;
+  --color-whatsapp: #25d366;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --bg-preloader: #f9fafb;
+  --bg-icon-phosphor: #d6d3d1;
+  --header-bg: rgba(249, 250, 251, 0.8);
+}
+
+[data-theme="light"] body {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+}
+
+[data-theme="light"] .glass-card:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] ::selection {
+  background: rgba(201, 162, 39, 0.2);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  border-color: var(--bg-primary);
 }
 
 *, *::before, *::after {
@@ -55,13 +103,27 @@ body {
   font-family: var(--font-body);
   background-color: var(--bg-primary);
   background-image:
-    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(color-mix(in srgb, var(--accent-cyan) 3%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent-cyan) 3%, transparent) 1px, transparent 1px);
   background-size: 60px 60px;
   color: var(--text-primary);
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+html.modal-open,
+html.modal-open body {
+  overflow: hidden !important;
+  scrollbar-width: none;
+}
+
+html.modal-open::-webkit-scrollbar {
+  display: none;
+}
+
+html.modal-open body::-webkit-scrollbar {
+  display: none;
 }
 
 .shapes {
@@ -180,6 +242,12 @@ a:hover { color: var(--accent-magenta); }
   .glass-card:hover {
     background: rgba(20, 20, 35, 0.95);
   }
+  [data-theme="light"] .glass-card {
+    background: rgba(255, 255, 255, 0.92);
+  }
+  [data-theme="light"] .glass-card:hover {
+    background: rgba(243, 244, 246, 0.95);
+  }
 }
 
 .btn {
@@ -204,7 +272,7 @@ a:hover { color: var(--accent-magenta); }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--accent-cyan) 30%, transparent);
   color: var(--bg-primary);
 }
 
@@ -241,7 +309,7 @@ a:hover { color: var(--accent-magenta); }
 
 .btn-magenta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255, 0, 170, 0.3);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--accent-magenta) 30%, transparent);
   color: var(--bg-primary);
 }
 
@@ -252,7 +320,7 @@ a:hover { color: var(--accent-magenta); }
 
 .btn-cyan:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--accent-cyan) 30%, transparent);
   color: var(--bg-primary);
 }
 
@@ -340,7 +408,7 @@ a:hover { color: var(--accent-magenta); }
 
 ::-webkit-scrollbar-thumb:hover { 
   background: linear-gradient(180deg, var(--accent-magenta), var(--accent-cyan));
-  box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--accent-cyan) 50%, transparent);
 }
 
 * {
@@ -349,7 +417,7 @@ a:hover { color: var(--accent-magenta); }
 }
 
 ::selection {
-  background: rgba(0, 212, 255, 0.3);
+  background: color-mix(in srgb, var(--accent-cyan) 30%, transparent);
   color: var(--text-primary);
 }
 
