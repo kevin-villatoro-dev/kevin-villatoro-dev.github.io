@@ -9,10 +9,10 @@ const categories = [
 		skills: [
 			{ name: "PHP", source: "skillicons", slug: "php", dominant: true },
 			{ name: "JavaScript", source: "skillicons", slug: "js", dominant: true },
-			{ name: "TypeScript", source: "skillicons", slug: "ts", dominant: true },
+			{ name: "TypeScript", source: "skillicons", slug: "ts" },
 			{ name: "Python", source: "skillicons", slug: "python" },
-			{ name: "Java", source: "skillicons", slug: "java" },
-			{ name: "C#", source: "skillicons", slug: "cs" },
+			// { name: "Java", source: "skillicons", slug: "java" },
+			// { name: "C#", source: "skillicons", slug: "cs" },
 		],
 	},
 	{
@@ -22,11 +22,11 @@ const categories = [
 		wide: false,
 		icon: "ph-selection-background",
 		skills: [
+			{ name: "Composer", source: "simple", slug: "composer", color: "6a4128", dominant: true },
 			{ name: "Laravel", source: "skillicons", slug: "laravel", dominant: true },
 			{ name: "Node.js", source: "skillicons", slug: "nodejs" },
 			{ name: "Next.js", source: "skillicons", slug: "nextjs" },
-			{ name: "FastAPI", source: "skillicons", slug: "fastapi" },
-			{ name: "Composer", source: "simple", slug: "composer", color: "6a4128", dominant: true },
+			// { name: "FastAPI", source: "skillicons", slug: "fastapi" },
 		],
 	},
 	{
@@ -40,8 +40,8 @@ const categories = [
 			{ name: "Astro", source: "skillicons", slug: "astro", dominant: true },
 			{ name: "Tailwind CSS", source: "skillicons", slug: "tailwind", dominant: true },
 			{ name: "Bootstrap", source: "skillicons", slug: "bootstrap", dominant: true },
-			{ name: "Vite", source: "skillicons", slug: "vite" },
-			{ name: "jQuery", source: "skillicons", slug: "jquery", dominant: true },
+			// { name: "Vite", source: "skillicons", slug: "vite" },
+			// { name: "jQuery", source: "skillicons", slug: "jquery", dominant: true },
 		],
 	},
 	{
@@ -114,8 +114,9 @@ const categories = [
 		icon: "ph-brain",
 		skills: [
 			{ name: "LLMs", source: "phosphor", slug: "ph-brain", color: "242938", dominant: true },
-			{ name: "Prompt Engineering", source: "phosphor", slug: "ph-terminal", color: "242938" },
 			{ name: "AI Agents", source: "phosphor", slug: "ph-sparkle", color: "242938", dominant: true },
+			{ name: "Spec-Driven Development", source: "phosphor", slug: "ph-recycle", color: "242938", dominant: true },
+			{ name: "Prompt Engineering", source: "phosphor", slug: "ph-terminal", color: "242938" },
 			{ name: "Harness Engineering", source: "phosphor", slug: "ph-bridge", color: "242938" },
 		],
 	},
@@ -128,7 +129,6 @@ const categories = [
 		skills: [
 			{ name: "Scrum", source: "phosphor", slug: "ph-strategy", color: "242938", dominant: true },
 			{ name: "Kanban", source: "phosphor", slug: "ph-kanban", color: "242938", dominant: true },
-			{ name: "Spec-Driven Development", source: "phosphor", slug: "ph-recycle", color: "242938", dominant: true },
 			{ name: "Jira", source: "simple", slug: "jira", color: "0052CC" },
 			{ name: "Confluence", source: "simple", slug: "confluence", color: "172B4D" },
 			{ name: "Asana", source: "simple", slug: "asana", color: "172B4D" },
