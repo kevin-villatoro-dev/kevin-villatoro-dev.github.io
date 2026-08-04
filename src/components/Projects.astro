@@ -29,26 +29,26 @@ const projects = [
 		featured: true,
 		confidential: true,
 	},
-	{
-		title: "Plataforma de Comercio Electrónico (E-commerce)",
-		description:
-			"App de ecommerce en monorepo con Turborepo: storefront en React 19 + Vite + Tailwind CSS, backend en Fastify + Drizzle + PostgreSQL, y panel admin en Laravel 11. Incluye catálogo de productos, carrito persistido en localStorage, checkout con JWT, y gestión de órdenes.",
-		tags: ["Laravel", "React", "PostgreSQL", "Vite", "Nginx", "Tailwind CSS", "Docker", "pnpm", "Turborepo"],
-		image: "/images/projects/2/ecommerce-demo.svg",
-		github: "https://github.com/kevin-villatoro-dev/carro-de-compras",
-	},
-	{
+    {
 		title: "Sistema de Gestión Financiera",
 		description:
-			"Panel de control financiero. Control de ingresos, egresos, balance general, recordatorios y notificaciones por correo.",
+			"Aplicación web para la administración de finanzas personales o empresariales, con control de ingresos y egresos, cálculo de balances, panel de indicadores financieros, recordatorios de pagos y notificaciones automáticas por correo electrónico.Panel de control financiero. Control de ingresos, egresos, balance general, recordatorios y notificaciones por correo.",
 		tags: ["PHP", "JavaScript", "MySQL", "Composer", "Git", "Bootstrap"],
 		image: "/images/projects/3/finanzas-demo.svg",
 		confidential: true,
 	},
 	{
+		title: "Plataforma de Comercio Electrónico (E-commerce)",
+		description:
+			"Aplicación web para la gestión de catálogo de productos, carrito de compras, proceso de checkout, órdenes, inventario, usuarios y pagos, con panel administrativo para la gestión comercial.",
+		tags: ["Laravel", "React", "PostgreSQL", "Vite", "Nginx", "Tailwind CSS", "Docker", "pnpm", "Turborepo"],
+		image: "/images/projects/2/ecommerce-demo.svg",
+		github: "https://github.com/kevin-villatoro-dev/carro-de-compras",
+	},
+	{
 		title: "API Gateway y Capa de Integración de Servicios",
 		description:
-			"Gateway centralizado para orquestar múltiples microservicios con dashboard para visualizar el tráfico de las peticiones.",
+			"Servicio intermediario para centralizar el acceso a múltiples APIs, gestionar autenticación, autorización, enrutamiento de solicitudes, rate limiting, monitoreo y consolidación de respuestas entre servicios internos y externos.",
 		tags: ["React", "Fastify", "Typescript", "JWT"],
 		image: "/images/projects/4/api-gateway-demo.svg",
 		github: "https://github.com/kevin-villatoro-dev/api-gateway",
@@ -56,16 +56,21 @@ const projects = [
 	{
 		title: "Sistema de Gestión de Postulaciones (Job Tracker)",
 		description:
-			"Gateway centralizado para orquestar múltiples microservicios con dashboard para visualizar el tráfico de las peticiones.",
+			"Aplicación web para administrar postulaciones laborales, seguimiento por etapas del proceso de selección, registro de empresas, entrevistas, estados y motivos de cierre.",
 		tags: ["Workflow Management", "Typescript", "Shadcn", "Tailwind"],
 		image: "/images/projects/5/placeholder.png",
 	},
 	{
 		title: "Plataforma de Aprendizaje Continuo (LMS)",
 		description:
-			"Gateway centralizado para orquestar múltiples microservicios con dashboard para visualizar el tráfico de las peticiones.",
+			"Aplicación web para la gestión y consumo de cursos, módulos de aprendizaje, seguimiento de progreso, evaluaciones y administración de contenido educativo.",
 		tags: ["React", "Fastify", "Typescript", "JWT"],
-		image: "/images/projects/6/placeholder.png",
+		images: [
+			"/images/projects/6/inicio.png",
+			"/images/projects/6/buscador.png",
+			"/images/projects/6/detalle.png",
+			"/images/projects/6/filtros.png",
+		],
 	},
 ]
 
