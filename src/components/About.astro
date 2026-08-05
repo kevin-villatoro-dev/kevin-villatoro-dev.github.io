@@ -643,6 +643,11 @@
 			color 0.3s ease;
 	}
 
+	.skill-card:hover,
+	.edu-card:hover {
+		backdrop-filter: none;
+	}
+
 	.skill-card:hover .skill-icon {
 		background: color-mix(in srgb, var(--accent-cyan) 20%, transparent);
 		color: var(--accent-cyan);
@@ -733,7 +738,7 @@
 	.edu-progress-bar {
 		flex: 1;
 		height: 4px;
-		background: rgba(255, 255, 255, 0.06);
+		background: var(--glass-border);
 		border-radius: 2px;
 		overflow: hidden;
 	}
