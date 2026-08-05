@@ -10,15 +10,22 @@ const projects = [
 			"PHP",
 			"Javascript",
 			"Composer",
+			"Foundation",
 			"Bootstrap",
+			"Metronic",
 			"MySQL",
 			"Git",
+			"Gitlab",
+			"jQuery",
+			"Axios",
 			"Payment Gateways",
 			"Digital Wallets",
 			"DTE/FEL",
 			"SMS",
 			"Dashboards",
 			"Notificaciones",
+			"Mailer",
+			"Correos masivos",
 		],
 		images: [
 			"/images/projects/1/hosted-checkout-v1-adm.svg",
@@ -29,48 +36,92 @@ const projects = [
 		featured: true,
 		confidential: true,
 	},
-    {
+	{
 		title: "Sistema de Gestión Financiera",
 		description:
-			"Aplicación web para la administración de finanzas personales o empresariales, con control de ingresos y egresos, cálculo de balances, panel de indicadores financieros, recordatorios de pagos y notificaciones automáticas por correo electrónico.Panel de control financiero. Control de ingresos, egresos, balance general, recordatorios y notificaciones por correo.",
-		tags: ["PHP", "JavaScript", "MySQL", "Composer", "Git", "Bootstrap"],
-		image: "/images/projects/3/finanzas-demo.svg",
+			"Panel de control financiero para la administración de finanzas personales o empresariales, con control de ingresos y egresos, cálculo de balances, panel de indicadores financieros, recordatorios de pagos y notificaciones automáticas por correo electrónico.",
+		tags: [
+			"PHP",
+			"JavaScript",
+			"MySQL",
+			"Git",
+			"Gitlab",
+			"Composer",
+			"Bootstrap",
+			"Metronic",
+			"jQuery",
+			"Dashboards",
+			"Notificaciones",
+			"Mailer",
+		],
+		image: "/images/projects/2/finanzas-demo.svg",
 		confidential: true,
+	},
+	{
+		title: "Sistema de Gestión de Postulaciones (JobTrack)",
+		description:
+			"Aplicación web para administrar postulaciones laborales, seguimiento por etapas del proceso de selección, registro de empresas, entrevistas, estados y motivos de cierre.",
+		tags: [
+			"React",
+			"Typescript",
+			"SQLite",
+			"Git",
+			"Github",
+			"Vite",
+			"Tailwind CSS",
+			"shadcn/ui",
+			"Zod",
+			"Playwright",
+			"Testing E2E",
+			"pnpm",
+		],
+		images: [
+			"/images/projects/3/dashboard.png",
+			"/images/projects/3/detalle.png",
+			"/images/projects/3/seguimientos.png",
+			"/images/projects/3/detalle.png",
+		],
+	},
+	{
+		title: "Plataforma de Aprendizaje Continuo (LMS)",
+		description:
+			"Aplicación web para la gestión y consumo de cursos, módulos de aprendizaje, seguimiento de progreso, evaluaciones y administración de contenido educativo.",
+		tags: [
+			"Next.js",
+			"React",
+			"Typescript",
+			"Git",
+			"Github",
+			"Tailwind CSS",
+			"Lucide React",
+			"Shiki",
+			"Mermaid",
+			"Jest",
+			"Playwright",
+			"ESLint",
+		],
+		images: [
+			"/images/projects/4/inicio.png",
+			"/images/projects/4/buscador.png",
+			"/images/projects/4/detalle.png",
+			"/images/projects/4/filtros.png",
+		],
 	},
 	{
 		title: "Plataforma de Comercio Electrónico (E-commerce)",
 		description:
 			"Aplicación web para la gestión de catálogo de productos, carrito de compras, proceso de checkout, órdenes, inventario, usuarios y pagos, con panel administrativo para la gestión comercial.",
-		tags: ["Laravel", "React", "PostgreSQL", "Vite", "Nginx", "Tailwind CSS", "Docker", "pnpm", "Turborepo"],
-		image: "/images/projects/2/ecommerce-demo.svg",
+		tags: ["Laravel", "React", "PostgreSQL", "Git", "Github", "Vite", "Nginx", "Tailwind CSS", "Docker", "pnpm", "Turborepo"],
+		image: "/images/projects/5/ecommerce-demo.svg",
 		github: "https://github.com/kevin-villatoro-dev/carro-de-compras",
 	},
 	{
 		title: "API Gateway y Capa de Integración de Servicios",
 		description:
 			"Servicio intermediario para centralizar el acceso a múltiples APIs, gestionar autenticación, autorización, enrutamiento de solicitudes, rate limiting, monitoreo y consolidación de respuestas entre servicios internos y externos.",
-		tags: ["React", "Fastify", "Typescript", "JWT"],
-		image: "/images/projects/4/api-gateway-demo.svg",
+		tags: ["React", "Typescript", "Node.js", "Git", "Github", "Fastify", "Vite", "JWT", "Tailwind CSS", "WebSocket", "Monorepo"],
+		image: "/images/projects/6/dashboard.png",
 		github: "https://github.com/kevin-villatoro-dev/api-gateway",
-	},
-	{
-		title: "Sistema de Gestión de Postulaciones (Job Tracker)",
-		description:
-			"Aplicación web para administrar postulaciones laborales, seguimiento por etapas del proceso de selección, registro de empresas, entrevistas, estados y motivos de cierre.",
-		tags: ["Workflow Management", "Typescript", "Shadcn", "Tailwind"],
-		image: "/images/projects/5/placeholder.png",
-	},
-	{
-		title: "Plataforma de Aprendizaje Continuo (LMS)",
-		description:
-			"Aplicación web para la gestión y consumo de cursos, módulos de aprendizaje, seguimiento de progreso, evaluaciones y administración de contenido educativo.",
-		tags: ["React", "Fastify", "Typescript", "JWT"],
-		images: [
-			"/images/projects/6/inicio.png",
-			"/images/projects/6/buscador.png",
-			"/images/projects/6/detalle.png",
-			"/images/projects/6/filtros.png",
-		],
 	},
 ]
 
@@ -144,8 +195,8 @@ const otherProjects = projects.filter((p) => !p.featured)
 							</div>
 							<h3 class="cta-title">Esto es solo la superficie</h3>
 							<p class="cta-description">
-								Estos son algunos de mis trabajos. Cada proyecto fue un desafío que superé
-								para cumplir un objetivo. Los retos son mi motor.
+								Estos son algunos de mis trabajos. Cada proyecto fue un desafío que superé para cumplir un objetivo. Los
+								retos son mi motor.
 							</p>
 							<span class="cta-link">¿Y si el próximo es tuyo?</span>
 						</div>
@@ -233,7 +284,11 @@ const otherProjects = projects.filter((p) => !p.featured)
 			radial-gradient(circle, rgba(0, 212, 255, 0.2) 0.5px, transparent 0.5px),
 			linear-gradient(0deg, rgba(0, 212, 255, 0.06) 1px, transparent 1px),
 			linear-gradient(90deg, rgba(0, 212, 255, 0.06) 1px, transparent 1px);
-		background-size: 40px 40px, 20px 20px, 40px 40px, 40px 40px;
+		background-size:
+			40px 40px,
+			20px 20px,
+			40px 40px,
+			40px 40px;
 		opacity: 0.3;
 		pointer-events: none;
 	}
@@ -263,7 +318,8 @@ const otherProjects = projects.filter((p) => !p.featured)
 	}
 
 	@keyframes ctaPulse {
-		0%, 100% {
+		0%,
+		100% {
 			transform: scale(1);
 			opacity: 0.7;
 		}
@@ -301,7 +357,9 @@ const otherProjects = projects.filter((p) => !p.featured)
 	}
 
 	@keyframes iconGlitchCyan {
-		0%, 82%, 100% {
+		0%,
+		82%,
+		100% {
 			opacity: 0;
 			transform: translate(0, 0);
 		}
@@ -320,7 +378,9 @@ const otherProjects = projects.filter((p) => !p.featured)
 	}
 
 	@keyframes iconGlitchMagenta {
-		0%, 85%, 100% {
+		0%,
+		85%,
+		100% {
 			opacity: 0;
 			transform: translate(0, 0);
 		}
@@ -372,7 +432,8 @@ const otherProjects = projects.filter((p) => !p.featured)
 	}
 
 	[data-theme="light"] .cta-card::before {
-		background: linear-gradient(135deg,
+		background: linear-gradient(
+			135deg,
 			color-mix(in srgb, var(--accent-cyan) 60%, #888),
 			color-mix(in srgb, var(--accent-magenta) 60%, #888)
 		);
@@ -385,7 +446,11 @@ const otherProjects = projects.filter((p) => !p.featured)
 			radial-gradient(circle, rgba(0, 140, 180, 0.15) 0.5px, transparent 0.5px),
 			linear-gradient(0deg, rgba(0, 140, 180, 0.04) 1px, transparent 1px),
 			linear-gradient(90deg, rgba(0, 140, 180, 0.04) 1px, transparent 1px);
-		background-size: 40px 40px, 20px 20px, 40px 40px, 40px 40px;
+		background-size:
+			40px 40px,
+			20px 20px,
+			40px 40px,
+			40px 40px;
 	}
 
 	[data-theme="light"] .cta-icon {
