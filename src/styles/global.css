@@ -39,8 +39,8 @@
 [data-theme="light"] {
   --bg-primary: #f9fafb;
   --bg-secondary: #f3f4f6;
-  --bg-card: rgba(0, 0, 0, 0.02);
-  --bg-card-hover: rgba(0, 0, 0, 0.05);
+  --bg-card: rgba(255, 255, 255, 0.3);
+  --bg-card-hover: rgba(255, 255, 255, 0.45);
   --text-primary: #1c1917;
   --text-secondary: #57534e;
   --text-muted: #a8a29e;
@@ -53,7 +53,7 @@
   --color-linkedin: #0a66c2;
   --color-github: #24292e;
   --color-whatsapp: #25d366;
-  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-bg: rgba(255, 255, 255, 0.4);
   --glass-border: rgba(0, 0, 0, 0.08);
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   --bg-preloader: #f9fafb;

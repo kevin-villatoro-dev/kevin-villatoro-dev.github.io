@@ -3,54 +3,124 @@ import ProjectCard from "./ProjectCard.astro"
 
 const projects = [
 	{
-		title: "Ecosistema Fintech MultiTenant",
+		title: "Ecosistema FinTech Multi-Tenant",
 		description:
 			"Software que facilita la venta en línea sin necesidad de contar con un sitio web. La comodidad de pagar a distancia o a través de tus redes sociales con sus tarjetas Visa, Mastercard o utilizando sus billeteras digitales. Crea, comparte y recibe tus pagos.",
 		tags: [
 			"PHP",
 			"Javascript",
 			"Composer",
+			"Foundation",
 			"Bootstrap",
+			"Metronic",
 			"MySQL",
 			"Git",
+			"Gitlab",
+			"jQuery",
+			"Axios",
 			"Payment Gateways",
 			"Digital Wallets",
 			"DTE/FEL",
 			"SMS",
 			"Dashboards",
 			"Notificaciones",
+			"Mailer",
+			"Correos masivos",
 		],
 		images: [
-			"/images/projects/hosted-checkout-v1-adm.svg",
-			"/images/projects/hosted-checkout-v1-checkout.svg",
-			"/images/projects/hosted-checkout-v2-checkout.svg",
-			"/images/projects/hosted-checkout-v1-checkout.svg",
+			"/images/projects/1/hosted-checkout-v1-adm.svg",
+			"/images/projects/1/hosted-checkout-v1-checkout.svg",
+			"/images/projects/1/hosted-checkout-v2-checkout.svg",
+			"/images/projects/1/hosted-checkout-v1-checkout.svg",
 		],
 		featured: true,
 		confidential: true,
 	},
 	{
-		title: "Ecommerce / Shopping Cart",
+		title: "Sistema de Gestión Financiera",
 		description:
-			"App de ecommerce en monorepo con Turborepo: storefront en React 19 + Vite + Tailwind CSS, backend en Fastify + Drizzle + PostgreSQL, y panel admin en Laravel 11. Incluye catálogo de productos, carrito persistido en localStorage, checkout con JWT, y gestión de órdenes.",
-		tags: ["Laravel", "React", "PostgreSQL", "Vite", "Nginx", "Tailwind CSS", "Docker", "pnpm", "Turborepo"],
-		image: "/images/projects/ecommerce-demo.svg",
-		github: "https://github.com/kevin-villatoro-dev/carro-de-compras",
-	},
-	{
-		title: "Sistema de Finanzas",
-		description:
-			"Panel de control financiero. Control de ingresos, egresos, balance general, recordatorios y notificaciones por correo.",
-		tags: ["PHP", "JavaScript", "MySQL", "Composer", "Git", "Bootstrap"],
-		image: "/images/projects/finanzas-demo.svg",
+			"Panel de control financiero para la administración de finanzas personales o empresariales, con control de ingresos y egresos, cálculo de balances, panel de indicadores financieros, recordatorios de pagos y notificaciones automáticas por correo electrónico.",
+		tags: [
+			"PHP",
+			"JavaScript",
+			"MySQL",
+			"Git",
+			"Gitlab",
+			"Composer",
+			"Bootstrap",
+			"Metronic",
+			"jQuery",
+			"Dashboards",
+			"Notificaciones",
+			"Mailer",
+		],
+		image: "/images/projects/2/finanzas-demo.svg",
 		confidential: true,
 	},
 	{
-		title: "API Gateway",
+		title: "Sistema de Gestión de Postulaciones (JobTrack)",
 		description:
-			"Gateway centralizado para orquestar múltiples microservicios con dashboard para visualizar el tráfico de las peticiones.",
-		tags: ["React", "Fastify", "Typescript", "JWT"],
-		image: "/images/projects/api-gateway-demo.svg",
+			"Aplicación web para administrar postulaciones laborales, seguimiento por etapas del proceso de selección, registro de empresas, entrevistas, estados y motivos de cierre.",
+		tags: [
+			"React",
+			"Typescript",
+			"SQLite",
+			"Git",
+			"Github",
+			"Vite",
+			"Tailwind CSS",
+			"shadcn/ui",
+			"Zod",
+			"Playwright",
+			"Testing E2E",
+			"pnpm",
+		],
+		images: [
+			"/images/projects/3/dashboard.png",
+			"/images/projects/3/detalle.png",
+			"/images/projects/3/seguimientos.png",
+			"/images/projects/3/detalle.png",
+		],
+	},
+	{
+		title: "Plataforma de Aprendizaje Continuo (LMS)",
+		description:
+			"Aplicación web para la gestión y consumo de cursos, módulos de aprendizaje, seguimiento de progreso, evaluaciones y administración de contenido educativo.",
+		tags: [
+			"Next.js",
+			"React",
+			"Typescript",
+			"Git",
+			"Github",
+			"Tailwind CSS",
+			"Lucide React",
+			"Shiki",
+			"Mermaid",
+			"Jest",
+			"Playwright",
+			"ESLint",
+		],
+		images: [
+			"/images/projects/4/inicio.png",
+			"/images/projects/4/buscador.png",
+			"/images/projects/4/detalle.png",
+			"/images/projects/4/filtros.png",
+		],
+	},
+	{
+		title: "Plataforma de Comercio Electrónico (E-commerce)",
+		description:
+			"Aplicación web para la gestión de catálogo de productos, carrito de compras, proceso de checkout, órdenes, inventario, usuarios y pagos, con panel administrativo para la gestión comercial.",
+		tags: ["Laravel", "React", "PostgreSQL", "Git", "Github", "Vite", "Nginx", "Tailwind CSS", "Docker", "pnpm", "Turborepo"],
+		image: "/images/projects/5/ecommerce-demo.svg",
+		github: "https://github.com/kevin-villatoro-dev/carro-de-compras",
+	},
+	{
+		title: "API Gateway y Capa de Integración de Servicios",
+		description:
+			"Servicio intermediario para centralizar el acceso a múltiples APIs, gestionar autenticación, autorización, enrutamiento de solicitudes, rate limiting, monitoreo y consolidación de respuestas entre servicios internos y externos.",
+		tags: ["React", "Typescript", "Node.js", "Git", "Github", "Fastify", "Vite", "JWT", "Tailwind CSS", "WebSocket", "Monorepo"],
+		image: "/images/projects/6/dashboard.png",
 		github: "https://github.com/kevin-villatoro-dev/api-gateway",
 	},
 ]
@@ -76,6 +146,61 @@ const otherProjects = projects.filter((p) => !p.featured)
 					{otherProjects.map((project) => (
 						<ProjectCard {...project} layout="compact" />
 					))}
+
+					<a href="#contacto" class="cta-card compact">
+						<div class="cta-bg">
+							<div class="cta-icon">
+								<svg
+									class="icon-main"
+									xmlns="http://www.w3.org/2000/svg"
+									width="40"
+									height="40"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+								</svg>
+								<svg
+									class="icon-cyan"
+									xmlns="http://www.w3.org/2000/svg"
+									width="40"
+									height="40"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+								</svg>
+								<svg
+									class="icon-magenta"
+									xmlns="http://www.w3.org/2000/svg"
+									width="40"
+									height="40"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+								</svg>
+							</div>
+							<h3 class="cta-title">Esto es solo la superficie</h3>
+							<p class="cta-description">
+								Estos son algunos de mis trabajos. Cada proyecto fue un desafío que superé para cumplir un objetivo. Los
+								retos son mi motor.
+							</p>
+							<span class="cta-link">¿Y si el próximo es tuyo?</span>
+						</div>
+					</a>
 				</div>
 			)
 		}
@@ -109,6 +234,244 @@ const otherProjects = projects.filter((p) => !p.featured)
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 1.5rem;
+	}
+
+	/* ── CTA card: glitch + gradient border + neon ── */
+	.cta-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		padding: 2.5rem 1.5rem;
+		text-decoration: none;
+		cursor: pointer;
+		position: relative;
+		overflow: hidden;
+		background: var(--bg-secondary);
+		border-radius: var(--radius-lg);
+		border: none;
+		isolation: isolate;
+		transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	/* Static gradient border */
+	.cta-card::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		padding: 1px;
+		background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
+		-webkit-mask:
+			linear-gradient(#fff 0 0) content-box,
+			linear-gradient(#fff 0 0);
+		mask:
+			linear-gradient(#fff 0 0) content-box,
+			linear-gradient(#fff 0 0);
+		-webkit-mask-composite: xor;
+		mask-composite: exclude;
+		pointer-events: none;
+	}
+
+	/* Grid pattern overlay */
+	.cta-bg::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(circle, rgba(0, 212, 255, 0.4) 1px, transparent 1px),
+			radial-gradient(circle, rgba(0, 212, 255, 0.2) 0.5px, transparent 0.5px),
+			linear-gradient(0deg, rgba(0, 212, 255, 0.06) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(0, 212, 255, 0.06) 1px, transparent 1px);
+		background-size:
+			40px 40px,
+			20px 20px,
+			40px 40px,
+			40px 40px;
+		opacity: 0.3;
+		pointer-events: none;
+	}
+
+	.cta-bg {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		padding: 2.5rem 1.5rem;
+	}
+
+	.cta-card:hover {
+		transform: translateY(-6px);
+	}
+
+	.cta-icon {
+		position: relative;
+		z-index: 1;
+		width: 40px;
+		height: 40px;
+		margin-bottom: 1.25rem;
+		animation: ctaPulse 2.5s ease-in-out infinite;
+	}
+
+	@keyframes ctaPulse {
+		0%,
+		100% {
+			transform: scale(1);
+			opacity: 0.7;
+		}
+		50% {
+			transform: scale(1.1);
+			opacity: 1;
+		}
+	}
+
+	.cta-icon svg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.icon-main {
+		color: var(--accent-magenta);
+		filter: none;
+	}
+
+	.icon-cyan {
+		color: var(--accent-cyan);
+		opacity: 0;
+		pointer-events: none;
+		animation: iconGlitchCyan 4s steps(1) infinite;
+	}
+
+	.icon-magenta {
+		color: var(--accent-magenta);
+		opacity: 0;
+		pointer-events: none;
+		animation: iconGlitchMagenta 4s steps(1) infinite 0.05s;
+	}
+
+	@keyframes iconGlitchCyan {
+		0%,
+		82%,
+		100% {
+			opacity: 0;
+			transform: translate(0, 0);
+		}
+		84% {
+			opacity: 0.9;
+			transform: translate(-4px, -2px);
+		}
+		85% {
+			opacity: 0.7;
+			transform: translate(3px, 1px);
+		}
+		86% {
+			opacity: 0;
+			transform: translate(0, 0);
+		}
+	}
+
+	@keyframes iconGlitchMagenta {
+		0%,
+		85%,
+		100% {
+			opacity: 0;
+			transform: translate(0, 0);
+		}
+		87% {
+			opacity: 0.9;
+			transform: translate(4px, 2px);
+		}
+		88% {
+			opacity: 0.7;
+			transform: translate(-3px, -1px);
+		}
+		89% {
+			opacity: 0;
+			transform: translate(0, 0);
+		}
+	}
+
+	.cta-title {
+		position: relative;
+		z-index: 1;
+		font-family: var(--font-heading);
+		font-size: 1.1rem;
+		font-weight: 600;
+		margin-bottom: 0.75rem;
+		line-height: 1.3;
+	}
+
+	.cta-description {
+		position: relative;
+		z-index: 1;
+		font-size: 0.875rem;
+		color: var(--text-secondary);
+		line-height: 1.6;
+		margin-bottom: 1.25rem;
+		max-width: 280px;
+	}
+
+	.cta-link {
+		position: relative;
+		z-index: 1;
+		font-size: 0.8rem;
+		font-weight: 600;
+		letter-spacing: 0.02em;
+	}
+
+	/* ── Light mode ── */
+	[data-theme="light"] .cta-card {
+		background: var(--bg-secondary);
+	}
+
+	[data-theme="light"] .cta-card::before {
+		background: linear-gradient(
+			135deg,
+			color-mix(in srgb, var(--accent-cyan) 60%, #888),
+			color-mix(in srgb, var(--accent-magenta) 60%, #888)
+		);
+	}
+
+	[data-theme="light"] .cta-bg::after {
+		opacity: 0.12;
+		background:
+			radial-gradient(circle, rgba(0, 140, 180, 0.3) 1px, transparent 1px),
+			radial-gradient(circle, rgba(0, 140, 180, 0.15) 0.5px, transparent 0.5px),
+			linear-gradient(0deg, rgba(0, 140, 180, 0.04) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(0, 140, 180, 0.04) 1px, transparent 1px);
+		background-size:
+			40px 40px,
+			20px 20px,
+			40px 40px,
+			40px 40px;
+	}
+
+	[data-theme="light"] .cta-icon {
+		filter: none;
+	}
+
+	/* ── Reduced motion ── */
+	@media (prefers-reduced-motion: reduce) {
+		.icon-cyan,
+		.icon-magenta {
+			animation: none;
+			opacity: 0;
+		}
+
+		.cta-icon {
+			animation: none;
+		}
+
+		.cta-card:hover {
+			transform: none;
+		}
 	}
 
 	@media (max-width: 1024px) {
