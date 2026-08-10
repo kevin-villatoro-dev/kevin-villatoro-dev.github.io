@@ -1,10 +1,13 @@
 ---
+import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
+
 interface Props {
 	title: string
 	description: string
 	tags: string[]
-	image?: string
-	images?: string[]
+	image?: ImageMetadata
+	images?: ImageMetadata[]
 	confidential?: boolean
 	github?: string
 	demo?: string
@@ -33,17 +36,19 @@ const hasSlideshow = images && images.length > 1
 			hasSlideshow ? (
 				<div class="slideshow">
 					{images.map((img, i) => (
-						<img
+						<Image
 							src={img}
 							alt={`${title} - Imagen ${i + 1}`}
 							class="slide"
 							style={`animation-delay: ${i * 3}s;`}
+							width={800}
+							height={500}
 							loading="lazy"
 						/>
 					))}
 				</div>
 			) : image ? (
-				<img src={image} alt={title} loading="lazy" />
+				<Image src={image} alt={title} width={800} height={500} loading="lazy" />
 			) : (
 				<div class="image-placeholder">
 					<svg
