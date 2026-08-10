@@ -1,3 +1,8 @@
+---
+import { Image } from 'astro:assets'
+import profileImg from '../assets/images/profile.webp'
+---
+
 <script>
 	function runAboutAnimations() {
 		const typingEl = document.getElementById("easter-egg") as HTMLElement | null
@@ -93,7 +98,7 @@
 				<div class="about-photo">
 					<div class="photo-wrapper">
 						<div class="photo-frame">
-							<img src="/profile.png" alt="Foto de perfil" class="photo-img" loading="lazy" />
+							<Image src={profileImg} alt="Foto de perfil" class="photo-img" width={400} height={400} loading="eager" fetchpriority="high" />
 							<div class="photo-glow"></div>
 							<div class="corner corner-tl"></div>
 							<div class="corner corner-tr"></div>

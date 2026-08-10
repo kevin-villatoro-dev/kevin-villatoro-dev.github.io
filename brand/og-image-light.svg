@@ -55,21 +55,20 @@
   <!-- Text content -->
   <g>
     <!-- Name -->
-    <text x="540" y="280" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="52" font-weight="700" fill="#1c1917" letter-spacing="-0.5">Kevin Alberto</text>
-    <text x="540" y="340" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="52" font-weight="700" fill="#1c1917" letter-spacing="-0.5">Villatoro Arroyo</text>
+    <text x="740" y="280" text-anchor="middle" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="56" font-weight="700" fill="#1c1917" letter-spacing="-0.5">Kevin Alberto</text>
+    <text x="740" y="340" text-anchor="middle" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="56" font-weight="700" fill="#1c1917" letter-spacing="-0.5">Villatoro Arroyo</text>
     
     <!-- Title with gradient -->
-    <text x="540" y="400" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="28" font-weight="500" fill="url(#accentGradient)" letter-spacing="2">SOFTWARE ARCHITECT</text>
+    <text x="740" y="400" text-anchor="middle" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="26" font-weight="500" fill="url(#accentGradient)" letter-spacing="2">ARQUITECTO DE SOFTWARE</text>
     
     <!-- Subtle divider line -->
-    <rect x="540" y="420" width="120" height="2" fill="url(#accentGradient)" opacity="0.6"/>
+    <rect x="640" y="420" width="200" height="2" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
   
   <!-- KAVA brand mark (subtle, top right) -->
-  <g opacity="0.5">
-    <text x="1080" y="55" font-family="monospace" font-size="18" font-weight="bold" fill="url(#accentGradient)" text-anchor="end">KAVA</text>
+  <g opacity="0.8">
+    <text x="1100" y="50" font-family="monospace" font-size="24" font-weight="bold" fill="#C9A227" text-anchor="end">&lt;KAVA/&gt; </text>
   </g>
   
   <!-- Website URL (subtle, bottom) -->
-  <text x="600" y="590" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" fill="#57534e" text-anchor="middle" letter-spacing="1">https://kevin-villatoro-dev.github.io/</text>
 </svg>

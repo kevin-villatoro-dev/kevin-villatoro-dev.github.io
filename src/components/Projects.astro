@@ -1,6 +1,31 @@
 ---
 import ProjectCard from "./ProjectCard.astro"
 
+// Fintech
+import fintechCheckoutV1Adm from '../assets/images/projects/fintech/hosted-checkout-v1-adm.svg'
+import fintechCheckoutV1 from '../assets/images/projects/fintech/hosted-checkout-v1-checkout.svg'
+import fintechCheckoutV2 from '../assets/images/projects/fintech/hosted-checkout-v2-checkout.svg'
+
+// Finanzas
+import finanzasDemo from '../assets/images/projects/finanzas/finanzas-demo.svg'
+
+// JobTrack
+import jobtrackDashboard from '../assets/images/projects/jobtrack/dashboard.png'
+import jobtrackDetalle from '../assets/images/projects/jobtrack/detalle.png'
+import jobtrackSeguimientos from '../assets/images/projects/jobtrack/seguimientos.png'
+
+// LMS
+import lmsInicio from '../assets/images/projects/lms/inicio.png'
+import lmsBuscador from '../assets/images/projects/lms/buscador.png'
+import lmsDetalle from '../assets/images/projects/lms/detalle.png'
+import lmsFiltros from '../assets/images/projects/lms/filtros.png'
+
+// E-commerce
+import ecommerceDemo from '../assets/images/projects/ecommerce/ecommerce-demo.svg'
+
+// API Gateway
+import apiGatewayDashboard from '../assets/images/projects/api-gateway/dashboard.png'
+
 const projects = [
 	{
 		title: "Ecosistema FinTech Multi-Tenant",
@@ -27,12 +52,7 @@ const projects = [
 			"Mailer",
 			"Correos masivos",
 		],
-		images: [
-			"/images/projects/1/hosted-checkout-v1-adm.svg",
-			"/images/projects/1/hosted-checkout-v1-checkout.svg",
-			"/images/projects/1/hosted-checkout-v2-checkout.svg",
-			"/images/projects/1/hosted-checkout-v1-checkout.svg",
-		],
+		images: [fintechCheckoutV1Adm, fintechCheckoutV1, fintechCheckoutV2, fintechCheckoutV1],
 		featured: true,
 		confidential: true,
 	},
@@ -54,7 +74,7 @@ const projects = [
 			"Notificaciones",
 			"Mailer",
 		],
-		image: "/images/projects/2/finanzas-demo.svg",
+		image: finanzasDemo,
 		confidential: true,
 	},
 	{
@@ -75,12 +95,7 @@ const projects = [
 			"Testing E2E",
 			"pnpm",
 		],
-		images: [
-			"/images/projects/3/dashboard.png",
-			"/images/projects/3/detalle.png",
-			"/images/projects/3/seguimientos.png",
-			"/images/projects/3/detalle.png",
-		],
+		images: [jobtrackDashboard, jobtrackDetalle, jobtrackSeguimientos, jobtrackDetalle],
 	},
 	{
 		title: "Plataforma de Aprendizaje Continuo (LMS)",
@@ -100,19 +115,14 @@ const projects = [
 			"Playwright",
 			"ESLint",
 		],
-		images: [
-			"/images/projects/4/inicio.png",
-			"/images/projects/4/buscador.png",
-			"/images/projects/4/detalle.png",
-			"/images/projects/4/filtros.png",
-		],
+		images: [lmsInicio, lmsBuscador, lmsDetalle, lmsFiltros],
 	},
 	{
 		title: "Plataforma de Comercio Electrónico (E-commerce)",
 		description:
 			"Aplicación web para la gestión de catálogo de productos, carrito de compras, proceso de checkout, órdenes, inventario, usuarios y pagos, con panel administrativo para la gestión comercial.",
 		tags: ["Laravel", "React", "PostgreSQL", "Git", "Github", "Vite", "Nginx", "Tailwind CSS", "Docker", "pnpm", "Turborepo"],
-		image: "/images/projects/5/ecommerce-demo.svg",
+		image: ecommerceDemo,
 		github: "https://github.com/kevin-villatoro-dev/carro-de-compras",
 	},
 	{
@@ -120,7 +130,7 @@ const projects = [
 		description:
 			"Servicio intermediario para centralizar el acceso a múltiples APIs, gestionar autenticación, autorización, enrutamiento de solicitudes, rate limiting, monitoreo y consolidación de respuestas entre servicios internos y externos.",
 		tags: ["React", "Typescript", "Node.js", "Git", "Github", "Fastify", "Vite", "JWT", "Tailwind CSS", "WebSocket", "Monorepo"],
-		image: "/images/projects/6/dashboard.png",
+		image: apiGatewayDashboard,
 		github: "https://github.com/kevin-villatoro-dev/api-gateway",
 	},
 ]
