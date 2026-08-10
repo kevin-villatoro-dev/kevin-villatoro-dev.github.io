@@ -25,7 +25,7 @@
 		if (subtitleEl) {
 			setTimeout(() => {
 				subtitleEl.classList.add("subtitle-active")
-			}, 1000)
+			}, 600)
 		}
 
 		const sectionNavEls = document.querySelectorAll(".section-link")
@@ -182,11 +182,9 @@
 					data-text="Villatoro">Villatoro Arroyo</span
 				>
 			</h1>
-			<h2 class="hero-title">
-				<span class="hero-title-segment segment-cyan" style="--i:0">Tech Lead</span>
-				<span class="hero-title-dot">·</span>
-				<span class="hero-title-segment segment-magenta" style="--i:1">Software Architect</span>
-			</h2>
+		<h2 class="hero-title">
+			<span class="hero-title-segment gradient-text" style="--i:0">Arquitecto de Software</span>
+		</h2>
 
 			<h3 class="hero-subtitle">Construyendo soluciones fintech escalables e integraciones de pagos</h3>
 
@@ -529,12 +527,8 @@
 			gap: 0.5rem;
 		}
 
-		.hero-title-dot {
-			color: var(--text-muted);
-			opacity: 0.4;
-		}
-
 		.hero-title-segment {
+			letter-spacing: 0.08em;
 			opacity: 0;
 			transform: translateY(8px);
 			transition:
@@ -548,17 +542,11 @@
 			transform: translateY(0);
 		}
 
-		.segment-cyan {
-			color: var(--accent-cyan);
-		}
-		.segment-magenta {
-			color: var(--accent-magenta);
-		}
-		.segment-green {
-			color: var(--accent-green);
-		}
-		.segment-purple {
-			color: var(--accent-purple);
+		.gradient-text {
+			background: var(--accent-gradient);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
 		}
 
 		.hero-subtitle {
