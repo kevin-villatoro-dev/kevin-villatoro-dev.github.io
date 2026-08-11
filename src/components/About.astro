@@ -1,6 +1,6 @@
 ---
-import { Image } from 'astro:assets'
-import profileImg from '../assets/images/profile.webp'
+import { Image } from "astro:assets"
+import profileImg from "../assets/images/profile.webp"
 ---
 
 <script>
@@ -98,7 +98,15 @@ import profileImg from '../assets/images/profile.webp'
 				<div class="about-photo">
 					<div class="photo-wrapper">
 						<div class="photo-frame">
-							<Image src={profileImg} alt="Foto de perfil" class="photo-img" width={400} height={400} loading="eager" fetchpriority="high" />
+							<Image
+								src={profileImg}
+								alt="Foto de perfil"
+								class="photo-img"
+								width={400}
+								height={400}
+								loading="eager"
+								fetchpriority="high"
+							/>
 							<div class="photo-glow"></div>
 							<div class="corner corner-tl"></div>
 							<div class="corner corner-tr"></div>
@@ -140,7 +148,8 @@ import profileImg from '../assets/images/profile.webp'
 									aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg
 								>
 								<span class="looking-for-label"
-									>Roles sugeridos: Backend · Frontend · DevOps · AI Engineer · Database Administrator</span
+									>Áreas de especialización: Arquitectura de Software · Project Manager · Backend · Frontend · DevOps · IA
+									aplicada</span
 								>
 							</div>
 							<div class="looking-for-item" data-color="purple">
@@ -200,15 +209,15 @@ import profileImg from '../assets/images/profile.webp'
 
 			<div class="about-content">
 				<p class="about-bio">
-					Tech Lead con 10+ años construyendo software que genera impacto real. Lideré el ecosistema Fintech de ShopShop durante
-					casi 6 años, gestionando desde la arquitectura hasta el despliegue de soluciones de pago que procesaron un alto volumen
+					Tengo más de una década construyendo software que resuelve problemas reales. Lideré durante casi 6 años el ecosistema
+					Fintech de ShopShop, gestionando desde la arquitectura hasta el despliegue de soluciones de pago con un alto volumen
 					transaccional.
 				</p>
 
 				<p class="about-bio">
 					Automaticé la gran mayoría de operaciones críticas que anteriormente requerían intervención manual, reduciendo
-					significativamente la carga operativa del equipo. Hoy aplico metodologías basadas en LLMs y Spec-Driven Development para
-					entregar código robusto, escalable y documentado desde el diseño.
+					significativamente la carga operativa del equipo. Hoy aplico metodologías basadas en LLMs y SDD para entregar código
+					robusto, escalable y documentado desde el diseño.
 				</p>
 
 				<div class="skills-grid">
