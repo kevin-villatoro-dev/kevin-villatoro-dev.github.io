@@ -38,3 +38,12 @@ ehthumbs.db
 
 # Agentes
 AGENTS.md
+
+# Image conventions (non-trackable)
+.IMAGE_CONVENTIONS.md
+
+# Test images / captures
+*.test.png
+*.test.jpg
+__screenshots__/
+timeline-test.png

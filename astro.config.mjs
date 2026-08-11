@@ -5,4 +5,8 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://kevin-villatoro-dev.github.io',
   trailingSlash: 'always',
+  image: {
+    layout: 'constrained',
+    responsiveStyles: true,
+  },
 });

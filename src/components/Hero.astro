@@ -25,7 +25,7 @@
 		if (subtitleEl) {
 			setTimeout(() => {
 				subtitleEl.classList.add("subtitle-active")
-			}, 1000)
+			}, 600)
 		}
 
 		const sectionNavEls = document.querySelectorAll(".section-link")
@@ -62,9 +62,7 @@
 		const CONNECTION_DIST = 120
 		const MOUSE_RADIUS = 100
 		const isLight = document.documentElement.getAttribute("data-theme") !== "dark"
-		const colors = isLight
-			? ["rgba(201,162,39,", "rgba(30,58,138,"]
-			: ["rgba(0,212,255,", "rgba(255,0,170,"]
+		const colors = isLight ? ["rgba(201,162,39,", "rgba(30,58,138,"] : ["rgba(0,212,255,", "rgba(255,0,170,"]
 
 		function resize() {
 			const rect = hero!.getBoundingClientRect()
@@ -183,18 +181,17 @@
 				>
 			</h1>
 			<h2 class="hero-title">
-				<span class="hero-title-segment segment-cyan" style="--i:0">Tech Lead</span>
-				<span class="hero-title-dot">·</span>
-				<span class="hero-title-segment segment-magenta" style="--i:1">Software Architect</span>
+				<span class="hero-title-segment gradient-text" style="--i:0">Arquitecto de Software</span>
 			</h2>
 
-			<h3 class="hero-subtitle">Construyendo soluciones fintech escalables e integraciones de pagos</h3>
+			<h3 class="hero-subtitle">Diseñando sistemas escalables, integraciones y soluciones impulsadas por inteligencia artificial</h3>
 
 			<p class="hero-description">
-				Creo que la mejor tecnología es la que hace más simples los problemas complejos. Con esa idea como guía, lideré el diseño y
-				desarrollo de una solución propietaria de pagos digitales que permitió a comercios de la región aceptar pagos en línea sin
-				desarrollar una integración propia. Hoy disfruto diseñar productos escalables, resolver desafíos complejos y liderar equipos
-				que convierten buenas ideas en soluciones reales.
+				<b><em>Creo que la mejor tecnología es la que hace más simples los problemas complejos.</em></b>
+				<br />
+				Con esa idea como guía, lideré el diseño y desarrollo de una solución a la medida de pagos digitales que permitió a comercios
+				de la región aceptar pagos en línea sin desarrollar una integración propia. Hoy disfruto diseñar productos escalables, resolver
+				desafíos complejos y liderar equipos que convierten buenas ideas en soluciones reales.
 			</p>
 
 			<div class="hero-actions">
@@ -377,7 +374,6 @@
 		}
 		.hero-content {
 			width: 100%;
-			max-width: 800px;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -387,6 +383,7 @@
 			grid-row: 2;
 		}
 		.hero-name {
+			margin-top: 1.5rem;
 			margin-bottom: 0.5rem;
 			position: relative;
 			display: inline-block;
@@ -529,12 +526,8 @@
 			gap: 0.5rem;
 		}
 
-		.hero-title-dot {
-			color: var(--text-muted);
-			opacity: 0.4;
-		}
-
 		.hero-title-segment {
+			letter-spacing: 0.08em;
 			opacity: 0;
 			transform: translateY(8px);
 			transition:
@@ -548,17 +541,11 @@
 			transform: translateY(0);
 		}
 
-		.segment-cyan {
-			color: var(--accent-cyan);
-		}
-		.segment-magenta {
-			color: var(--accent-magenta);
-		}
-		.segment-green {
-			color: var(--accent-green);
-		}
-		.segment-purple {
-			color: var(--accent-purple);
+		.gradient-text {
+			background: var(--accent-gradient);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
 		}
 
 		.hero-subtitle {
@@ -567,7 +554,7 @@
 			color: var(--text-primary);
 			position: relative;
 			display: inline-block;
-			margin-bottom: 1.5rem;
+			margin-bottom: 1rem;
 			letter-spacing: 0.02em;
 			opacity: 0;
 			transform: translateY(8px);
@@ -580,7 +567,7 @@
 			content: "";
 			display: block;
 			width: 0;
-			height: 4px;
+			height: 6px;
 			margin: 0.5rem auto 0;
 			background: repeating-linear-gradient(
 				90deg,
@@ -595,16 +582,16 @@
 
 		@keyframes dashWrite {
 			0% {
-				width: 0;
+				width: 40%;
 			}
 			45% {
-				width: 60%;
+				width: 80%;
 			}
 			55% {
-				width: 60%;
+				width: 80%;
 			}
 			100% {
-				width: 0;
+				width: 40%;
 			}
 		}
 
@@ -640,11 +627,11 @@
 
 		.hero-description {
 			font-size: 1.1rem;
-			max-width: 800px;
+			/* max-width: 650px; */
 			margin-inline: auto;
 			margin-bottom: 1.5rem;
 			line-height: 1.8;
-			text-align: justify;
+			text-align: center;
 		}
 
 		.hero-section-nav {
