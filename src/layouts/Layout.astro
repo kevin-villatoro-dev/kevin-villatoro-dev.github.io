@@ -20,6 +20,21 @@ const { title, description = "Ideando soluciones, programando realidades. Un bue
 		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="theme-color" content="#f9fafb" />
+
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="https://kevin-villatoro-dev.github.io/og-image-light.jpg" />
+		<meta property="og:url" content="https://kevin-villatoro-dev.github.io" />
+		<meta property="og:site_name" content="Kevin Alberto Villatoro Arroyo" />
+
+		<!-- Twitter/X Cards -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content="https://kevin-villatoro-dev.github.io/banner-light.jpg" />
+
 		<script is:inline>
 			;(function () {
 				var stored = localStorage.getItem("theme")
@@ -36,19 +51,6 @@ const { title, description = "Ideando soluciones, programando realidades. Un bue
 			})()
 		</script>
 
-		<!-- Open Graph -->
-		<meta property="og:type" content="website" />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content="https://kevin-villatoro-dev.github.io/og-image-light.jpg" />
-		<meta property="og:url" content="https://kevin-villatoro-dev.github.io" />
-		<meta property="og:site_name" content="Kevin Alberto Villatoro Arroyo" />
-
-		<!-- Twitter/X Cards -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content="https://kevin-villatoro-dev.github.io/banner-light.jpg" />
 		<link rel="canonical" href="https://kevin-villatoro-dev.github.io" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
