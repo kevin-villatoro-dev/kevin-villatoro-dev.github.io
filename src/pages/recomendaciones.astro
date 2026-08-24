@@ -97,7 +97,10 @@ import PdfViewerStyles from '../components/PdfViewerStyles.astro';
         
         for (let i = 1; i <= pdf.numPages; i++) {
           const page = await pdf.getPage(i);
-          const scale = 1.4;
+          const baseViewport = page.getViewport({ scale: 1 });
+          const maxHeight = window.innerHeight * 0.85;
+          const maxWidth = 800;
+          const scale = Math.min(maxHeight / baseViewport.height, maxWidth / baseViewport.width);
           const pageViewport = page.getViewport({ scale });
           
           const slide = document.createElement('div');
@@ -264,7 +267,6 @@ import PdfViewerStyles from '../components/PdfViewerStyles.astro';
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
-    overflow: hidden;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   }
 
@@ -312,15 +314,13 @@ import PdfViewerStyles from '../components/PdfViewerStyles.astro';
     padding: 1rem;
     display: flex;
     justify-content: center;
+    align-items: center;
     background: var(--bg-secondary);
-    max-height: calc(100vh - 220px);
-    overflow: hidden;
   }
 
   .canvas-wrapper canvas {
+    display: block;
     max-width: 100%;
-    max-height: calc(100vh - 260px);
-    object-fit: contain;
     border-radius: var(--radius-sm);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   }
